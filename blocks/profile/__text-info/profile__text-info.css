@@ -1,0 +1,21 @@
+.profile__text-info {
+  box-sizing: border-box;
+  padding: 22px 102px 0 30px;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__text-info {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 26px 42px 36px 42px;
+  }
+  
+}
+
+@media screen and (max-width: 435px) {
+  .profile__text-info {
+    padding: 26px 28px 36px 28px;
+  }
+}
