@@ -10,10 +10,11 @@
     display: block;
     text-align: center;
     margin: 0;
+    font-size: 36px;
   }
 }
 
-@media screen and (max-width: 435px) {
+@media screen and (max-width: 425px) {
   .profile__name {
     font-size: 27px;
     line-height: 1.21;
