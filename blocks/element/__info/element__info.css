@@ -4,6 +4,8 @@
   align-items: center;
   box-sizing: border-box;
   width: 100%;
+  min-height: 79px;
   padding: 0;
   position: relative;
+  padding: 0 16px 0 20px;
 }
