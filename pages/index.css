@@ -23,3 +23,12 @@
 @import url(../blocks/element/__like/_active/element__like_active.css);
 @import url(../blocks/footer/footer.css); /** footer */
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popup/popup.css); /** popup */
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__name/popup__name.css);
+@import url(../blocks/popup/__occupation/popup__occupation.css);
+@import url(../blocks/popup/__exit-button/popup__exit-button.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
+@import url(../blocks/popup/__button-text/popup__button-text.css);
+@import url(../blocks/popup/__exit/popup__exit.css);
