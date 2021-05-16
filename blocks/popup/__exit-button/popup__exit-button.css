@@ -9,7 +9,7 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border: none;
-  background: initial;
+  background: transparent;
   -webkit-transition: .2s ease-in;
   -o-transition: .2s ease-in;
   transition: .2s ease-in;

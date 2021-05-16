@@ -1,6 +1,6 @@
 .element__button {
   border: none;
-  background: inherit;
+  background: transparent;
   padding: 8px;
   -webkit-transition: .2s ease-in;
   -o-transition: .2s ease-in;
