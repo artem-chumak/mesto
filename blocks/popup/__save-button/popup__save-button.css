@@ -1,11 +1,14 @@
 .popup__save-button {
   height: 50px;
   background: #000;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border: none;
   border-radius: 2px;
   color: #fff;
   padding: 0;
+  -webkit-transition: .2s ease-in;
+  -o-transition: .2s ease-in;
   transition: .2s ease-in;
   cursor: pointer;
 }

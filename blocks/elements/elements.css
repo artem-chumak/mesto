@@ -3,9 +3,12 @@
   margin: 0 auto;
   display: grid;
   row-gap: 20px;
+  -webkit-column-gap: 17px;
+  -moz-column-gap: 17px;
   column-gap: 17px;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   list-style: none;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }

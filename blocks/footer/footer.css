@@ -3,6 +3,7 @@
   min-height: 144px;
   margin: 0 auto;
   padding-top: 66px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 

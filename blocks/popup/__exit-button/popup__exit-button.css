@@ -6,9 +6,12 @@
   right: -44px;
   cursor: pointer;
   padding: 8px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border: none;
   background: initial;
+  -webkit-transition: .2s ease-in;
+  -o-transition: .2s ease-in;
   transition: .2s ease-in;
 }
 
