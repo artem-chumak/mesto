@@ -16,37 +16,63 @@ function toggleEditForm () {
 
 //* СОБЫТИЕ клик по кнопке редактировать ОБЪЕКТ-01 запускает ФУКЦИЯ-01 прибавть/убавить класс
 buttonEditProfile.addEventListener('click', toggleEditForm);
+//! тут нужно сделать функцию, что изначально загружаются данные из полей профайла
 
 //* СОБЫТИЕ клик по кнопке закрыть ОБЪЕКТ-03 запускает ФУКЦИЯ-01 прибавть/убавить класс
 closeForm.addEventListener('click', toggleEditForm);
 
 
-//todo ОБЪЕКТ-01 Форма. Работает
+//todo ОБЪЕКТ-01
+//* Форма. Работает
 let formProfile = document.querySelector('.popup__container');
 
-//todo ОБЪКТ-02 Поле имя. Работает
+//todo ОБЪКТ-02
+//*Поле имя. Работает
 let nameInput = document.querySelector('.popup__name');
 
-//todo ОБЪКТ-03 Поле род занятий. Работает
+//todo ОБЪКТ-03
+//* Поле род занятий. Работает
 let occupationInput = document.querySelector('.popup__occupation');
 
-//todo ФУНКЦИЯ-01 Получить значиения из атрибута VALUE у ОБЪЕКТА-02 Имени
-//! У меня получилось взять тлько то значение, которое было мной проставлено ранее
-nameInput.getAttribute('value');
+//todo ФУНКЦИЯ-01
+//*Получить значиения из атрибута VALUE у ОБЪЕКТА-02 Имени
+console.log(nameInput.value);
 
-//! У меня получилось взять тлько то значение, которое было мной проставлено ранее
-//todo ФУНКЦИЯ-02 Получить значение из атрибута VOLUE у ОБЪЕКТА-03
-occupationInput.getAttribute('value');
+//todo ФУНКЦИЯ-02
+//* Получить значение из атрибута VOLUE у ОБЪЕКТА-03
+console.log(occupationInput.value);
 
-//todo ОБЪЕКТ-04 Поле имая куда должен быть записано значение из Инпута
+//todo ОБЪЕКТ-04
+//* Поле имая куда должен быть записано значение из Инпута
 let nameProfile = document.querySelector('.profile__name');
-//todo Проверка, взять то значение, которое есть сейчас. Работает!
+//* Содержимое ОБЪЕКТА-04
 nameProfile.innerHTML;
 
-//todo ОБЪЕКТ-05 Поле вида деятельности
+//todo ОБЪЕКТ-05
+// *Поле вида деятельности
 let occupationProfile = document.querySelector('.profile__occupation');
-//todo Проверка, взять то значение, которое есть сейчас. Работает!
+//* Содержимое ОБЪЕКТА-05
 occupationProfile.innerHTML;
+
+//todo ФУНЦИЯ-03
+// *Замена ОБЪЕКТА-04 на ФУНКЦИЮ-01 Замена имени в профиле на имя из формы
+// nameProfile.innerHTML = nameInput.value;
+
+//todo ФУНКЦИЯ-04
+//* Замена ОБЪЕКТА-05 на ФУНКЦИЮ-03 Замена рода деятельности в профиле на значение из формы
+// occupationProfile.innerHTML = occupationInput.value;
+
+//todo ФУНКЦИИ-05
+//* Все сразу: берем из формы и заменяем в профиле
+
+function formSubmit (evt) {
+  evt.preventDefault();
+  nameProfile.innerHTML = nameInput.value;
+  occupationProfile.innerHTML = occupationInput.value;
+}
+
+formProfile.addEventListener('submit', formSubmit);
+formProfile.addEventListener('submit', toggleEditForm);
 
 
 // Находим форму в DOM
