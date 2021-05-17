@@ -19,7 +19,7 @@ let occupationInput = document.querySelector('.popup__occupation');
 
 //* Functions:
 
-//* Open/close popup
+//* Open/Close popup
 //? I though I can just switch on/off 'display: none/flex' in '.popup'. As a benefit one class less. 
 function toggleEditForm () {
   editForm.classList.toggle('popup_opened');
