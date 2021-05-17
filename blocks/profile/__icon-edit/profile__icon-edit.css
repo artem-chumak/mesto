@@ -1,6 +1,9 @@
 .profile__icon-edit {
+  background-image: url(../../../images/edit-button.svg);
+  background-size: cover;
   width: 24px;
   height: 24px;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 768px) {

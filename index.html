@@ -24,13 +24,15 @@
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Фото профиля">
           <div class="profile__info">
             <h1 class="profile__name">Билл Мюррей</h1>
+<!-- Кнопка позиционируется абсолютно т.к. для мобильной версии текст центрирован по центру
+У кнопок есть паддинги для того, чтобы было удобно попасть пальцем/мышкой -->
             <button class="profile__edit-button" aria-label="Изменить профиль" name="edit" type="button">
-              <img class="profile__icon-edit" src="./images/edit-button.svg" alt="Изменить профиль">
+              <div class="profile__icon-edit"></div>
             </button>
             <p class="profile__occupation">Актёр</p>
           </div>
           <button class="profile__add-button" aria-label="Добавить" name="add" type="button">
-            <img class="profile__icon-add" src="./images/add-button.svg" alt="Добавить">
+            <div class="profile__icon-add"></div>
           </button>
         </section>
 <!--* elements -->
@@ -101,7 +103,7 @@
       <form class="popup__container" action="">
         <h2 class="popup__title">Редактировать профиль</h2>
         <input class="popup__name" type="text">
-        <input class="popup__occupation" type="text" value="something">
+        <input class="popup__occupation" type="text">
         <button class="popup__save-button" type="submit" aria-label="Сохранить" name="save">
           <span class="popup__button-text">Сохранить</span>
         </button>
