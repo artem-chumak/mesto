@@ -1,17 +1,16 @@
-# Проект 4: Место
+# Mesto
 
-### Обзор
+[The site](https://artem-chumak.github.io/mesto/) created as practice work during my studies in Yandex.Practicum.
 
-* Figma
-* Картинки
+## Tech
 
-**Figma**
+* HTML
+* CSS (flex, grid, @media)
+* JavaScript
+* BEM nested
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+## Development plan
 
-**Картинки**
+**Tech**
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+* Add functions: like and add place.
