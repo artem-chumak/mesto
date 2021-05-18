@@ -1,9 +1,5 @@
 .profile {
-  max-width: 880px;
-  margin: 0 auto;
   padding: 41px 0 51px 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;

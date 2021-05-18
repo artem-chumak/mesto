@@ -3,21 +3,16 @@
   height: 40px;
   font-size: 0;
   padding: 8px;
-  background: transparent;
   border: none;
   position: absolute;
   right: 52px;
   top: 29px;
-  cursor: pointer;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: .2s ease-in;
-  -o-transition: .2s ease-in;
-  transition: .2s ease-in;
+  background: transparent;
+  background-size: contain;
 }
 
 .profile__edit-button:hover {
-  opacity: 60%;
+  opacity: .6;
 }
 
 @media screen and (max-width: 768px) {

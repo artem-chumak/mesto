@@ -1,9 +1,9 @@
 .profile__icon-add {
   background-image: url(../../../images/add-button.svg);
-  background-size: cover;
   margin: 0 auto;
   width: 22px;
   height: 22px;
+  background-size: cover;
 }
 
 @media screen and (max-width: 425px) {

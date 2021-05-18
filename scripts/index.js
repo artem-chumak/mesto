@@ -20,25 +20,24 @@ let occupationInput = document.querySelector('.popup__occupation');
 //* Functions:
 
 //* Open/Close popup
-//? I though I can just switch on/off 'display: none/flex' in '.popup'. As a benefit one class less. 
-function toggleEditForm () {
+function toggleEditForm() {
   editForm.classList.toggle('popup_opened');
 }
-//* Name and occupation from profile inte form
+//* Name and occupation from profile into form
 //todo I think it could be one function
-function transferNameToForm () {
+function transferNameToForm() {
   nameInput.value = nameProfile.innerHTML;
 }
-function transferOccupationToForm () {
+function transferOccupationToForm() {
   occupationInput.value = occupationProfile.innerHTML;
 }
 //* Transfer name and occupation from form into profile
-function formSubmit (evt) {
+function formSubmit(evt) {
   evt.preventDefault();
   nameProfile.innerHTML = nameInput.value;
   occupationProfile.innerHTML = occupationInput.value;
 }
-  
+
 //* Events:
 
 //* CLICK button edit profile
