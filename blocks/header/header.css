@@ -4,15 +4,10 @@
   padding-top: 45px;
 }
 
-@media screen and (max-width:720px) {
-  .header {
-    padding-left: 8px;
-  }
-}
-
 @media screen and (max-width: 425px) {
   .header {
     padding-top: 28px;
+    padding-left: 27px;
     min-height: 82px;
   }
 }

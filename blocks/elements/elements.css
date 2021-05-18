@@ -8,3 +8,9 @@
   list-style: none;
   padding: 0;
 }
+
+@media screen and (max-width: 425px) {
+  .elements {
+    padding: 0 19px;
+  }
+}
