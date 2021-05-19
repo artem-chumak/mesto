@@ -1,22 +1,25 @@
 .profile__info {
+  margin-right: auto;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 22px 102px 0 30px;
-  margin-right: auto;
-  position: relative;
+  padding: 22px 52px 0 30px;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-template-rows: min-content min-content;
 }
 
 @media screen and (max-width: 768px) {
   .profile__info {
+    display: block;
     max-width: 100%;
     margin: 0 auto;
-    padding: 26px 42px 36px 42px;
+    padding: 26px 42px 30px 42px;
+    position: relative;
   }
-  
 }
 
 @media screen and (max-width: 425px) {
   .profile__info {
-    padding: 26px 28px 36px 28px;
+    padding: 26px 28px 30px 28px;
   }
 }
