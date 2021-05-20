@@ -31,11 +31,12 @@ function transferNameToForm() {
 function transferOccupationToForm() {
   occupationInput.value = occupationProfile.textContent;
 }
-//* Transfer name and occupation from form into profile
+//* Transfer name and occupation from form into profile and close form
 function formSubmit(evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   occupationProfile.textContent = occupationInput.value;
+  toggleEditForm();
 }
 
 //* Events:
@@ -49,4 +50,3 @@ buttonEditProfile.addEventListener('click', transferOccupationToForm);
 closeForm.addEventListener('click', toggleEditForm);
 //* CLICK button safe
 formProfile.addEventListener('submit', formSubmit);
-formProfile.addEventListener('submit', toggleEditForm);
