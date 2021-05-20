@@ -1,12 +1,15 @@
 .popup__exit-button {
   position: absolute;
-  height: 49px;
-  width: 49px;
+  height: 48px;
+  width: 48px;
   top: -44px;
   right: -44px;
   padding: 8px;
   border: none;
   background: transparent;
+  background-image: url(../../../images/Exit-button-L.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .popup__exit-button:hover {
@@ -26,5 +29,6 @@
     width: 37px;
     top: -51px;
     right: 0;
+    background-image: url(../../../images/Exit-button-S.svg);
   }
 }

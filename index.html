@@ -10,111 +10,87 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
-<!--  
-1. у кнопок (edit, like, exit) есть паддинги для того, чтобы было удобно попасть пальцем/мышкой
-3. иконки в кнопках <span>, т.к. валидатор не пропускает <div>, а как правильно делать с <svg> пока не понял
--->
 
 <body>
   <div class="root">
     <div class="page">
-      <!--* header -->
+<!--* header -->
       <header class="header section">
         <img class="logo header__logo" src="./images/logo-header.svg" alt="Логотип">
       </header>
       <main class="main">
-        <!--* profile -->
+<!--* profile -->
         <section class="profile section">
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Фото профиля">
           <div class="profile__info">
             <h1 class="profile__name">Билл Мюррей</h1>
-            <button class="button profile__edit-button" aria-label="Изменить профиль" type="button">
-              <span class="profile__icon-edit"></span>
-            </button>
+            <button class="button profile__edit-button" aria-label="Изменить профиль" type="button"></button>
             <p class="profile__occupation">Актёр</p>
           </div>
-          <button class="button profile__add-button" aria-label="Добавить" type="button">
-            <span class="profile__icon-add"></span>
-          </button>
+          <button class="button profile__add-button" aria-label="Добавить" type="button"></button>
         </section>
-        <!--* elements -->
+<!--* elements -->
         <section class="section elements">
           <ul class="elements__list">
             <li class="element">
               <img class="element__image" src="./images/ahun.jpg" alt="Гора Ахун">
               <div class="element__info">
                 <h2 class="element__title">Гора Ахун</h2>
-                <button class="button element__like-button" aria-label="Понравилось">
-                  <span class="element__icon-like"></span>
-                </button>
+                <button class="button element__like-button" aria-label="Понравилось"></button>
               </div>
             </li>
             <li class="element">
               <img class="element__image" src="./images/ladoga.jpg" alt="Ладога">
               <div class="element__info">
                 <h2 class="element__title">Ладожское озеро</h2>
-                <button class="button element__like-button" aria-label="Понравилось">
-                  <span class="element__icon-like"></span>
-                </button>
+                <button class="button element__like-button" aria-label="Понравилось"></button>
               </div>
             </li>
             <li class="element">
               <img class="element__image" src="./images/nikola.jpg" alt="Никола-Ленивец">
               <div class="element__info">
                 <h2 class="element__title">Никола-Ленивец</h2>
-                <button class="button element__like-button" aria-label="Понравилось">
-                  <span class="element__icon-like"></span>
-                </button>
+                <button class="button element__like-button" aria-label="Понравилось"></button>
               </div>
             </li>
             <li class="element">
               <img class="element__image" src="./images/pechory.jpg" alt="Печоры">
               <div class="element__info">
                 <h2 class="element__title">Печоры</h2>
-                <button class="button element__like-button" aria-label="Понравилось">
-                  <span class="element__icon-like"></span>
-                </button>
+                <button class="button element__like-button" aria-label="Понравилось"></button>
               </div>
             </li>
             <li class="element">
               <img class="element__image" src="./images/tobizina.jpg" alt="Тобизина">
               <div class="element__info">
                 <h2 class="element__title">Мыс Тобизина</h2>
-                <button class="button element__like-button" aria-label="Понравилось">
-                  <span class="element__icon-like"></span>
-                </button>
+                <button class="button element__like-button" aria-label="Понравилось"></button>
               </div>
             </li>
             <li class="element">
               <img class="element__image" src="./images/volga.jpg" alt="Калязин">
               <div class="element__info">
                 <h2 class="element__title">Калязин</h2>
-                <button class="button element__like-button" aria-label="Понравилось">
-                  <span class="element__icon-like"></span>
-                </button>
+                <button class="button element__like-button" aria-label="Понравилось"></button>
               </div>
             </li>
           </ul>
         </section>
       </main>
-      <!--* footer -->
+<!--* footer -->
       <footer class="footer section">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
     </div>
-    <!--* pop-up -->
+<!--* pop-up -->
     <section class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <button class="button popup__exit-button" type="button" aria-label="Закрыть">
-          <span class="popup__icon-exit"></span>
-        </button>
+        <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
         <form class="popup__form" action='#' name="profile-edit-form">
           <input class="input" type="text" placeholder="Имя" name="name">
           <input class="input" type="text" placeholder="Род занятий" name="occupation">
-          <button class="button popup__save-button" type="submit" aria-label="Сохранить">
-            <span class="popup__button-text">Сохранить</span>
-          </button>
+          <button class="button popup__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </section>

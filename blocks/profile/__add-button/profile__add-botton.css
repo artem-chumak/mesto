@@ -10,6 +10,9 @@
   margin: 0;
   font-size: 0;
   background: transparent;
+  background-image: url(../../../images/Add-button-L.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__add-button:hover {
@@ -19,5 +22,11 @@
 @media screen and (max-width: 768px) {
   .profile__add-button {
     width: 282px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile__add-button {
+    background-image: url(../../../images/Add-button-S.svg);
   }
 }

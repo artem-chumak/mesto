@@ -6,6 +6,9 @@
   border: none;
   background: transparent;
   margin: 6px 0 0 10px;
+  background-image: url(../../../images/Edit-button-L.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__edit-button:hover {
@@ -20,6 +23,7 @@
     height: 38px;
     right: -8px;
     top: 30px;
+    background-image: url(../../../images/Edit-button-M.svg);
   }
 }
 
@@ -28,5 +32,6 @@
     width: 34px;
     height: 34px;
     top: 26px;
+    background-image: url(../../../images/Edit-button-S.svg);
   }
 }
