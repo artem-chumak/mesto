@@ -1,11 +1,15 @@
-.popup__occupation {
+.input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   height: 27px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  margin-bottom: 45px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.21;
+  margin-bottom: 30px;
+}
+
+.input:last-of-type {
+  margin-bottom: 45px;
 }

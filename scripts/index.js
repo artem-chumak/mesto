@@ -13,9 +13,9 @@ let closeForm = document.querySelector('.popup__exit-button');
 //* FORM
 let formProfile = document.querySelector('.popup__container');
 //* INPUT name
-let nameInput = document.querySelector('.popup__name');
+let nameInput = document.querySelector('input[name="name"]');
 //* INPUT occupation
-let occupationInput = document.querySelector('.popup__occupation');
+let occupationInput = document.querySelector('input[name="occupation"]');
 
 //* Functions:
 
