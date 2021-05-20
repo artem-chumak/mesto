@@ -104,17 +104,19 @@
     </div>
     <!--* pop-up -->
     <section class="popup">
-      <form class="popup__container" action='#'>
+      <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__name" type="text" placeholder="Имя">
-        <input class="popup__occupation" type="text" placeholder="Род занятий">
-        <button class="button popup__save-button" type="submit" aria-label="Сохранить">
-          <span class="popup__button-text">Сохранить</span>
-        </button>
         <button class="button popup__exit-button" type="button" aria-label="Закрыть">
           <span class="popup__icon-exit"></span>
         </button>
-      </form>
+        <form class="popup__form" action='#' name="profile-edit-form">
+          <input class="popup__name popup__input" type="text" placeholder="Имя" name="name">
+          <input class="popup__occupation popup__input" type="text" placeholder="Род занятий" name="occupation">
+          <button class="button popup__save-button" type="submit" aria-label="Сохранить">
+            <span class="popup__button-text">Сохранить</span>
+          </button>
+        </form>
+      </div>
     </section>
   </div>
   <script src="./scripts/index.js"></script>
