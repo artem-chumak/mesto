@@ -1,15 +1,3 @@
-.elements {
-  display: grid;
-  row-gap: 20px;
-  -webkit-column-gap: 17px;
-  -moz-column-gap: 17px;
-  column-gap: 17px;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 @media screen and (max-width: 425px) {
   .elements {
     padding: 0 19px;
