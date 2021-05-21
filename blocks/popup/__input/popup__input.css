@@ -1,4 +1,4 @@
-.input {
+.popup__input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   height: 27px;
@@ -10,6 +10,6 @@
   margin-bottom: 30px;
 }
 
-.input:last-of-type {
+.popup__input:last-of-type {
   margin-bottom: 45px;
 }
