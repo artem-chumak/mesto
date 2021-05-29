@@ -32,7 +32,7 @@
 <!--* elements -->
         <section class="section elements">
           <ul class="elements__list">
-            <li class="element">
+<!-- <li class="element">
               <img class="element__image" src="./images/ahun.jpg" alt="Гора Ахун">
               <div class="element__info">
                 <h2 class="element__title">Гора Ахун</h2>
@@ -74,6 +74,7 @@
                 <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
               </div>
             </li>
+          -->            
           </ul>
         </section>
       </main>
@@ -94,8 +95,33 @@
         </form>
       </div>
     </section>
+    <section class="popup-place">
+      <div class="popup-place__container">
+        <h2 class="popup-place__title">Новое место</h2>
+        <button class="button popup-place__exit-button" type="button" aria-label="Закрыть"></button>
+        <form class="popup-place__form" action='#' name="profile-edit-form">
+          <input class="popup-place__input" type="text" placeholder="Название" name="place">
+          <input class="popup-place__input" type="text" placeholder="Ссылка на картинку" name="link">
+          <button class="button popup-place__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
   </div>
   <script src="./scripts/index.js"></script>
+
+<!--* templates -->
+
+  <template class="element_template">
+    <li class="element">
+      <img class="element__image" src="#" alt="Фото места">
+      <div class="element__info">
+        <h2 class="element__title"></h2>
+        <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
+      </div>
+    </li>
+  </template>
+
 </body>
 
 </html>
