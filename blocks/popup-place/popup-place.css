@@ -102,6 +102,12 @@
   opacity: .8;
 }
 
+.popup_opened {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 @media screen and (max-width: 558px) {
   .popup-place__exit-button {
     top: -63px;

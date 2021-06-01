@@ -21,7 +21,7 @@ let nameInput = document.querySelector('input[name="name"]');
 let occupationInput = document.querySelector('input[name="occupation"]');
 
 //todo new code template
-//новый попап
+//todo Это добавление нового места.
 
 //* BUTTON add place
 let buttonAddPlace = document.querySelector('.profile__add-button');
@@ -35,12 +35,47 @@ let addForm = document.querySelector('.popup-place');
 let closeAddForm = document.querySelector('.popup-place__exit-button');
 //* FORM
 let formAddElement = document.querySelector('.popup-place__container');
-//* INPUT name
+//* INPUT title
 let titleInput = document.querySelector('input[name="place"]');
-//* INPUT occupation
+//* INPUT link
 let linkInput = document.querySelector('input[name="link"]');
+//* BUTTON add new place
+let submitNewPlace =document.querySelector('.popup-place__save-button')
 
-//Тут нужно навешать еще формулы и прочее говно.
+//* Open/Close popup
+function toggleAddForm() {
+  addForm.classList.toggle('popup_opened');
+}
+
+//рендер нового элемента
+function addNewPlace(evt) {
+  evt.preventDefault();
+  const htmlElement = elementTemplate.cloneNode(true);
+  htmlElement.querySelector('.element__image').src = linkInput.value;
+  htmlElement.querySelector('.element__title').innerText = titleInput.value;
+  setEventListener(htmlElement);
+  elementList.insertBefore(htmlElement, elementList.firstChild);
+}
+
+//* CLICK button add place
+buttonAddPlace.addEventListener('click', toggleAddForm);
+
+//* CLICK button clase popup
+closeAddForm.addEventListener('click', toggleAddForm);
+
+//* CLICK button add new place
+submitNewPlace.addEventListener('click', addNewPlace);
+submitNewPlace.addEventListener('click', toggleAddForm);
+
+//todo Кнопка лайк
+
+const likeButton = document.querySelector('element__like-button'); //! null надо выяснить почему
+const deleteButton = document.querySelector('.element__delete-button'); //! null выяснить почему
+
+function toggleLike () {
+  buttonLike.classList.toggle('element__like-button_active');
+}
+
 
 
 // массив. Первые 6 объектов, когда страница загрузится.
@@ -71,41 +106,42 @@ const initialElements = [
   }
 ]; 
 
-const elementTemplate = document.querySelector('.element_template'); // оъект ТЕМПЛЕЙТ
+const elementTemplate = document.querySelector('.element_template').content; // оъект ТЕМПЛЕЙТ
 const elementList = document.querySelector('.elements__list'); // объект UL тот, куда будем записывать ТЕМПЛЕЙТ
 
-// function renderInitialElements () {
-//   for (let index = 0; index < initialElements.length; index++) { //Конструкция FOR LOOP. 1. И=0 2. И меньше длины массива. 3. +1 к каждой новой итерации. индекс=индекс+1
-//     const title = initialElements[index].name; //сделали переменную, в которой будет имя из объекта в массиве
-//     const image = initialElements[index].link; //тоже само, но для ссылки
-
-//     elementList.insertAdjacentHTML('beforeend',`
-//     <li class="element">
-//       <img class="element__image" src="${image}" alt="Фото места">
-//       <div class="element__info">
-//         <h2 class="element__title">${title}</h2>
-//         <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
-//       </div>
-//     </li>
-//     `) //тут мы поместили перед концам UL наш темплейт. те моменты, что отличались, мы заполнили данными
-//   }
-// }
-//
 //renderInitialElements () // коллбек функции. Т.к. она должна сработать при загрузки
 
-initialElements.forEach((item) => { //функция принимает три аргумента 1.Элемент массива 2.Номер элемента 3. Сам массив(редко нужно) Тут мы используем только элемент массива. Остальные не заполняли
-    elementList.insertAdjacentHTML('beforeend',`
-    <li class="element">
-      <img class="element__image" src="${item.link}" alt="Фото места">
-      <div class="element__info">
-        <h2 class="element__title">${item.name}</h2>
-        <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
-      </div>
-    </li>
-    `)
-})
+function renderElements() {
+  initialElements.forEach(renderElement);
+}
 
+//! Способ с template
 
+//рендер элемента из массива
+function renderElement (item) {
+  const htmlElement = elementTemplate.cloneNode(true); //скопировал содержание темплейта
+  htmlElement.querySelector('.element__image').src = item.link;
+  htmlElement.querySelector('.element__title').innerText = item.name;
+  setEventListener(htmlElement);
+  elementList.appendChild(htmlElement);
+}
+
+//! Кнопка удаления. Для карточек из массива.
+
+function handleDelete(evt) {
+evt.target.closest('.element').remove();
+}
+
+function handleLike(evt) {
+  evt.target.closest('.element__like-button').classList.toggle('element__like-button_active') //like
+}
+
+function setEventListener(element) {
+  element.querySelector('.element__delete-button').addEventListener('click', handleDelete);
+  element.querySelector('.element__like-button').addEventListener('click', handleLike) //like
+}
+
+renderElements();
 
 //! Functions:
 
