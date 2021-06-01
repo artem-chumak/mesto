@@ -71,6 +71,8 @@ submitNewPlace.addEventListener('click', toggleAddForm);
 
 const likeButton = document.querySelector('element__like-button'); //! null надо выяснить почему
 const deleteButton = document.querySelector('.element__delete-button'); //! null выяснить почему
+let editing = null;
+let editingtwo = null;
 
 function toggleLike () {
   buttonLike.classList.toggle('element__like-button_active');
@@ -136,10 +138,33 @@ function handleLike(evt) {
   evt.target.closest('.element__like-button').classList.toggle('element__like-button_active') //like
 }
 
-function setEventListener(element) {
-  element.querySelector('.element__delete-button').addEventListener('click', handleDelete);
-  element.querySelector('.element__like-button').addEventListener('click', handleLike) //like
+function handleImage(evt) {
+  editing = evt.target.closest('.element__image');
+  imagePopupImage.src = editing.src; //! это можно упростить!
+  editingtwo = evt.target.closest('.element');
+  imagePopupTitle.textContent = editingtwo.querySelector('.element__title').textContent;
 }
+
+//! Попап с картинкой
+const popupImage = document.querySelector('.popup-image'); //попап с картинкой
+const popupImageExitButton = document.querySelector('.popup-image__exit-button'); //кнопка выход из попапа с картинкой
+const imagePopupImage = document.querySelector('.popup-image__image'); //картинка в попапе
+const imagePopupTitle = document.querySelector('.popup-image__title');
+
+function toggleImage() { //октрыть или закрыть попап с картинокой
+  popupImage.classList.toggle('popup_opened');
+}
+
+
+
+function setEventListener(element) {
+  element.querySelector('.element__delete-button').addEventListener('click', handleDelete); //delete
+  element.querySelector('.element__like-button').addEventListener('click', handleLike); //like
+  element.querySelector('.element__image').addEventListener('click', toggleImage); //клик по картинке открывает попап
+  element.querySelector('.element__image').addEventListener('click', handleImage); //клик по картинке открывает попап
+}
+
+popupImageExitButton.addEventListener('click', toggleImage); //клик по кнопке закрытия попапа с картинкой
 
 renderElements();
 

@@ -3,4 +3,5 @@
   height: 282px;
   -o-object-fit: cover;
   object-fit: cover;
+  cursor: pointer;
 }

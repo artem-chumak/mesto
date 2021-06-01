@@ -8,7 +8,10 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity .3s linear;
 }
 
 .popup-place__container {
@@ -103,9 +106,8 @@
 }
 
 .popup_opened {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 @media screen and (max-width: 558px) {
