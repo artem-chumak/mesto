@@ -42,7 +42,7 @@
     </div>
 <!--* pop-up's -->
 <!--* edit-profile -->
-    <section class="popup">
+    <section class="popup" id="edit-profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
@@ -54,23 +54,23 @@
       </div>
     </section>
 <!--* add place -->
-    <section class="popup-place">
-      <div class="popup-place__container">
-        <h2 class="popup-place__title">Новое место</h2>
-        <button class="button popup-place__exit-button" type="button" aria-label="Закрыть"></button>
-        <form class="popup-place__form" action='#' name="profile-edit-form">
-          <input class="popup-place__input" type="text" placeholder="Название" name="place">
-          <input class="popup-place__input" type="text" placeholder="Ссылка на картинку" name="link">
-          <button class="button popup-place__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
+    <section class="popup" id="add-place">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
+        <form class="popup__form" action='#' name="profile-edit-form">
+          <input class="popup__input" type="text" placeholder="Название" name="place">
+          <input class="popup__input" type="text" placeholder="Ссылка на картинку" name="link">
+          <button class="button popup__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </section>
 <!--* image -->
-    <section class="popup-image">
+    <section class="popup-image" id="image-popup">
       <div class="popup-image__container">
         <button class="button popup-image__exit-button" type="button" aria-label="Закрыть"></button>
-        <img class="popup-image__image" src="https://images.unsplash.com/photo-1611342749062-b24a41652f6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80" alt="Фото места">
-        <h2 class="popup-image__title">New place</h2>
+        <img class="popup-image__image" src="#" alt="Фото места">
+        <h2 class="popup-image__title"></h2>
       </div>
     </section>
   </div>

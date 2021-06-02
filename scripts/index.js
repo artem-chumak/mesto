@@ -1,207 +1,169 @@
-//! Arrays
-
-
-//! Variables:
-
-//* BUTTON Edit Profile
-let buttonEditProfile = document.querySelector('.profile__edit-button');
-//* FIELD name
-let nameProfile = document.querySelector('.profile__name');
-//* FIELD occupation
-let occupationProfile = document.querySelector('.profile__occupation');
-//* POP-UP
-let editForm = document.querySelector('.popup');
-//* BUTTON close pop-up
-let closeForm = document.querySelector('.popup__exit-button');
-//* FORM
-let formProfile = document.querySelector('.popup__container');
-//* INPUT name
-let nameInput = document.querySelector('input[name="name"]');
-//* INPUT occupation
-let occupationInput = document.querySelector('input[name="occupation"]');
-
-//todo new code template
-//todo Это добавление нового места.
-
-//* BUTTON add place
-let buttonAddPlace = document.querySelector('.profile__add-button');
-//* TITLE element
-let titleElement = document.querySelector('.element__title');
-//* IMAGE element
-let imageElement = document.querySelector('.element__image');
-//* POP-UP
-let addForm = document.querySelector('.popup-place');
-//* BUTTON close pop-up
-let closeAddForm = document.querySelector('.popup-place__exit-button');
-//* FORM
-let formAddElement = document.querySelector('.popup-place__container');
-//* INPUT title
-let titleInput = document.querySelector('input[name="place"]');
-//* INPUT link
-let linkInput = document.querySelector('input[name="link"]');
-//* BUTTON add new place
-let submitNewPlace =document.querySelector('.popup-place__save-button')
-
-//* Open/Close popup
-function toggleAddForm() {
-  addForm.classList.toggle('popup_opened');
-}
-
-//рендер нового элемента
-function addNewPlace(evt) {
-  evt.preventDefault();
-  const htmlElement = elementTemplate.cloneNode(true);
-  htmlElement.querySelector('.element__image').src = linkInput.value;
-  htmlElement.querySelector('.element__title').innerText = titleInput.value;
-  setEventListener(htmlElement);
-  elementList.insertBefore(htmlElement, elementList.firstChild);
-}
-
-function cleanForm () {
-  linkInput.value = '';
-  titleInput.value = '';
-}
-
-//* CLICK button add place
-buttonAddPlace.addEventListener('click', toggleAddForm);
-buttonAddPlace.addEventListener('click', cleanForm);
-
-//* CLICK button clase popup
-closeAddForm.addEventListener('click', toggleAddForm);
-
-//* CLICK button add new place
-submitNewPlace.addEventListener('click', addNewPlace);
-submitNewPlace.addEventListener('click', toggleAddForm);
-
-//todo Кнопка лайк
-
-const likeButton = document.querySelector('element__like-button');
-const deleteButton = document.querySelector('.element__delete-button');
-let editing = null;
-let editingtwo = null;
-
-function toggleLike () {
-  buttonLike.classList.toggle('element__like-button_active');
-}
-
-
-
-// массив. Первые 6 объектов, когда страница загрузится.
+//* Arrays:
 const initialElements = [
   {
-    name: 'Гора Ахун',
-    link: './images/ahun.jpg'
+    name: 'Gran Canaria, Spain',
+    link: 'https://images.unsplash.com/photo-1619280422582-c49e61e8d64b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80'
   },
   {
-    name: 'Ладожское озеро',
-    link: './images/ladoga.jpg'
+    name: 'Tyrol, Austria',
+    link: 'https://images.unsplash.com/photo-1617538781355-7aacae1e2575?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1576&q=80'
   },
   {
-    name: 'Никола-Ленивец',
-    link: './images/nikola.jpg'
+    name: 'Duhok, Iraq',
+    link: 'https://images.unsplash.com/photo-1619143921821-61e111505f3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1617&q=80'
   },
   {
-    name: 'Печоры',
-    link: './images/pechory.jpg'
+    name: 'Leysin, Leysin, Suisse',
+    link: 'https://images.unsplash.com/photo-1613934070005-e2f7a68561ec?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1692&q=80'
   },
   {
-    name: 'Мыс Тобизина',
-    link: './images/tobizina.jpg'
+    name: 'Grigna Meridionale, Italy',
+    link: 'https://images.unsplash.com/photo-1540508664702-7839b9d38075?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1834&q=80'
   },
   {
-    name: 'Калязин',
-    link: './images/volga.jpg'
+    name: 'Fronalpstock, Switzerland',
+    link: 'https://images.unsplash.com/photo-1540270776932-e72e7c2d11cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1651&q=80'
   }
 ]; 
 
-const elementTemplate = document.querySelector('.element_template').content; // оъект ТЕМПЛЕЙТ
-const elementList = document.querySelector('.elements__list'); // объект UL тот, куда будем записывать ТЕМПЛЕЙТ
+//* Variables and constants:
+// PROFILE
+const buttonEditProfile = document.querySelector('.profile__edit-button'); // BUTTON EDIT PROFILE
+const buttonAddPlace = document.querySelector('.profile__add-button'); // BUTTON ADD PLACE
+const nameProfile = document.querySelector('.profile__name'); // FIELD name
+const occupationProfile = document.querySelector('.profile__occupation'); // FIELD occupation
+// ELEMENTS
+const elementList = document.querySelector('.elements__list'); // UL
+// TEMPLATE
+const elementTemplate = document.querySelector('.element_template').content; // TEMPLATE CONTENT
+// ELEMENT
+const titleElement = document.querySelector('.element__title'); // TITLE element
+const imageElement = document.querySelector('.element__image'); // IMAGE element
+const likeButton = document.querySelector('element__like-button'); //BUTTON like
+const deleteButton = document.querySelector('.element__delete-button'); //BUTTON delete
+// POPUP EDIT PROFILE
+const editForm = document.getElementById('edit-profile'); // POPUP
+const closeForm = editForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
+const formProfile = editForm.querySelector('.popup__container'); // POPUP FORM
+const nameInput = editForm.querySelector('input[name="name"]'); // INPUT name
+const occupationInput = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
+//POPUP ADD ELEMENT
+const addForm = document.getElementById('add-place'); // POPUP
+const closeAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
+const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
+const titleInput = addForm.querySelector('input[name="place"]'); // INPUT title
+const linkInput = addForm.querySelector('input[name="link"]'); // INPUT link
+//POPUP IMAGE
+const popupImage = document.querySelector('.popup-image'); // POPUP
+const popupImageExitButton = popupImage.querySelector('.popup-image__exit-button'); // BUTTON close pop-up
+const imagePopupImage = popupImage.querySelector('.popup-image__image'); // IMAGE
+const imagePopupTitle = popupImage.querySelector('.popup-image__title'); //TITLE
 
-//renderInitialElements () // коллбек функции. Т.к. она должна сработать при загрузки
-
-function renderElements() {
-  initialElements.forEach(renderElement);
-}
-
-//! Способ с template
-
-//рендер элемента из массива
-function renderElement (item) {
-  const htmlElement = elementTemplate.cloneNode(true); //скопировал содержание темплейта
-  htmlElement.querySelector('.element__image').src = item.link;
-  htmlElement.querySelector('.element__title').innerText = item.name;
-  setEventListener(htmlElement);
-  elementList.appendChild(htmlElement);
-}
-
-//! Кнопка удаления. Для карточек из массива.
-
-function handleDelete(evt) {
-evt.target.closest('.element').remove();
-}
-
-function handleLike(evt) {
-  evt.target.closest('.element__like-button').classList.toggle('element__like-button_active') //like
-}
-
-function handleImage(evt) {
-  editing = evt.target.closest('.element__image');
-  imagePopupImage.src = editing.src; //! это можно упростить!
-  editingtwo = evt.target.closest('.element');
-  imagePopupTitle.textContent = editingtwo.querySelector('.element__title').textContent;
-}
-
-//! Попап с картинкой
-const popupImage = document.querySelector('.popup-image'); //попап с картинкой
-const popupImageExitButton = document.querySelector('.popup-image__exit-button'); //кнопка выход из попапа с картинкой
-const imagePopupImage = document.querySelector('.popup-image__image'); //картинка в попапе
-const imagePopupTitle = document.querySelector('.popup-image__title');
-
-function toggleImage() { //октрыть или закрыть попап с картинокой
-  popupImage.classList.toggle('popup_opened');
-}
-
-function setEventListener(element) {
-  element.querySelector('.element__delete-button').addEventListener('click', handleDelete); //delete
-  element.querySelector('.element__like-button').addEventListener('click', handleLike); //like
-  element.querySelector('.element__image').addEventListener('click', toggleImage); //клик по картинке открывает попап
-  element.querySelector('.element__image').addEventListener('click', handleImage); //клик по картинке открывает попап
-}
-
-popupImageExitButton.addEventListener('click', toggleImage); //клик по кнопке закрытия попапа с картинкой
-
-renderElements();
-
-//! Functions:
-
-//* Open/Close popup
-function toggleEditForm() {
+//* Functions:
+// EDIT PROFILE
+function toggleEditForm() {                 // Open/Close popup
   editForm.classList.toggle('popup_opened');
 }
-//* Name and occupation from profile into form
-//todo I think it could be one function
-function transferNameToForm() {
+
+function transferNameToForm() {             // Name and occupation from profile into form
   nameInput.value = nameProfile.textContent;
 }
+
 function transferOccupationToForm() {
   occupationInput.value = occupationProfile.textContent;
 }
-//* Transfer name and occupation from form into profile and close form
-function formSubmit(evt) {
+
+function formSubmit(evt) {                // Transfer name and occupation from form into profile and close form
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   occupationProfile.textContent = occupationInput.value;
   toggleEditForm();
 }
 
-//! Events:
+//ADD NEW ELEMENT
+function toggleAddForm() {               // Open/close popup
+  addForm.classList.toggle('popup_opened');
+}
 
-//* CLICK button edit profile
-//? It seems that I can put all functions into one event but my attempt was failed.
-buttonEditProfile.addEventListener('click', toggleEditForm);
+function cleanForm () {                 // Clean form
+  linkInput.value = '';
+  titleInput.value = '';
+}
+
+function addNewPlace(evt) {            // Add new Element
+  evt.preventDefault();
+  const htmlElement = elementTemplate.cloneNode(true);  // clone template
+  htmlElement.querySelector('.element__image').src = linkInput.value;  // add link
+  htmlElement.querySelector('.element__title').innerText = titleInput.value;  // add title
+  setEventListener(htmlElement);                                             //! навешиваем события на элементы темплейта
+  elementList.insertBefore(htmlElement, elementList.firstChild); // insert into html
+  toggleAddForm();                                              //  close popup
+}
+
+//TEMPLATE + ARRAY => 6 CARDS
+function renderElements() {           // array + render template 6th (array langth) times
+  initialElements.forEach(renderElement);
+}
+
+renderElements();                     // callback
+
+function renderElement (item) {
+  const htmlElement = elementTemplate.cloneNode(true); // clone template
+  htmlElement.querySelector('.element__image').src = item.link;  // add link
+  htmlElement.querySelector('.element__title').innerText = item.name;  // add title
+  setEventListener(htmlElement);                                      //! навешиваем события на элементы темплейта
+  elementList.appendChild(htmlElement);                              // insert into html
+}
+
+// DELETE ELEMENT
+function handleDelete(evt) {           //  remove element
+  evt.target.closest('.element').remove();
+}
+
+// LIKE ELEMENT
+function handleLike(evt) {             //  like active
+  evt.target.closest('.element__like-button').classList.toggle('element__like-button_active')
+}
+
+// POPUP-IMAGE
+function toggleImage() {                 //  Open/close popup
+  popupImage.classList.toggle('popup_opened');
+}
+
+function handleImage(evt) {             // Transfer src and title
+  imagePopupImage.src = evt.target.closest('.element__image').src;
+  imagePopupTitle.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
+}
+
+// LISTENERS for Render element
+function setEventListener(element) {
+  element.querySelector('.element__delete-button').addEventListener('click', handleDelete); //delete
+  element.querySelector('.element__like-button').addEventListener('click', handleLike); //like
+  element.querySelector('.element__image').addEventListener('click', toggleImage); // open popup-image
+  element.querySelector('.element__image').addEventListener('click', handleImage); // transfer src and title into popup-image
+}
+
+//* Events:
+// EDIT PROFILE
+buttonEditProfile.addEventListener('click', toggleEditForm);  //BUTTON edi
 buttonEditProfile.addEventListener('click', transferNameToForm);
 buttonEditProfile.addEventListener('click', transferOccupationToForm);
-//* CLICK button clase popup
-closeForm.addEventListener('click', toggleEditForm);
-//* CLICK button safe
-formProfile.addEventListener('submit', formSubmit);
+closeForm.addEventListener('click', toggleEditForm);  //BUTTON exit
+formProfile.addEventListener('submit', formSubmit);  //BUTTON submit
+// ADD PLACE
+buttonAddPlace.addEventListener('click', toggleAddForm);  //BUTTON add place
+buttonAddPlace.addEventListener('click', cleanForm);
+closeAddForm.addEventListener('click', toggleAddForm);  //BUTTON exit
+formAddElement.addEventListener('submit', addNewPlace); //BUTTON submit
+// POPUP-IMAGE
+popupImageExitButton.addEventListener('click', toggleImage); //BUTTON exit
+
+
+//todo 1. Функция рендеринга элемента. Сделать одну и потом добавить.
+//todo 2. Функцию тоггл можно сделать одну для двух попапов точно. А может и трёх
+//todo 3. Проверить все названия по БЭМ. Как сказали в чеклисте.
+//? посмотреть как в одно событие добавить несколько функций 
+//? посмотреть рекомендацию по 4му спринту, которую я не учёл
+//? очистка данных попапа с картинкой, чтобы не было артифактов при открытии нового попапа. Кажется они есть. Проверить.
+//todo 4. Проверить плавность закрытия попапа с картинкой, решить проблему
+//todo 5. Длина подписи под картинкой. Поискать решение
