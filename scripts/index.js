@@ -57,8 +57,14 @@ function addNewPlace(evt) {
   elementList.insertBefore(htmlElement, elementList.firstChild);
 }
 
+function cleanForm () {
+  linkInput.value = '';
+  titleInput.value = '';
+}
+
 //* CLICK button add place
 buttonAddPlace.addEventListener('click', toggleAddForm);
+buttonAddPlace.addEventListener('click', cleanForm);
 
 //* CLICK button clase popup
 closeAddForm.addEventListener('click', toggleAddForm);
@@ -69,8 +75,8 @@ submitNewPlace.addEventListener('click', toggleAddForm);
 
 //todo Кнопка лайк
 
-const likeButton = document.querySelector('element__like-button'); //! null надо выяснить почему
-const deleteButton = document.querySelector('.element__delete-button'); //! null выяснить почему
+const likeButton = document.querySelector('element__like-button');
+const deleteButton = document.querySelector('.element__delete-button');
 let editing = null;
 let editingtwo = null;
 
@@ -154,8 +160,6 @@ const imagePopupTitle = document.querySelector('.popup-image__title');
 function toggleImage() { //октрыть или закрыть попап с картинокой
   popupImage.classList.toggle('popup_opened');
 }
-
-
 
 function setEventListener(element) {
   element.querySelector('.element__delete-button').addEventListener('click', handleDelete); //delete
