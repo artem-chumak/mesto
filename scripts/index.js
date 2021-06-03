@@ -60,8 +60,9 @@ const titlePopupImage = popupImage.querySelector('.popup-image__title'); //TITLE
 //* Functions:
 // EDIT PROFILE
 function toggleEditForm() {
-  editForm.classList.toggle('popup_opened');  //todo сделать один toggle для всех попапов не получилось пока. 
-}                                             //todo события не видят функцию :(
+  editForm.classList.toggle('popup_opened');
+}
+//todo сделать один toggle для всех попапов пока не получилось, события не видят функцию :(
 
 function transferNameToForm() {
   inputName.value = nameProfile.textContent;
@@ -115,7 +116,7 @@ renderElements();
 function renderArreyElement (item) {
   renderElement (item.link, item.name)
 }
-//todo думаю, что это лишняя итерация. Не понимаю, как записать в renderElements
+//todo думаю, что это лишняя итерация. Не понимаю, как записать в renderElements без нее
 
 function renderElement (link, title) {
   const htmlElement = templateElement.cloneNode(true);
