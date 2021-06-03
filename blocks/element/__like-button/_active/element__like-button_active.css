@@ -9,6 +9,6 @@
   background-position: center;
 }
 
-.element__like-button:hover {
+.element__like-button_active:hover {
   opacity: .5;
 }
