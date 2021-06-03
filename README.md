@@ -13,4 +13,4 @@
 
 **Tech**
 
-* Add functions: like and add place.
+* Add functions: validation for forms, popup close by click no overlay.
