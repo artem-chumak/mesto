@@ -135,7 +135,7 @@ function handleDelete(evt) {
 
 // LIKE ELEMENT
 function handleLike(evt) {
-  evt.target.closest('.element__like-button').classList.toggle('element__like-button_active')
+  evt.target.closest('.element__like-button').classList.toggle('element__like-button_active');
 }
 
 // POPUP-IMAGE
