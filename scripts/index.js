@@ -33,137 +33,136 @@ const buttonAddPlace = document.querySelector('.profile__add-button'); // BUTTON
 const nameProfile = document.querySelector('.profile__name'); // FIELD name
 const occupationProfile = document.querySelector('.profile__occupation'); // FIELD occupation
 // ELEMENTS
-const elementList = document.querySelector('.elements__list'); // UL
+const listElements = document.querySelector('.elements__list'); // UL
 // TEMPLATE
-const elementTemplate = document.querySelector('.element_template').content; // TEMPLATE CONTENT
+const templateElement = document.querySelector('.element_template').content; // TEMPLATE CONTENT
 // ELEMENT
 const titleElement = document.querySelector('.element__title'); // TITLE element
 const imageElement = document.querySelector('.element__image'); // IMAGE element
-const likeButton = document.querySelector('element__like-button'); //BUTTON like
-const deleteButton = document.querySelector('.element__delete-button'); //BUTTON delete
 // POPUP EDIT PROFILE
 const editForm = document.getElementById('edit-profile'); // POPUP
-const closeForm = editForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
+const buttonCloseEditForm = editForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
 const formProfile = editForm.querySelector('.popup__container'); // POPUP FORM
-const nameInput = editForm.querySelector('input[name="name"]'); // INPUT name
-const occupationInput = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
+const inputName = editForm.querySelector('input[name="name"]'); // INPUT name
+const inputOccupation = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
 //POPUP ADD ELEMENT
 const addForm = document.getElementById('add-place'); // POPUP
-const closeAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
+const buttonCloseAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
 const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
-const titleInput = addForm.querySelector('input[name="place"]'); // INPUT title
-const linkInput = addForm.querySelector('input[name="link"]'); // INPUT link
+const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
+const InputLink = addForm.querySelector('input[name="link"]'); // INPUT link
 //POPUP IMAGE
 const popupImage = document.querySelector('.popup-image'); // POPUP
-const popupImageExitButton = popupImage.querySelector('.popup-image__exit-button'); // BUTTON close pop-up
+const buttonClosePopupImage = popupImage.querySelector('.popup-image__exit-button'); // BUTTON close pop-up
 const imagePopupImage = popupImage.querySelector('.popup-image__image'); // IMAGE
-const imagePopupTitle = popupImage.querySelector('.popup-image__title'); //TITLE
+const titlePopupImage = popupImage.querySelector('.popup-image__title'); //TITLE
 
 //* Functions:
 // EDIT PROFILE
-function toggleEditForm() {                 // Open/Close popup
-  editForm.classList.toggle('popup_opened');
-}
+function toggleEditForm() {
+  editForm.classList.toggle('popup_opened');  //todo сделать один toggle для всех попапов не получилось пока. 
+}                                             //todo события не видят функцию :(
 
-function transferNameToForm() {             // Name and occupation from profile into form
-  nameInput.value = nameProfile.textContent;
+function transferNameToForm() {
+  inputName.value = nameProfile.textContent;
 }
 
 function transferOccupationToForm() {
-  occupationInput.value = occupationProfile.textContent;
+  inputOccupation.value = occupationProfile.textContent;
 }
 
-function formSubmit(evt) {                // Transfer name and occupation from form into profile and close form
+function handleButtonEditProfile () {
+  toggleEditForm();
+  transferNameToForm();
+  transferOccupationToForm();
+}
+
+function handleFormProfile(evt) {
   evt.preventDefault();
-  nameProfile.textContent = nameInput.value;
-  occupationProfile.textContent = occupationInput.value;
+  nameProfile.textContent = inputName.value;
+  occupationProfile.textContent = inputOccupation.value;
   toggleEditForm();
 }
 
 //ADD NEW ELEMENT
-function toggleAddForm() {               // Open/close popup
+function toggleFormAddElement() {
   addForm.classList.toggle('popup_opened');
 }
 
-function cleanForm () {                 // Clean form
-  linkInput.value = '';
-  titleInput.value = '';
+function cleanFormAddElement () {
+  InputLink.value = '';
+  inputTitle.value = '';
 }
 
-function addNewPlace(evt) {            // Add new Element
+function handleButtonAddElement () {
+  toggleFormAddElement();
+  cleanFormAddElement ();
+}
+
+function handleFormAddElement(evt) {
   evt.preventDefault();
-  const htmlElement = elementTemplate.cloneNode(true);  // clone template
-  htmlElement.querySelector('.element__image').src = linkInput.value;  // add link
-  htmlElement.querySelector('.element__title').innerText = titleInput.value;  // add title
-  setEventListener(htmlElement);                                             //! навешиваем события на элементы темплейта
-  elementList.insertBefore(htmlElement, elementList.firstChild); // insert into html
-  toggleAddForm();                                              //  close popup
+  renderElement (InputLink.value, inputTitle.value) 
+  toggleFormAddElement();
 }
 
 //TEMPLATE + ARRAY => 6 CARDS
-function renderElements() {           // array + render template 6th (array langth) times
-  initialElements.forEach(renderElement);
+function renderElements() {
+  initialElements.forEach(renderArreyElement);
 }
 
-renderElements();                     // callback
+renderElements();
 
-function renderElement (item) {
-  const htmlElement = elementTemplate.cloneNode(true); // clone template
-  htmlElement.querySelector('.element__image').src = item.link;  // add link
-  htmlElement.querySelector('.element__title').innerText = item.name;  // add title
-  setEventListener(htmlElement);                                      //! навешиваем события на элементы темплейта
-  elementList.appendChild(htmlElement);                              // insert into html
+function renderArreyElement (item) {
+  renderElement (item.link, item.name)
 }
+//todo думаю, что это лишняя итерация. Не понимаю, как записать в renderElements
+
+function renderElement (link, title) {
+  const htmlElement = templateElement.cloneNode(true);
+  htmlElement.querySelector('.element__image').src = link;
+  htmlElement.querySelector('.element__title').innerText = title;
+  setEventListener(htmlElement);
+  listElements.insertBefore(htmlElement, listElements.firstChild);
+}
+//todo отрисовка с конца массива, чтобы можно было применить для добавления нового элемента.
+//todo может эту строчку можно вынести из функции, но у меня пока не получилось.
 
 // DELETE ELEMENT
-function handleDelete(evt) {           //  remove element
+function handleDelete(evt) {
   evt.target.closest('.element').remove();
 }
 
 // LIKE ELEMENT
-function handleLike(evt) {             //  like active
+function handleLike(evt) {
   evt.target.closest('.element__like-button').classList.toggle('element__like-button_active')
 }
 
 // POPUP-IMAGE
-function toggleImage() {                 //  Open/close popup
+function toggleImage() {
   popupImage.classList.toggle('popup_opened');
 }
 
-function handleImage(evt) {             // Transfer src and title
+function handleImage(evt) {
   imagePopupImage.src = evt.target.closest('.element__image').src;
-  imagePopupTitle.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
+  titlePopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
 }
 
 // LISTENERS for Render element
 function setEventListener(element) {
-  element.querySelector('.element__delete-button').addEventListener('click', handleDelete); //delete
-  element.querySelector('.element__like-button').addEventListener('click', handleLike); //like
-  element.querySelector('.element__image').addEventListener('click', toggleImage); // open popup-image
-  element.querySelector('.element__image').addEventListener('click', handleImage); // transfer src and title into popup-image
+  element.querySelector('.element__delete-button').addEventListener('click', handleDelete);
+  element.querySelector('.element__like-button').addEventListener('click', handleLike);
+  element.querySelector('.element__image').addEventListener('click', toggleImage);
+  element.querySelector('.element__image').addEventListener('click', handleImage);
 }
 
 //* Events:
 // EDIT PROFILE
-buttonEditProfile.addEventListener('click', toggleEditForm);  //BUTTON edi
-buttonEditProfile.addEventListener('click', transferNameToForm);
-buttonEditProfile.addEventListener('click', transferOccupationToForm);
-closeForm.addEventListener('click', toggleEditForm);  //BUTTON exit
-formProfile.addEventListener('submit', formSubmit);  //BUTTON submit
+buttonEditProfile.addEventListener('click', handleButtonEditProfile);
+buttonCloseEditForm.addEventListener('click', toggleEditForm);
+formProfile.addEventListener('submit', handleFormProfile);
 // ADD PLACE
-buttonAddPlace.addEventListener('click', toggleAddForm);  //BUTTON add place
-buttonAddPlace.addEventListener('click', cleanForm);
-closeAddForm.addEventListener('click', toggleAddForm);  //BUTTON exit
-formAddElement.addEventListener('submit', addNewPlace); //BUTTON submit
+buttonAddPlace.addEventListener('click', handleButtonAddElement);
+buttonCloseAddForm.addEventListener('click', toggleFormAddElement);
+formAddElement.addEventListener('submit', handleFormAddElement);
 // POPUP-IMAGE
-popupImageExitButton.addEventListener('click', toggleImage); //BUTTON exit
-
-
-//todo 1. Функция рендеринга элемента. Сделать одну и потом добавить.
-//todo 2. Функцию тоггл можно сделать одну для двух попапов точно. А может и трёх
-//todo 3. Проверить все названия по БЭМ. Как сказали в чеклисте.
-//? посмотреть как в одно событие добавить несколько функций 
-//? посмотреть рекомендацию по 4му спринту, которую я не учёл
-//? очистка данных попапа с картинкой, чтобы не было артифактов при открытии нового попапа. Кажется они есть. Проверить.
-//todo 4. Проверить плавность закрытия попапа с картинкой, решить проблему
-//todo 5. Длина подписи под картинкой. Поискать решение
+buttonClosePopupImage.addEventListener('click', toggleImage);
