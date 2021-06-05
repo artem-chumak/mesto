@@ -53,30 +53,6 @@ function handleButtonAddElement () {
   addForm.querySelector('form').reset();
 }
 
-// function handleFormAddElement(evt) {
-//   evt.preventDefault();
-//   renderElement (inputLink.value, inputTitle.value)
-//   togglePopup(addForm);
-// }
-
-function handleFormAddElement(evt) {
-  evt.preventDefault();
-  addElement(listElements,creatElement(inputLink.value, inputTitle.value)); 
-  togglePopup(addForm);
-}
-
-//TEMPLATE + ARRAY => 6 CARDS
-//*warked
-function renderElements() {
-  initialElements.forEach((item)=>renderElement(item.link, item.name));
-}
-
-renderElements();
-
-//todo думаю, что это лишняя итерация. Не понимаю, как записать в renderElements без нее
-
-//!
-// это я понял, это я сделал.
 function creatElement (link, title) {
   const htmlElement = templateElement.cloneNode(true);
   htmlElement.querySelector('.element__image').src = link;
@@ -90,18 +66,18 @@ function addElement (container, element) {
   container.prepend(element);
 }
 
-//!
-
-function renderElement (link, title) {
-  const htmlElement = templateElement.cloneNode(true);
-  htmlElement.querySelector('.element__image').src = link;
-  htmlElement.querySelector('.element__image').alt = title
-  htmlElement.querySelector('.element__title').innerText = title;
-  setEventListener(htmlElement);
-  listElements.appendChild(htmlElement);
+function handleFormAddElement(evt) {
+  evt.preventDefault();
+  addElement(listElements,creatElement(inputLink.value, inputTitle.value)); 
+  togglePopup(addForm);
 }
-//todo отрисовка с конца массива, чтобы можно было применить для добавления нового элемента.
-//todo может эту строчку можно вынести из функции, но у меня пока не получилось.
+
+//TEMPLATE + ARRAY => 6 CARDS
+function renderElements () {
+  initialElements.forEach((item)=> listElements.appendChild(creatElement(item.link, item.name)));
+}
+
+renderElements();
 
 // DELETE ELEMENT
 function handleDelete(evt) {
@@ -114,7 +90,6 @@ function handleLike(evt) {
 }
 
 // POPUP-IMAGE
-
 function handleImage(evt) {
   imagePopupImage.src = evt.target.closest('.element__image').src;
   captionPopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
