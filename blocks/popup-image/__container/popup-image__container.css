@@ -1,9 +1,0 @@
-.popup-image__container {
-  position: relative;
-  background: transparent;
-  margin: auto;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-size: 0;
-  min-width: 240px;
-}

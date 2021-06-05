@@ -35,7 +35,7 @@ const occupationProfile = document.querySelector('.profile__occupation'); // FIE
 // ELEMENTS
 const listElements = document.querySelector('.elements__list'); // UL
 // TEMPLATE
-const templateElement = document.querySelector('.element_template').content; // TEMPLATE CONTENT
+const templateElement = document.querySelector('.element-template').content; // TEMPLATE CONTENT
 // ELEMENT
 const titleElement = document.querySelector('.element__title'); // TITLE element
 const imageElement = document.querySelector('.element__image'); // IMAGE element
@@ -52,10 +52,10 @@ const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
 const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
 const InputLink = addForm.querySelector('input[name="link"]'); // INPUT link
 //POPUP IMAGE
-const popupImage = document.querySelector('.popup-image'); // POPUP
-const buttonClosePopupImage = popupImage.querySelector('.popup-image__exit-button'); // BUTTON close pop-up
-const imagePopupImage = popupImage.querySelector('.popup-image__image'); // IMAGE
-const titlePopupImage = popupImage.querySelector('.popup-image__title'); //TITLE
+const popupImage = document.querySelector('.popup_type_image'); // POPUP
+const buttonClosePopupImage = popupImage.querySelector('.popup__exit-button'); // BUTTON close pop-up
+const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
+const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 
 //* Functions:
 // EDIT PROFILE
@@ -145,7 +145,7 @@ function toggleImage() {
 
 function handleImage(evt) {
   imagePopupImage.src = evt.target.closest('.element__image').src;
-  titlePopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
+  captionPopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
 }
 
 // LISTENERS for Render element

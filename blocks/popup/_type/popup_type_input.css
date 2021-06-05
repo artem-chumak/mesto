@@ -1,0 +1,6 @@
+.popup_type_input {
+  background-color: rgba(0, 0, 0,.5);
+  -webkit-transition: visibility 0s, opacity .3s linear;
+  -o-transition: visibility 0s, opacity .3s linear;
+  transition: visibility 0s, opacity .3s linear;
+}
