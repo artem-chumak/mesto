@@ -91,9 +91,9 @@ function handleLike(evt) {
 
 // POPUP-IMAGE
 function handleImage(evt) {
-  imagePopupImage.src = evt.target.closest('.element__image').src;
+  imagePopupImage.src = evt.target.closest('.element__image').src; //спасибо за коммертарии, допилю их в след. спринт
+  imagePopupImage.alt = evt.target.closest('.element__image').alt  //боюсь что-то накосячить)))
   captionPopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
-  captionPopupImage.textContent = evt.target.closest('.element__image').alt;
   togglePopup(popupImage);
 }
 
