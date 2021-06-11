@@ -1,0 +1,20 @@
+.popup__save-button_disabled {
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 2px;
+  color: rgba(0, 0, 0, .2);
+  padding: 0;
+  background:transparent;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.21;
+  cursor:inherit;
+}
+
+@media screen and (max-width: 425px) {
+  .popup__save-button_disabled {
+    height: 46px;
+    font-size: 14px;
+    line-height: 1.21;
+  }
+}
