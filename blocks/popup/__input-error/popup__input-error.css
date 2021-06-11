@@ -4,6 +4,7 @@
   line-height: 1.21;
   font-weight: 400;
   margin: 5px 0 13px;
+  height: 12px;
 }
 
 .popup__input-error:last-of-type {

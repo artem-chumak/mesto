@@ -138,3 +138,104 @@ popupImage.addEventListener('click', (event)=> {
 
 //Можно выделить все попапы и потом пройтишь по каждому и дать такие параметры. Одной функцией.
 
+/*
+! validation
+! 1. Валидация добавления карточки.
+
+todo 1. Нужно сделать, чтобы попап открывался с неактивной кнопкой сразу, даже после добавления карточки.
+todo 2. Это очень костыльный вариант. Нужно посмотреть как его улучшить.
+
+*/
+
+function enableValidation() {
+  const form = document.querySelector('.popup__form[name="add-element-form"]');
+
+  form.addEventListener('submit', handleFormSubmit); // 1.
+  form.addEventListener('input', handleFormInput);  // 2.
+}
+
+// 1.
+function handleFormSubmit (event) {
+  event.preventDefault();
+  const form = event.currentTarget
+  const isValid = form.checkValidity();
+  if(isValid) {
+    alert('Форма валидна');
+  } else {
+    alert('Форма невалидна');
+  }
+}
+
+// 2.
+function handleFormInput (event) {
+  const input = event.target;
+  const form = event.currentTarget;
+
+  //1. определить невалидные поля и подготовить сообщение об ошибке
+
+  setCustomerError(input);
+
+  //2. показываем ошибки на форме
+
+  setFieldError(input);
+
+  //3. делаем кнопку активной или неактивной
+
+  setSubmitButtonState(form);
+
+}
+
+// 1.
+function setCustomerError (input) {
+  const validity = input.validity;
+
+  input.setCustomValidity('');
+
+  if (input.value.length === 0) {
+    input.setCustomValidity('Вы пропустили это поле');
+    input.classList.add('popup__input_error');
+  } else {
+    input.classList.remove('popup__input_error');
+    // input.setCustomValidity(' '); //! костыль ? как от него избавиться ? еще оно убивает кнопу, которая завязана на Валидности
+  }
+
+  if (input.value.length < 2 && input.value.length > 0) {
+    input.setCustomValidity(' ');
+  }
+
+  if (validity.typeMismatch) {
+    input.setCustomValidity('Введите адрес сайта');
+    input.classList.add('popup__input_error');
+  }
+
+}
+
+// 2.
+function setFieldError (input) {
+  const span = document.querySelector(`#${input.id}-error`);
+  span.textContent = input.validationMessage;
+}
+
+// 3.
+function setSubmitButtonState (form) {
+  const button = form.querySelector('button');
+  const isValid = form.checkValidity();
+
+  if (isValid) {
+    button.classList.add('popup__save-button');
+    button.classList.remove('popup__save-button_disabled');
+    button.removeAttribute('disabled');
+  } else {
+    button.classList.remove('popup__save-button');
+    button.classList.add('popup__save-button_disabled');
+    button.setAttribute('disabled', 'disabled');
+  }
+}
+
+enableValidation();
+
+const form = document.querySelector('.popup__form[name="add-element-form"]');
+const button = form.querySelector('button');
+const isValid = form.checkValidity()
+console.log(button);
+console.log(isValid);
