@@ -115,3 +115,25 @@ buttonCloseAddForm.addEventListener('click', ()=> togglePopup(addForm));
 formAddElement.addEventListener('submit', handleFormAddElement);
 // POPUP-IMAGE
 buttonClosePopupImage.addEventListener('click', ()=> togglePopup(popupImage));
+
+/*
+! Попап закрытие по клику на оверлей.
+*/
+
+editForm.addEventListener('click', (event)=> {
+  if(event.target === event.currentTarget) {
+    togglePopup(editForm);
+  }
+})
+addForm.addEventListener('click', (event)=> {
+  if(event.target === event.currentTarget) {
+    togglePopup(addForm);
+  }
+})
+popupImage.addEventListener('click', (event)=> {
+  if(event.target === event.currentTarget) {
+    togglePopup(popupImage);
+  }
+})
+
+//Можно выделить все попапы и потом пройтишь по каждому и дать такие параметры. Одной функцией.
