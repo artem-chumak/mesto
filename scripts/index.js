@@ -150,21 +150,21 @@ todo 2. Это очень костыльный вариант. Нужно пос
 function enableValidation() {
   const form = document.querySelector('.popup__form[name="add-element-form"]');
 
-  form.addEventListener('submit', handleFormSubmit); // 1.
+  // form.addEventListener('submit', handleFormSubmit); // 1.
   form.addEventListener('input', handleFormInput);  // 2.
 }
 
 // 1.
-function handleFormSubmit (event) {
-  event.preventDefault();
-  const form = event.currentTarget
-  const isValid = form.checkValidity();
-  if(isValid) {
-    alert('Форма валидна');
-  } else {
-    alert('Форма невалидна');
-  }
-}
+// function handleFormSubmit (event) {
+//   event.preventDefault();
+//   const form = event.currentTarget
+//   const isValid = form.checkValidity();
+//   if(isValid) {
+//     alert('Форма валидна');
+//   } else {
+//     alert('Форма невалидна');
+//   }
+// }
 
 // 2.
 function handleFormInput (event) {
@@ -196,11 +196,10 @@ function setCustomerError (input) {
     input.classList.add('popup__input_error');
   } else {
     input.classList.remove('popup__input_error');
-    // input.setCustomValidity(' '); //! костыль ? как от него избавиться ? еще оно убивает кнопу, которая завязана на Валидности
   }
 
   if (input.value.length < 2 && input.value.length > 0) {
-    input.setCustomValidity(' ');
+    input.setCustomValidity(' ');  //! костыль ? как от него избавиться ? еще оно убивает кнопу, которая завязана на Валидности
   }
 
   if (validity.typeMismatch) {
@@ -234,8 +233,73 @@ function setSubmitButtonState (form) {
 
 enableValidation();
 
-const form = document.querySelector('.popup__form[name="add-element-form"]');
-const button = form.querySelector('button');
-const isValid = form.checkValidity()
-console.log(button);
-console.log(isValid);
+//! 2. Валидация изменения персональной информации.
+
+function profileValidation() {
+  const formProfile = document.querySelector('.popup__form[name="profile-edit-form"]');
+
+  formProfile.addEventListener('input', handleFormInputProfile);  // 2.
+}
+
+
+// 2.
+function handleFormInputProfile (event) {
+  const input = event.target;
+  const formProfile = event.currentTarget;
+
+  //1. определить невалидные поля и подготовить сообщение об ошибке
+
+  setCustomerErrorProfile(input);
+
+  //2. показываем ошибки на форме
+
+  setFieldErrorProfile(input);
+
+  //3. делаем кнопку активной или неактивной
+
+  setSubmitButtonStateProfile(formProfile);
+
+}
+
+// 1.
+function setCustomerErrorProfile (input) {
+
+  input.setCustomValidity('');
+
+  if (input.value.length < 2) {
+    input.classList.add('popup__input_error');
+  } else {
+    input.classList.remove('popup__input_error');
+  }
+
+  if (input.value.length === 0) {
+    input.setCustomValidity('Вы пропустили это поле');
+  }
+
+}
+
+// 2.
+function setFieldErrorProfile (input) {
+  const span = formProfile.querySelector(`#${input.id}-error`);
+  span.textContent = input.validationMessage;
+}
+
+// 3.
+function setSubmitButtonStateProfile (formProfile) {
+  const button = formProfile.querySelector('button');
+  const isValid = formProfile.checkValidity();
+
+  if (isValid) {
+    button.classList.add('popup__save-button');
+    button.classList.remove('popup__save-button_disabled');
+    button.removeAttribute('disabled');
+  } else {
+    button.classList.remove('popup__save-button');
+    button.classList.add('popup__save-button_disabled');
+    button.setAttribute('disabled', 'disabled');
+  }
+}
+
+profileValidation();
+
+//! Закрытие по esc
