@@ -44,7 +44,7 @@
       <div class="popup__container popup__container_type_input">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
-        <form class="popup__form" action='#' name="profile-edit-form">
+        <form class="popup__form" action='#' name="profile-edit-form" novalidate>
           <input class="popup__input" id="name" type="text" placeholder="Имя" name="name" required minlength="2" maxlength="40">
           <span class="popup__input-error" id="name-error"> </span>
           <input class="popup__input" id="occupation" type="text" placeholder="Род занятий" name="occupation" required minlength="2" maxlength="200">
@@ -54,19 +54,19 @@
       </div>
     </section>
 <!--* add place -->
-    <section class="popup popup_type_input" id="add-place">
-      <div class="popup__container popup__container_type_input">
-        <h2 class="popup__title">Новое место</h2>
-        <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
-        <form class="popup__form" action='#' name="add-element-form" novalidate>
-          <input class="popup__input" id="title" type="text" placeholder="Название" name="place" required minlength="2" maxlength="30">
-          <span class="popup__input-error" id="title-error"> </span>
-          <input class="popup__input" id="link" type="url" placeholder="Ссылка на картинку" name="link" required>
-          <span class="popup__input-error" id="link-error"> </span>
-          <button class="button popup__save-button popup__save-button_disabled" disabled type="submit" aria-label="Сохранить">Сохранить</button>
-        </form>
-      </div>
-    </section>
+<section class="popup popup_type_input" id="add-place">
+  <div class="popup__container popup__container_type_input">
+    <h2 class="popup__title">Новое место</h2>
+    <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
+    <form class="popup__form" action='#' name="add-element-form" novalidate>
+      <input class="popup__input" id="title" type="text" placeholder="Название" name="place" required minlength="2" maxlength="30">
+      <span class="popup__input-error" id="title-error"> </span>
+      <input class="popup__input" id="link" type="url" placeholder="Ссылка на картинку" name="link" required>
+      <span class="popup__input-error" id="link-error"> </span>
+      <button class="button popup__save-button popup__save-button_disabled" disabled type="submit" aria-label="Сохранить">Сохранить</button>
+    </form>
+  </div>
+</section>
 <!--* image -->
     <section class="popup popup_type_image" id="image-popup">
       <div class="popup__container popup__container_type_image">
@@ -89,5 +89,6 @@
   </template>
   <script src="./scripts/initial-сards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
