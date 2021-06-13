@@ -29,7 +29,7 @@ function setCustomerError(input, config) {
     input.setCustomValidity(config.errorMissedField);
   }
 
-  if (input.value.length < 2) {
+  if (validity.tooShort || input.value.length === 0) {
     input.classList.add('popup__input_error');
   } else {
     input.classList.remove('popup__input_error');
@@ -63,29 +63,29 @@ function setSubmitButtonState (form, config) {
   }
 }
 
-// const configs = [
-//   {
-//     form: '.popup__form[name="profile-edit-form"]',
-//     errorMissedField: 'Вы пропустили это поле',
-//     errorMissedUrl: 'Введите адрес сайта',
-//     popupValid: 'popup__save-button',
-//     popupInvalid: 'popup__save-button_disabled',
-//   },
-//   {
-//     form: '.popup__form[name="profile-edit-form"]',
-//     errorMissedField: 'Вы пропустили это поле',
-//     errorMissedUrl: 'Введите адрес сайта',
-//     popupValid: 'popup__save-button',
-//     popupInvalid: 'popup__save-button_disabled',
-//   }
-// ]
+const configs = [
+  {
+    form: '.popup__form[name="profile-edit-form"]',
+    errorMissedField: 'Вы пропустили это поле',
+    errorMissedUrl: 'Введите адрес сайта',
+    popupValid: 'popup__save-button',
+    popupInvalid: 'popup__save-button_disabled',
+  },
+  {
+    form: '.popup__form[name="add-element-form"]',
+    errorMissedField: 'Вы пропустили это поле',
+    errorMissedUrl: 'Введите адрес сайта',
+    popupValid: 'popup__save-button',
+    popupInvalid: 'popup__save-button_disabled',
+  }
+]
 
-// configs.forEach(config => enableValidation(config));
+configs.forEach(config => enableValidation(config));
 
-enableValidation ({
-  form: '.popup__form',
-  errorMissedField: 'Вы пропустили это поле',
-  errorMissedUrl: 'Введите адрес сайта',
-  popupValid: 'popup__save-button',
-  popupInvalid: 'popup__save-button_disabled',
-})
+// enableValidation ({
+//   form: '.popup__form',
+//   errorMissedField: 'Вы пропустили это поле',
+//   errorMissedUrl: 'Введите адрес сайта',
+//   popupValid: 'popup__save-button',
+//   popupInvalid: 'popup__save-button_disabled',
+// })
