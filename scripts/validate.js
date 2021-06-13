@@ -1,23 +1,23 @@
-function enableValidation (config) {
-  const form = document.querySelector(config.form);
-  form.addEventListener('input', (event)=> handleFormInput(event, config));
+
+function enableValidation(config) {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((form) => {
+    form.addEventListener('input', (event) => handleFormInput(event, config));
+  })
 }
 
-function handleFormInput (event, config) {
+function handleFormInput(event, config) {
   const input = event.target;
   const form = event.currentTarget;
 
-//* 1 определить невалидные поля и подготовить сообщение об ошибке
+  //* 1 определить невалидные поля и подготовить сообщение об ошибке
+  setCustomerError(input, config);
 
-setCustomerError(input, config);
+  //* 2 показываем ошибки на форме
+  setFieldError(input);
 
-//* 2 показываем ошибки на форме
-
-setFieldError(input);
-
-//* 3 делаем кнопку активной или неактивной
-
-setSubmitButtonState(form, config);
+  //* 3 делаем кнопку активной или неактивной
+  setSubmitButtonState(form, config);
 }
 
 //* 1
@@ -42,13 +42,13 @@ function setCustomerError(input, config) {
 }
 
 //* 2
-function setFieldError (input) {
+function setFieldError(input) {
   const span = document.querySelector(`#${input.id}-error`);
   span.textContent = input.validationMessage;
 }
 
 //*3
-function setSubmitButtonState (form, config) {
+function setSubmitButtonState(form, config) {
   const button = form.querySelector('button');
   const isValid = form.checkValidity();
 
@@ -63,29 +63,29 @@ function setSubmitButtonState (form, config) {
   }
 }
 
-const configs = [
-  {
-    form: '.popup__form[name="profile-edit-form"]',
-    errorMissedField: 'Вы пропустили это поле',
-    errorMissedUrl: 'Введите адрес сайта',
-    popupValid: 'popup__save-button',
-    popupInvalid: 'popup__save-button_disabled',
-  },
-  {
-    form: '.popup__form[name="add-element-form"]',
-    errorMissedField: 'Вы пропустили это поле',
-    errorMissedUrl: 'Введите адрес сайта',
-    popupValid: 'popup__save-button',
-    popupInvalid: 'popup__save-button_disabled',
-  }
-]
+// const configs = [
+//   {
+//     form: '.popup__form[name="profile-edit-form"]',
+//     errorMissedField: 'Вы пропустили это поле',
+//     errorMissedUrl: 'Введите адрес сайта',
+//     popupValid: 'popup__save-button',
+//     popupInvalid: 'popup__save-button_disabled',
+//   },
+//   {
+//     form: '.popup__form[name="add-element-form"]',
+//     errorMissedField: 'Вы пропустили это поле',
+//     errorMissedUrl: 'Введите адрес сайта',
+//     popupValid: 'popup__save-button',
+//     popupInvalid: 'popup__save-button_disabled',
+//   }
+// ]
 
-configs.forEach(config => enableValidation(config));
+// configs.forEach(config => enableValidation(config));
 
-// enableValidation ({
-//   form: '.popup__form',
-//   errorMissedField: 'Вы пропустили это поле',
-//   errorMissedUrl: 'Введите адрес сайта',
-//   popupValid: 'popup__save-button',
-//   popupInvalid: 'popup__save-button_disabled',
-// })
+enableValidation({
+  form: '.popup__form',
+  errorMissedField: 'Вы пропустили это поле',
+  errorMissedUrl: 'Введите адрес сайта',
+  popupValid: 'popup__save-button',
+  popupInvalid: 'popup__save-button_disabled',
+})
