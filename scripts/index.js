@@ -23,6 +23,7 @@ const buttonCloseAddForm = addForm.querySelector('.popup__exit-button'); // BUTT
 const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
 const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
 const inputLink = addForm.querySelector('input[name="link"]'); // INPUT link
+const buttonSubmitAddElement = addForm.querySelector('button[type="submit"]'); //!
 //POPUP IMAGE
 const popupImage = document.querySelector('.popup_type_image'); // POPUP
 const buttonClosePopupImage = popupImage.querySelector('.popup__exit-button'); // BUTTON close pop-up
@@ -51,6 +52,7 @@ function handleFormProfile(evt) {
 function handleButtonAddElement () {
   togglePopup(addForm);
   addForm.querySelector('form').reset();
+  buttonSubmitAddElement.classList.add('popup__save-button_disabled'); //!
 }
 
 function creatElement (link, title) {
@@ -142,7 +144,6 @@ popupImage.addEventListener('click', (event)=> {
 ! validation
 ! 1. Валидация добавления карточки.
 
-todo 1. Нужно сделать, чтобы попап открывался с неактивной кнопкой сразу, даже после добавления карточки.
 todo 2. Это очень костыльный вариант. Нужно посмотреть как его улучшить.
 
 */
@@ -153,18 +154,6 @@ function enableValidation() {
   // form.addEventListener('submit', handleFormSubmit); // 1.
   form.addEventListener('input', handleFormInput);  // 2.
 }
-
-// 1.
-// function handleFormSubmit (event) {
-//   event.preventDefault();
-//   const form = event.currentTarget
-//   const isValid = form.checkValidity();
-//   if(isValid) {
-//     alert('Форма валидна');
-//   } else {
-//     alert('Форма невалидна');
-//   }
-// }
 
 // 2.
 function handleFormInput (event) {
@@ -303,3 +292,23 @@ function setSubmitButtonStateProfile (formProfile) {
 profileValidation();
 
 //! Закрытие по esc
+
+function closePopup (popup) {
+  popup.classList.remove('popup_opened');
+}
+
+document.addEventListener ('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closePopup(popupImage);
+  }
+})
+document.addEventListener ('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closePopup(addForm);
+  }
+})
+document.addEventListener ('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closePopup(editForm);
+  }
+})
