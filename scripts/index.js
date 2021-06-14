@@ -19,11 +19,11 @@ const inputName = editForm.querySelector('input[name="name"]'); // INPUT name
 const inputOccupation = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
 //POPUP ADD ELEMENT
 const addForm = document.querySelector('#add-place'); // POPUP
+const formElement = addForm.querySelector('form'); // FORM
 const buttonCloseAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
 const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
 const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
 const inputLink = addForm.querySelector('input[name="link"]'); // INPUT link
-const buttonSubmitAddElement = addForm.querySelector('button[type="submit"]'); //!
 //POPUP IMAGE
 const popupImage = document.querySelector('.popup_type_image'); // POPUP
 const buttonClosePopupImage = popupImage.querySelector('.popup__exit-button'); // BUTTON close pop-up
@@ -33,6 +33,10 @@ const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 //* Functions:
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
+}
+
+function closePopup (popup) {
+  popup.classList.remove('popup_opened');
 }
 
 function handleButtonEditProfile () {
@@ -51,14 +55,14 @@ function handleFormProfile(evt) {
 //ADD NEW ELEMENT
 function handleButtonAddElement () {
   togglePopup(addForm);
-  addForm.querySelector('form').reset();
-  buttonSubmitAddElement.classList.add('popup__save-button_disabled'); //!
+  formElement.reset();
 }
 
 function creatElement (link, title) {
   const htmlElement = templateElement.cloneNode(true);
-  htmlElement.querySelector('.element__image').src = link;
-  htmlElement.querySelector('.element__image').alt = title
+  const image = htmlElement.querySelector('.element__image');
+  image.src = link;
+  Image.alt = title;
   htmlElement.querySelector('.element__title').innerText = title;
   setEventListener(htmlElement);
   return htmlElement;
@@ -76,7 +80,7 @@ function handleFormAddElement(evt) {
 
 //TEMPLATE + ARRAY => 6 CARDS
 function renderElements () {
-  initialElements.forEach((item)=> listElements.appendChild(creatElement(item.link, item.name)));
+  initialElements.forEach((item)=> addElement(listElements, creatElement(item.link, item.name)));
 }
 
 renderElements();
@@ -93,8 +97,8 @@ function handleLike(evt) {
 
 // POPUP-IMAGE
 function handleImage(evt) {
-  imagePopupImage.src = evt.target.closest('.element__image').src; //спасибо за коммертарии, допилю их в след. спринт
-  imagePopupImage.alt = evt.target.closest('.element__image').alt  //боюсь что-то накосячить)))
+  imagePopupImage.src = evt.target.closest('.element__image').src;
+  imagePopupImage.alt = evt.target.closest('.element__image').alt;
   captionPopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
   togglePopup(popupImage);
 }
@@ -107,57 +111,35 @@ function setEventListener(element) {
 }
 
 //* Events:
+document.addEventListener ('keydown', (event) => { // press esc => close popup
+  if (event.key === 'Escape') {
+    closePopup(popupImage);
+    closePopup(addForm);
+    closePopup(editForm);
+  }
+})
 // EDIT PROFILE
 buttonEditProfile.addEventListener('click', handleButtonEditProfile);
 buttonCloseEditForm.addEventListener('click', ()=> togglePopup(editForm));
 formProfile.addEventListener('submit', handleFormProfile);
-// ADD PLACE
-buttonAddPlace.addEventListener('click', handleButtonAddElement);
-buttonCloseAddForm.addEventListener('click', ()=> togglePopup(addForm));
-formAddElement.addEventListener('submit', handleFormAddElement);
-// POPUP-IMAGE
-buttonClosePopupImage.addEventListener('click', ()=> togglePopup(popupImage));
-
-/*
-! Попап закрытие по клику на оверлей.
-*/
-
-editForm.addEventListener('click', (event)=> {
+editForm.addEventListener('click', (event)=> { // overlay click => close popup
   if(event.target === event.currentTarget) {
     togglePopup(editForm);
   }
 })
-addForm.addEventListener('click', (event)=> {
+// ADD PLACE
+buttonAddPlace.addEventListener('click', handleButtonAddElement);
+buttonCloseAddForm.addEventListener('click', ()=> togglePopup(addForm));
+formAddElement.addEventListener('submit', handleFormAddElement);
+addForm.addEventListener('click', (event)=> { // overlay click => close popup
   if(event.target === event.currentTarget) {
     togglePopup(addForm);
   }
 })
-popupImage.addEventListener('click', (event)=> {
+// POPUP-IMAGE
+buttonClosePopupImage.addEventListener('click', ()=> togglePopup(popupImage));
+popupImage.addEventListener('click', (event)=> { // overlay click => close popup
   if(event.target === event.currentTarget) {
     togglePopup(popupImage);
-  }
-})
-
-//Можно выделить все попапы и потом пройтишь по каждому и дать такие параметры. Одной функцией.
-
-//! Закрытие по esc
-
-function closePopup (popup) {
-  popup.classList.remove('popup_opened');
-}
-
-document.addEventListener ('keydown', (event) => {
-  if (event.key === 'Escape') {
-    closePopup(popupImage);
-  }
-})
-document.addEventListener ('keydown', (event) => {
-  if (event.key === 'Escape') {
-    closePopup(addForm);
-  }
-})
-document.addEventListener ('keydown', (event) => {
-  if (event.key === 'Escape') {
-    closePopup(editForm);
   }
 })

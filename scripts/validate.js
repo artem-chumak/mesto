@@ -1,4 +1,3 @@
-
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll('.popup__form'));
   formList.forEach((form) => {
@@ -10,13 +9,13 @@ function handleFormInput(event, config) {
   const input = event.target;
   const form = event.currentTarget;
 
-  //* 1 определить невалидные поля и подготовить сообщение об ошибке
+  //* 1 Set error rules
   setCustomerError(input, config);
 
-  //* 2 показываем ошибки на форме
+  //* 2 Set error message
   setFieldError(input);
 
-  //* 3 делаем кнопку активной или неактивной
+  //* 3 Set rules for submit buttons
   setSubmitButtonState(form, config);
 }
 
@@ -24,6 +23,7 @@ function handleFormInput(event, config) {
 function setCustomerError(input, config) {
   const validity = input.validity;
   input.setCustomValidity('');
+  
 
   if (input.value.length === 0) {
     input.setCustomValidity(config.errorMissedField);
@@ -47,7 +47,7 @@ function setFieldError(input) {
   span.textContent = input.validationMessage;
 }
 
-//*3
+//* 3
 function setSubmitButtonState(form, config) {
   const button = form.querySelector('button');
   const isValid = form.checkValidity();
@@ -62,25 +62,6 @@ function setSubmitButtonState(form, config) {
     button.setAttribute('disabled', 'disabled');
   }
 }
-
-// const configs = [
-//   {
-//     form: '.popup__form[name="profile-edit-form"]',
-//     errorMissedField: 'Вы пропустили это поле',
-//     errorMissedUrl: 'Введите адрес сайта',
-//     popupValid: 'popup__save-button',
-//     popupInvalid: 'popup__save-button_disabled',
-//   },
-//   {
-//     form: '.popup__form[name="add-element-form"]',
-//     errorMissedField: 'Вы пропустили это поле',
-//     errorMissedUrl: 'Введите адрес сайта',
-//     popupValid: 'popup__save-button',
-//     popupInvalid: 'popup__save-button_disabled',
-//   }
-// ]
-
-// configs.forEach(config => enableValidation(config));
 
 enableValidation({
   form: '.popup__form',
