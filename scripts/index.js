@@ -43,6 +43,16 @@ function handleButtonEditProfile () {
   togglePopup(editForm);
   inputName.value = nameProfile.textContent;
   inputOccupation.value = occupationProfile.textContent;
+  document.addEventListener ('keydown', (event) => { // press esc => close popup
+    if (event.key === 'Escape') {
+      closePopup(editForm);
+    }
+  });
+  editForm.addEventListener('click', (event)=> { // overlay click => close popup
+    if(event.target === event.currentTarget) {
+      closePopup(editForm);
+    }
+  })
 }
 
 function handleFormProfile(evt) {
@@ -56,6 +66,16 @@ function handleFormProfile(evt) {
 function handleButtonAddElement () {
   togglePopup(addForm);
   formElement.reset();
+  document.addEventListener ('keydown', (event) => { // press esc => close popup
+    if (event.key === 'Escape') {
+      closePopup(addForm);
+    }
+  });
+  addForm.addEventListener('click', (event)=> { // overlay click => close popup
+    if(event.target === event.currentTarget) {
+      closePopup(addForm);
+    }
+  })
 }
 
 function creatElement (link, title) {
@@ -101,6 +121,16 @@ function handleImage(evt) {
   imagePopupImage.alt = evt.target.closest('.element__image').alt;
   captionPopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
   togglePopup(popupImage);
+  document.addEventListener ('keydown', (event) => { // press esc => close popup
+  if (event.key === 'Escape') {
+    closePopup(popupImage);
+  }
+  })
+  popupImage.addEventListener('click', (event)=> { // overlay click => close popup
+    if(event.target === event.currentTarget) {
+      closePopup(popupImage);
+    }
+  })
 }
 
 // LISTENERS for Render element
@@ -111,35 +141,15 @@ function setEventListener(element) {
 }
 
 //* Events:
-document.addEventListener ('keydown', (event) => { // press esc => close popup
-  if (event.key === 'Escape') {
-    closePopup(popupImage);
-    closePopup(addForm);
-    closePopup(editForm);
-  }
-})
 // EDIT PROFILE
 buttonEditProfile.addEventListener('click', handleButtonEditProfile);
 buttonCloseEditForm.addEventListener('click', ()=> togglePopup(editForm));
 formProfile.addEventListener('submit', handleFormProfile);
-editForm.addEventListener('click', (event)=> { // overlay click => close popup
-  if(event.target === event.currentTarget) {
-    togglePopup(editForm);
-  }
-})
+
 // ADD PLACE
 buttonAddPlace.addEventListener('click', handleButtonAddElement);
 buttonCloseAddForm.addEventListener('click', ()=> togglePopup(addForm));
 formAddElement.addEventListener('submit', handleFormAddElement);
-addForm.addEventListener('click', (event)=> { // overlay click => close popup
-  if(event.target === event.currentTarget) {
-    togglePopup(addForm);
-  }
-})
+
 // POPUP-IMAGE
 buttonClosePopupImage.addEventListener('click', ()=> togglePopup(popupImage));
-popupImage.addEventListener('click', (event)=> { // overlay click => close popup
-  if(event.target === event.currentTarget) {
-    togglePopup(popupImage);
-  }
-})
