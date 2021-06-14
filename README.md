@@ -6,11 +6,11 @@
 
 * HTML
 * CSS (flex, grid, @media)
-* JavaScript
+* Vanilla JavaScript (popups, form validation, creating elements from array)
 * BEM nested
 
 ## Development plan
 
 **Tech**
 
-* Add functions: validation for forms, popup close by click no overlay.
+* Add functions: made refactoring.
