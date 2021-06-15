@@ -13,4 +13,4 @@
 
 **Tech**
 
-* Add functions: made refactoring.
+* Made a refactoring.
