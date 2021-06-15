@@ -82,7 +82,7 @@ function creatElement (link, title) {
   const htmlElement = templateElement.cloneNode(true);
   const image = htmlElement.querySelector('.element__image');
   image.src = link;
-  Image.alt = title;
+  image.alt = title;
   htmlElement.querySelector('.element__title').innerText = title;
   setEventListener(htmlElement);
   return htmlElement;
