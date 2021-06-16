@@ -1,7 +1,5 @@
 const arrayValidation = {
   form: '.popup__form',
-  errorMissedField: 'Вы пропустили это поле',
-  errorMissedUrl: 'Введите адрес сайта',
   popupValid: 'popup__save-button',
   popupInvalid: 'popup__save-button_disabled',
 }
@@ -31,20 +29,14 @@ function handleFormInput(event, config) {
 function setCustomerError(input, config) {
   const validity = input.validity;
   input.setCustomValidity('');
-  
 
-  if (input.value.length === 0) {
-    input.setCustomValidity(config.errorMissedField);
-  }
-
-  if (validity.tooShort || input.value.length === 0) {
+  if (!validity.valid) {
     input.classList.add('popup__input_error');
   } else {
-    input.classList.remove('popup__input_error');
+  input.classList.remove('popup__input_error');
   }
 
   if (validity.typeMismatch) {
-    input.setCustomValidity(config.errorMissedUrl);
     input.classList.add('popup__input_error');
   }
 }
