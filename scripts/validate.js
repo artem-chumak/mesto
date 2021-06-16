@@ -1,3 +1,11 @@
+const arrayValidation = {
+  form: '.popup__form',
+  errorMissedField: 'Вы пропустили это поле',
+  errorMissedUrl: 'Введите адрес сайта',
+  popupValid: 'popup__save-button',
+  popupInvalid: 'popup__save-button_disabled',
+}
+
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll('.popup__form'));
   formList.forEach((form) => {
@@ -63,10 +71,5 @@ function setSubmitButtonState(form, config) {
   }
 }
 
-enableValidation({
-  form: '.popup__form',
-  errorMissedField: 'Вы пропустили это поле',
-  errorMissedUrl: 'Введите адрес сайта',
-  popupValid: 'popup__save-button',
-  popupInvalid: 'popup__save-button_disabled',
-})
+enableValidation(arrayValidation);
+
