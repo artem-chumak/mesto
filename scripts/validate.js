@@ -1,67 +1,74 @@
+/*
+* 1. Переписал код как в тренажёре.
+* 2. Сделал отдельный массив, т.к. так проще ссылаться в index.js
+* 3. 
+*/
 const arrayValidation = {
-  form: '.popup__form',
-  popupValid: 'popup__save-button',
-  popupInvalid: 'popup__save-button_disabled',
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__input-error_active',
 }
 
-function enableValidation(config) {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((form) => {
-    form.addEventListener('input', (event) => handleFormInput(event, config));
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
   })
 }
 
-function handleFormInput(event, config) {
-  const input = event.target;
-  const form = event.currentTarget;
-
-  //* 1 Set error rules
-  setCustomerError(input, config);
-
-  //* 2 Set error message
-  setFieldError(input);
-
-  //* 3 Set rules for submit buttons
-  setSubmitButtonState(form, config);
-}
-
-//* 1
-function setCustomerError(input, config) {
-  const validity = input.validity;
-  input.setCustomValidity('');
-
-  if (!validity.valid) {
-    input.classList.add('popup__input_error');
+const toggleButtonState = (inputList, buttonElement, config) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', 'disabled');
   } else {
-  input.classList.remove('popup__input_error');
-  }
-
-  if (validity.typeMismatch) {
-    input.classList.add('popup__input_error');
+    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
 }
 
-//* 2
-function setFieldError(input) {
-  const span = document.querySelector(`#${input.id}-error`);
-  span.textContent = input.validationMessage;
+const showInputError = (formItem, inputElement, errorMessage, config) => {
+  const errorElement = formItem.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.add(config.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(config.errorClass);
 }
 
-//* 3
-function setSubmitButtonState(form, config) {
-  const button = form.querySelector('button');
-  const isValid = form.checkValidity();
+const hideInputError = (formItem, inputElement, config) => {
+  const errorElement = formItem.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove(config.inputErrorClass);
+  errorElement.classList.remove(config.errorClass);
+  errorElement.textContent = '';
+}
 
-  if (isValid) {
-    button.classList.add(config.popupValid);
-    button.classList.remove(config.popupInvalid);
-    button.removeAttribute('disabled');
+const isValid = (formItem, inputElement, config) => {
+  if (!inputElement.validity.valid || inputElement.validity.typeMismatch) {
+    showInputError(formItem, inputElement, inputElement.validationMessage, config);
   } else {
-    button.classList.remove(config.popupValid);
-    button.classList.add(config.popupInvalid);
-    button.setAttribute('disabled', 'disabled');
+    hideInputError(formItem, inputElement, config);
   }
+}
+
+const setEventListeners = (formItem, config) => {
+  const inputList = Array.from(formItem.querySelectorAll(config.inputSelector));
+  const buttonElement = formItem.querySelector(config.submitButtonSelector);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function() {
+      isValid(formItem, inputElement, config);
+      toggleButtonState(inputList, buttonElement, config);
+    })
+  })
+}
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formItem) => {
+    formItem.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+  setEventListeners(formItem, config);
+  })
 }
 
 enableValidation(arrayValidation);
-

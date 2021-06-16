@@ -61,8 +61,9 @@ function handleFormProfile(evt) {
 function handleButtonAddElement () {
   togglePopup(addForm);
   formElement.reset();
-  setSubmitButtonState(formElement, arrayValidation)
-
+  const inputList = Array.from(formElement.querySelectorAll('input'));
+  const buttonElement = formElement.querySelector('button');
+  toggleButtonState(inputList, buttonElement, arrayValidation);
   document.addEventListener ('keydown', (event) => { // press esc => close popup
     if (event.key === 'Escape') {
       closePopup(addForm);
