@@ -31,44 +31,41 @@ const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
 const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 
 //* Functions:
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
+
+function openPopup (popup) {
+  popup.classList.add('popup_opened')
+  document.addEventListener('keydown', handleEsc = (event) => {
+    if(event.key === 'Escape') {
+      closePopup (popup);
+    }
+  })
 }
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEsc);
 }
 
 function handleButtonEditProfile () {
-  togglePopup(editForm);
+  openPopup(editForm);
   inputName.value = nameProfile.textContent;
   inputOccupation.value = occupationProfile.textContent;
-  document.addEventListener ('keydown', (event) => { // press esc => close popup
-    if (event.key === 'Escape') {
-      closePopup(editForm);
-    }
-  });
 }
 
 function handleFormProfile(evt) {
   evt.preventDefault();
   nameProfile.textContent = inputName.value;
   occupationProfile.textContent = inputOccupation.value;
-  togglePopup(editForm);
+  closePopup(editForm);
 }
 
 //ADD NEW ELEMENT
 function handleButtonAddElement () {
-  togglePopup(addForm);
+  openPopup(addForm);
   formElement.reset();
   const inputList = Array.from(formElement.querySelectorAll('input'));
   const buttonElement = formElement.querySelector('button');
   toggleButtonState(inputList, buttonElement, arrayValidation);
-  document.addEventListener ('keydown', (event) => { // press esc => close popup
-    if (event.key === 'Escape') {
-      closePopup(addForm);
-    }
-  });
 }
 
 function creatElement (link, title) {
@@ -88,7 +85,7 @@ function addElement (container, element) {
 function handleFormAddElement(evt) {
   evt.preventDefault();
   addElement(listElements,creatElement(inputLink.value, inputTitle.value)); 
-  togglePopup(addForm);
+  closePopup(addForm);
 }
 
 //TEMPLATE + ARRAY => 6 CARDS
@@ -113,12 +110,7 @@ function handleImage(evt) {
   imagePopupImage.src = evt.target.closest('.element__image').src;
   imagePopupImage.alt = evt.target.closest('.element__image').alt;
   captionPopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
-  togglePopup(popupImage);
-  document.addEventListener ('keydown', (event) => { // press esc => close popup
-  if (event.key === 'Escape') {
-    closePopup(popupImage);
-  }
-  })
+  openPopup(popupImage);
 }
 
 // LISTENERS for Render element
@@ -131,7 +123,7 @@ function setEventListener(element) {
 //* Events:
 // EDIT PROFILE
 buttonEditProfile.addEventListener('click', handleButtonEditProfile);
-buttonCloseEditForm.addEventListener('click', ()=> togglePopup(editForm));
+buttonCloseEditForm.addEventListener('click', ()=> closePopup(editForm));
 formProfile.addEventListener('submit', handleFormProfile);
 editForm.addEventListener('click', (event)=> { // overlay click => close popup
   if(event.target === event.currentTarget) {
@@ -141,7 +133,7 @@ editForm.addEventListener('click', (event)=> { // overlay click => close popup
 
 // ADD PLACE
 buttonAddPlace.addEventListener('click', handleButtonAddElement);
-buttonCloseAddForm.addEventListener('click', ()=> togglePopup(addForm));
+buttonCloseAddForm.addEventListener('click', ()=> closePopup(addForm));
 formAddElement.addEventListener('submit', handleFormAddElement);
 addForm.addEventListener('click', (event)=> { // overlay click => close popup
   if(event.target === event.currentTarget) {
@@ -150,7 +142,7 @@ addForm.addEventListener('click', (event)=> { // overlay click => close popup
 })
 
 // POPUP-IMAGE
-buttonClosePopupImage.addEventListener('click', ()=> togglePopup(popupImage));
+buttonClosePopupImage.addEventListener('click', ()=> closePopup(popupImage));
 popupImage.addEventListener('click', (event)=> { // overlay click => close popup
   if(event.target === event.currentTarget) {
     closePopup(popupImage);
