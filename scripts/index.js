@@ -31,22 +31,24 @@ const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
 const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 
 //* Functions:
-
-function openPopup (popup) {
-  popup.classList.add('popup_opened')
-  document.addEventListener('keydown', handleEsc = (event) => {
-    if(event.key === 'Escape') {
-      closePopup (popup);
-    }
-  })
+function handleEsc(event) {
+  const popup = document.querySelector('.popup_opened');
+  if (event.key === 'Escape') {
+    closePopup(popup);
+  }
 }
 
-function closePopup (popup) {
+function openPopup(popup) {
+  popup.classList.add('popup_opened')
+  document.addEventListener('keydown', handleEsc);
+}
+
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEsc);
 }
 
-function handleButtonEditProfile () {
+function handleButtonEditProfile() {
   openPopup(editForm);
   inputName.value = nameProfile.textContent;
   inputOccupation.value = occupationProfile.textContent;
@@ -60,7 +62,7 @@ function handleFormProfile(evt) {
 }
 
 //ADD NEW ELEMENT
-function handleButtonAddElement () {
+function handleButtonAddElement() {
   openPopup(addForm);
   formElement.reset();
   const inputList = Array.from(formElement.querySelectorAll('input'));
@@ -68,7 +70,7 @@ function handleButtonAddElement () {
   toggleButtonState(inputList, buttonElement, arrayValidation);
 }
 
-function creatElement (link, title) {
+function creatElement(link, title) {
   const htmlElement = templateElement.cloneNode(true);
   const image = htmlElement.querySelector('.element__image');
   image.src = link;
@@ -78,19 +80,19 @@ function creatElement (link, title) {
   return htmlElement;
 }
 
-function addElement (container, element) {
+function addElement(container, element) {
   container.prepend(element);
 }
 
 function handleFormAddElement(evt) {
   evt.preventDefault();
-  addElement(listElements,creatElement(inputLink.value, inputTitle.value)); 
+  addElement(listElements, creatElement(inputLink.value, inputTitle.value));
   closePopup(addForm);
 }
 
 //TEMPLATE + ARRAY => 6 CARDS
-function renderElements () {
-  initialElements.forEach((item)=> addElement(listElements, creatElement(item.link, item.name)));
+function renderElements() {
+  initialElements.forEach((item) => addElement(listElements, creatElement(item.link, item.name)));
 }
 
 renderElements();
@@ -123,28 +125,28 @@ function setEventListener(element) {
 //* Events:
 // EDIT PROFILE
 buttonEditProfile.addEventListener('click', handleButtonEditProfile);
-buttonCloseEditForm.addEventListener('click', ()=> closePopup(editForm));
+buttonCloseEditForm.addEventListener('click', () => closePopup(editForm));
 formProfile.addEventListener('submit', handleFormProfile);
-editForm.addEventListener('click', (event)=> { // overlay click => close popup
-  if(event.target === event.currentTarget) {
+editForm.addEventListener('click', (event) => { // overlay click => close popup
+  if (event.target === event.currentTarget) {
     closePopup(editForm);
   }
 })
 
 // ADD PLACE
 buttonAddPlace.addEventListener('click', handleButtonAddElement);
-buttonCloseAddForm.addEventListener('click', ()=> closePopup(addForm));
+buttonCloseAddForm.addEventListener('click', () => closePopup(addForm));
 formAddElement.addEventListener('submit', handleFormAddElement);
-addForm.addEventListener('click', (event)=> { // overlay click => close popup
-  if(event.target === event.currentTarget) {
+addForm.addEventListener('click', (event) => { // overlay click => close popup
+  if (event.target === event.currentTarget) {
     closePopup(addForm);
   }
 })
 
 // POPUP-IMAGE
-buttonClosePopupImage.addEventListener('click', ()=> closePopup(popupImage));
-popupImage.addEventListener('click', (event)=> { // overlay click => close popup
-  if(event.target === event.currentTarget) {
+buttonClosePopupImage.addEventListener('click', () => closePopup(popupImage));
+popupImage.addEventListener('click', (event) => { // overlay click => close popup
+  if (event.target === event.currentTarget) {
     closePopup(popupImage);
   }
 })
