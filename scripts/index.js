@@ -70,57 +70,26 @@ function handleButtonAddElement() {
   toggleButtonState(inputList, buttonElement, arrayValidation);
 }
 
-function creatElement(link, title) {
-  const htmlElement = templateElement.cloneNode(true);
-  const image = htmlElement.querySelector('.element__image');
-  image.src = link;
-  image.alt = title;
-  htmlElement.querySelector('.element__title').innerText = title;
-  setEventListener(htmlElement);
-  return htmlElement;
-}
-
-function addElement(container, element) {
-  container.prepend(element);
-}
+//! Поменял функцию.
 
 function handleFormAddElement(evt) {
   evt.preventDefault();
-  addElement(listElements, creatElement(inputLink.value, inputTitle.value));
+  const card = new Card ({name: inputTitle.value, link: inputLink.value}, '.element-template');
+  const cardElement = card.generateCard();
+  listElements.prepend(cardElement);
   closePopup(addForm);
 }
 
-//TEMPLATE + ARRAY => 6 CARDS
-function renderElements() {
-  initialElements.forEach((item) => addElement(listElements, creatElement(item.link, item.name)));
-}
+//! new code
 
-renderElements();
+initialElements.forEach((item) => {
+  const card = new Card (item, '.element-template');
+  const cardElement = card.generateCard();
+  const listElements = document.querySelector('.elements__list')
+  listElements.prepend(cardElement);
+})
 
-// DELETE ELEMENT
-function handleDelete(evt) {
-  evt.target.closest('.element').remove();
-}
-
-// LIKE ELEMENT
-function handleLike(evt) {
-  evt.target.closest('.element__like-button').classList.toggle('element__like-button_active');
-}
-
-// POPUP-IMAGE
-function handleImage(evt) {
-  imagePopupImage.src = evt.target.closest('.element__image').src;
-  imagePopupImage.alt = evt.target.closest('.element__image').alt;
-  captionPopupImage.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
-  openPopup(popupImage);
-}
-
-// LISTENERS for Render element
-function setEventListener(element) {
-  element.querySelector('.element__delete-button').addEventListener('click', handleDelete);
-  element.querySelector('.element__like-button').addEventListener('click', handleLike);
-  element.querySelector('.element__image').addEventListener('click', handleImage);
-}
+//! new code end
 
 //* Events:
 // EDIT PROFILE
