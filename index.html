@@ -43,7 +43,7 @@
       <div class="popup__container popup__container_type_input">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
-        <form class="popup__form" action='#' name="profile-edit-form" novalidate>
+        <form class="popup__form" id="profile-form" action='#' name="profile-edit-form" novalidate>
           <input class="popup__input" id="name" type="text" placeholder="Имя" name="name" required minlength="2" maxlength="40">
           <span class="popup__input-error" id="name-error">Mistake</span>
           <input class="popup__input" id="occupation" type="text" placeholder="Род занятий" name="occupation" required minlength="2" maxlength="200">
@@ -57,7 +57,7 @@
   <div class="popup__container popup__container_type_input">
     <h2 class="popup__title">Новое место</h2>
     <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
-    <form class="popup__form" action='#' name="add-element-form" novalidate>
+    <form class="popup__form" id="element-form" action='#' name="add-element-form" novalidate>
       <input class="popup__input" id="title" type="text" placeholder="Название" name="place" required minlength="2" maxlength="30">
       <span class="popup__input-error" id="title-error">Mistake</span>
       <input class="popup__input" id="link" type="url" placeholder="Ссылка на картинку" name="link" required>

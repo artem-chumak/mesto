@@ -15,6 +15,7 @@ const imageElement = document.querySelector('.element__image'); // IMAGE element
 const editForm = document.querySelector('#edit-profile'); // POPUP
 const buttonCloseEditForm = editForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
 const formProfile = editForm.querySelector('.popup__container'); // POPUP FORM
+const editFormProfile = editForm.querySelector('#profile-form'); // FORM edit profile
 const inputName = editForm.querySelector('input[name="name"]'); // INPUT name
 const inputOccupation = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
 //POPUP ADD ELEMENT
@@ -22,6 +23,7 @@ const addForm = document.querySelector('#add-place'); // POPUP
 const formElement = addForm.querySelector('form'); // FORM
 const buttonCloseAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
 const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
+const addFormElement = addForm.querySelector('#element-form');  //FORM add place
 const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
 const inputLink = addForm.querySelector('input[name="link"]'); // INPUT link
 //POPUP IMAGE
@@ -65,9 +67,8 @@ function handleFormProfile(evt) {
 function handleButtonAddElement() {
   openPopup(addForm);
   formElement.reset();
-  const inputList = Array.from(formElement.querySelectorAll('input'));
   const buttonElement = formElement.querySelector('button');
-  toggleButtonState(inputList, buttonElement, arrayValidation);
+  buttonElement.classList.add('popup__save-button_disabled');
 }
 
 //! Поменял функцию.
