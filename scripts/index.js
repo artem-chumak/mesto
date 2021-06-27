@@ -1,3 +1,7 @@
+import { initialElements } from './initial-сards.js';
+import Card from './Card.js';
+import { arrayValidation, FormValidator } from './FormValidator.js';
+
 //* Variables and constants:
 // PROFILE
 const buttonEditProfile = document.querySelector('.profile__edit-button'); // BUTTON EDIT PROFILE
@@ -72,6 +76,12 @@ function handleButtonAddElement() {
 }
 
 //! Поменял функцию.
+
+const validationEditForm = new FormValidator (arrayValidation, editFormProfile);
+validationEditForm.enableValidation();
+
+const validotionAddElementForm = new FormValidator(arrayValidation, addFormElement);
+validotionAddElementForm.enableValidation();
 
 function handleFormAddElement(evt) {
   evt.preventDefault();
