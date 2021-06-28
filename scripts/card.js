@@ -1,8 +1,12 @@
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, imagePopupImage, captionPopupImage, openPopup, popupImage) {
     this._name = data.name;
     this._link = data.link;
-    this._cardSelector = cardSelector
+    this._cardSelector = cardSelector;
+    this._imagePopupImage = imagePopupImage;
+    this._captionPopupImage = captionPopupImage;
+    this._openPopup = openPopup;
+    this._popupImage = popupImage;
   }
 
   _getTemplate() {
@@ -43,9 +47,9 @@ export default class Card {
   }
 
   _handleImage() {
-    imagePopupImage.src = this._element.querySelector('.element__image').src;
-    imagePopupImage.alt = this._element.querySelector('.element__image').alt;
-    captionPopupImage.textContent = this._element.querySelector('.element__title').textContent;
-    openPopup(popupImage);
+    this._imagePopupImage.src = this._element.querySelector('.element__image').src;
+    this._imagePopupImage.alt = this._element.querySelector('.element__image').alt;
+    this._captionPopupImage.textContent = this._element.querySelector('.element__title').textContent;
+    this._openPopup(this._popupImage);
   }
 }

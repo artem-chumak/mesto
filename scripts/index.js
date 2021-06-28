@@ -19,7 +19,7 @@ const imageElement = document.querySelector('.element__image'); // IMAGE element
 const editForm = document.querySelector('#edit-profile'); // POPUP
 const buttonCloseEditForm = editForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
 const formProfile = editForm.querySelector('.popup__container'); // POPUP FORM
-const editFormProfile = editForm.querySelector('#profile-form'); // FORM edit profile
+const formEdit = editForm.querySelector('form'); // FORM edit profile
 const inputName = editForm.querySelector('input[name="name"]'); // INPUT name
 const inputOccupation = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
 //POPUP ADD ELEMENT
@@ -27,7 +27,6 @@ const addForm = document.querySelector('#add-place'); // POPUP
 const formElement = addForm.querySelector('form'); // FORM
 const buttonCloseAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
 const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
-const addFormElement = addForm.querySelector('#element-form');  //FORM add place
 const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
 const inputLink = addForm.querySelector('input[name="link"]'); // INPUT link
 //POPUP IMAGE
@@ -37,6 +36,7 @@ const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
 const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 
 //* Functions:
+//POPUP
 function handleEsc(event) {
   const popup = document.querySelector('.popup_opened');
   if (event.key === 'Escape') {
@@ -54,6 +54,7 @@ function closePopup(popup) {
   document.removeEventListener('keydown', handleEsc);
 }
 
+//EDIT PROFILE
 function handleButtonEditProfile() {
   openPopup(editForm);
   inputName.value = nameProfile.textContent;
@@ -75,32 +76,29 @@ function handleButtonAddElement() {
   buttonElement.classList.add('popup__save-button_disabled');
 }
 
-//! Поменял функцию.
-
-const validationEditForm = new FormValidator (arrayValidation, editFormProfile);
-validationEditForm.enableValidation();
-
-const validotionAddElementForm = new FormValidator(arrayValidation, addFormElement);
-validotionAddElementForm.enableValidation();
-
 function handleFormAddElement(evt) {
   evt.preventDefault();
-  const card = new Card ({name: inputTitle.value, link: inputLink.value}, '.element-template');
+  const card = new Card ({name: inputTitle.value, link: inputLink.value}, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
   const cardElement = card.generateCard();
   listElements.prepend(cardElement);
   closePopup(addForm);
 }
 
-//! new code
-
+//* Initials
+//CARDS-ELEMENTS
 initialElements.forEach((item) => {
-  const card = new Card (item, '.element-template');
+  const card = new Card (item, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
   const cardElement = card.generateCard();
   const listElements = document.querySelector('.elements__list')
   listElements.prepend(cardElement);
 })
 
-//! new code end
+ //VALIDATIONS
+const validationEditForm = new FormValidator (arrayValidation, formEdit);
+validationEditForm.enableValidation();
+
+const validotionAddElementForm = new FormValidator(arrayValidation, formElement);
+validotionAddElementForm.enableValidation();
 
 //* Events:
 // EDIT PROFILE
