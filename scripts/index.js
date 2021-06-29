@@ -1,6 +1,7 @@
 import { initialElements } from './initial-сards.js';
+import { arrayValidation } from './validation-list.js';
 import Card from './Card.js';
-import { arrayValidation, FormValidator } from './FormValidator.js';
+import FormValidator from './FormValidator.js';
 
 //* Variables and constants:
 // PROFILE
@@ -72,15 +73,20 @@ function handleFormProfile(evt) {
 function handleButtonAddElement() {
   openPopup(addForm);
   formElement.reset();
+  const inputList = Array.from(formElement.querySelectorAll('input'));
   const buttonElement = formElement.querySelector('button');
-  buttonElement.classList.add('popup__save-button_disabled');
+  validotionAddElementForm.toggleButtonState(inputList, buttonElement);
+}
+
+function creatNewElement () {
+  const card = new Card ({name: inputTitle.value, link: inputLink.value}, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
 function handleFormAddElement(evt) {
   evt.preventDefault();
-  const card = new Card ({name: inputTitle.value, link: inputLink.value}, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
-  const cardElement = card.generateCard();
-  listElements.prepend(cardElement);
+  listElements.prepend(creatNewElement());
   closePopup(addForm);
 }
 

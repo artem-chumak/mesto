@@ -1,12 +1,4 @@
-const arrayValidation = {
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__input-error_active',
-}
-
-class FormValidator {
+export default class FormValidator {
   constructor(data, form) {
     this._inputSelector = data.inputSelector;
     this._submitButtonSelector = data.submitButtonSelector;
@@ -22,7 +14,7 @@ class FormValidator {
     })
   }
 
-  _toggleButtonState = (inputList, buttonElement) => {
+  toggleButtonState = (inputList, buttonElement) => {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._inactiveButtonClass);
       buttonElement.setAttribute('disabled', 'disabled');
@@ -60,7 +52,7 @@ class FormValidator {
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this.toggleButtonState(inputList, buttonElement);
       })
     })
   }
@@ -72,5 +64,3 @@ class FormValidator {
     });
   }
 }
-
-export { arrayValidation, FormValidator }
