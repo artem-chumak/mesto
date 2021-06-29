@@ -76,7 +76,7 @@ function handleButtonAddElement() {
   validotionAddElementForm.toggleButtonState();
 }
 
-function creatNewElement () {
+function creatNewElement() {
   const card = new Card ({name: inputTitle.value, link: inputLink.value}, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
   const cardElement = card.generateCard();
   return cardElement;
@@ -93,7 +93,6 @@ function handleFormAddElement(evt) {
 initialElements.forEach((item) => {
   const card = new Card (item, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
   const cardElement = card.generateCard();
-  const listElements = document.querySelector('.elements__list')
   listElements.prepend(cardElement);
 })
 
