@@ -6,7 +6,7 @@
 
 * HTML
 * CSS (flex, grid, @media)
-* Vanilla JavaScript (popups, form validation, creating elements from array)
+* Vanilla JavaScript (popups, form validation, creating elements from array, classes)
 * BEM nested
 
 ## Development plan

@@ -73,9 +73,7 @@ function handleFormProfile(evt) {
 function handleButtonAddElement() {
   openPopup(addForm);
   formElement.reset();
-  const inputList = Array.from(formElement.querySelectorAll('input'));
-  const buttonElement = formElement.querySelector('button');
-  validotionAddElementForm.toggleButtonState(inputList, buttonElement);
+  validotionAddElementForm.toggleButtonState();
 }
 
 function creatNewElement () {
