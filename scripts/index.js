@@ -1,6 +1,7 @@
 import { initialElements } from './initial-сards.js';
 import { arrayValidation } from './validation-list.js';
 import Card from './Card.js';
+import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 
 //* Variables and constants:
@@ -11,6 +12,7 @@ const nameProfile = document.querySelector('.profile__name'); // FIELD name
 const occupationProfile = document.querySelector('.profile__occupation'); // FIELD occupation
 // ELEMENTS
 const listElements = document.querySelector('.elements__list'); // UL
+const cardListSection = '.elements__list';
 // TEMPLATE
 const templateElement = document.querySelector('.element-template').content; // TEMPLATE CONTENT
 // ELEMENT
@@ -77,7 +79,7 @@ function handleButtonAddElement() {
 }
 
 function creatNewElement() {
-  const card = new Card ({name: inputTitle.value, link: inputLink.value}, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
+  const card = new Card({ name: inputTitle.value, link: inputLink.value }, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -90,14 +92,21 @@ function handleFormAddElement(evt) {
 
 //* Initials
 //CARDS-ELEMENTS
-initialElements.forEach((item) => {
-  const card = new Card (item, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
-  const cardElement = card.generateCard();
-  listElements.prepend(cardElement);
-})
+//! class Section
+const cardList = new Section({
+  data: initialElements,
+  renderer: (item) => {
+    const card = new Card(item, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
+    const cardElement = card.generateCard();
+    cardList.setItem(cardElement);
+  },
+}, cardListSection);
 
- //VALIDATIONS
-const validationEditForm = new FormValidator (arrayValidation, formEdit);
+cardList.renderItems();
+//!
+
+//VALIDATIONS
+const validationEditForm = new FormValidator(arrayValidation, formEdit);
 validationEditForm.enableValidation();
 
 const validotionAddElementForm = new FormValidator(arrayValidation, formElement);
