@@ -2,6 +2,8 @@ import { initialElements } from './initial-сards.js';
 import { arrayValidation } from './validation-list.js';
 import Card from './Card.js';
 import Section from './Section.js';
+import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 import FormValidator from './FormValidator.js';
 
 //* Variables and constants:
@@ -39,23 +41,28 @@ const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
 const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 
 //* Functions:
+
+function handleCardClick(name, link) {
+  popupTypeImage.open(name, link);
+}
+
 //POPUP
-function handleEsc(event) {
-  const popup = document.querySelector('.popup_opened');
-  if (event.key === 'Escape') {
-    closePopup(popup);
-  }
-}
+// function handleEsc(event) {
+//   const popup = document.querySelector('.popup_opened');
+//   if (event.key === 'Escape') {
+//     closePopup(popup);
+//   }
+// }
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened')
-  document.addEventListener('keydown', handleEsc);
-}
+// function openPopup(popup) {
+//   popup.classList.add('popup_opened')
+//   document.addEventListener('keydown', handleEsc);
+// }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEsc);
-}
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', handleEsc);
+// }
 
 //EDIT PROFILE
 function handleButtonEditProfile() {
@@ -79,7 +86,7 @@ function handleButtonAddElement() {
 }
 
 function creatNewElement() {
-  const card = new Card({ name: inputTitle.value, link: inputLink.value }, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
+  const card = new Card({ name: inputTitle.value, link: inputLink.value }, '.element-template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -96,7 +103,7 @@ function handleFormAddElement(evt) {
 const cardList = new Section({
   data: initialElements,
   renderer: (item) => {
-    const card = new Card(item, '.element-template', imagePopupImage, captionPopupImage, openPopup, popupImage);
+    const card = new Card(item, '.element-template', handleCardClick);
     const cardElement = card.generateCard();
     cardList.setItem(cardElement);
   },
@@ -104,6 +111,20 @@ const cardList = new Section({
 
 cardList.renderItems();
 //!
+
+//! popup image
+
+const popupTypeImage = new PopupWithImage('.popup_type_image');
+popupTypeImage.setEventListeners();
+
+//!
+
+//! open image
+
+
+
+//!
+
 
 //VALIDATIONS
 const validationEditForm = new FormValidator(arrayValidation, formEdit);
@@ -134,9 +155,9 @@ addForm.addEventListener('click', (event) => { // overlay click => close popup
 })
 
 // POPUP-IMAGE
-buttonClosePopupImage.addEventListener('click', () => closePopup(popupImage));
-popupImage.addEventListener('click', (event) => { // overlay click => close popup
-  if (event.target === event.currentTarget) {
-    closePopup(popupImage);
-  }
-})
+// buttonClosePopupImage.addEventListener('click', () => closePopup(popupImage));
+// popupImage.addEventListener('click', (event) => { // overlay click => close popup
+//   if (event.target === event.currentTarget) {
+//     closePopup(popupImage);
+//   }
+// })
