@@ -2,8 +2,8 @@ import { initialElements } from './initial-сards.js';
 import { arrayValidation } from './validation-list.js';
 import Card from './Card.js';
 import Section from './Section.js';
-import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js'
 import FormValidator from './FormValidator.js';
 
 //* Variables and constants:
@@ -41,11 +41,11 @@ const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
 const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 
 //* Functions:
-
+//! click on image
 function handleCardClick(name, link) {
   popupTypeImage.open(name, link);
 }
-
+//!
 //POPUP
 // function handleEsc(event) {
 //   const popup = document.querySelector('.popup_opened');
@@ -65,25 +65,20 @@ function handleCardClick(name, link) {
 // }
 
 //EDIT PROFILE
-function handleButtonEditProfile() {
-  openPopup(editForm);
-  inputName.value = nameProfile.textContent;
-  inputOccupation.value = occupationProfile.textContent;
-}
+// function handleButtonEditProfile() {
+//   openPopup(editForm);
+//   inputName.value = nameProfile.textContent;
+//   inputOccupation.value = occupationProfile.textContent;
+// }
 
-function handleFormProfile(evt) {
-  evt.preventDefault();
-  nameProfile.textContent = inputName.value;
-  occupationProfile.textContent = inputOccupation.value;
-  closePopup(editForm);
-}
+
 
 //ADD NEW ELEMENT
-function handleButtonAddElement() {
-  openPopup(addForm);
-  formElement.reset();
-  validotionAddElementForm.toggleButtonState();
-}
+// function handleButtonAddElement() {
+//   openPopup(addForm);
+//   formElement.reset();
+//   validotionAddElementForm.toggleButtonState();
+// }
 
 function creatNewElement() {
   const card = new Card({ name: inputTitle.value, link: inputLink.value }, '.element-template', handleCardClick);
@@ -92,10 +87,44 @@ function creatNewElement() {
 }
 
 function handleFormAddElement(evt) {
-  evt.preventDefault();
+  // evt.preventDefault();
   listElements.prepend(creatNewElement());
-  closePopup(addForm);
+  popupAddElement.close();
 }
+//! add element
+
+function handleButtonAddElement() {
+  popupAddElement.open();
+}
+
+buttonAddPlace.addEventListener('click', handleButtonAddElement);
+
+const popupAddElement = new PopupWithForm('#add-place', handleFormAddElement);
+popupAddElement.setEventListeners();
+
+//!
+
+
+//! edit profile
+
+function handleFormProfile(evt) {
+  // evt.preventDefault();
+  nameProfile.textContent = inputName.value;
+  occupationProfile.textContent = inputOccupation.value;
+  popupEditProfile.close();
+}
+
+function handleButtonEdit() {
+  popupEditProfile.open();
+  inputName.value = nameProfile.textContent;
+  inputOccupation.value = occupationProfile.textContent;
+}
+
+buttonEditProfile.addEventListener('click', handleButtonEdit);
+
+const popupEditProfile = new PopupWithForm('#edit-profile', handleFormProfile)
+popupEditProfile.setEventListeners();
+//!
 
 //* Initials
 //CARDS-ELEMENTS
@@ -117,9 +146,11 @@ cardList.renderItems();
 const popupTypeImage = new PopupWithImage('.popup_type_image');
 popupTypeImage.setEventListeners();
 
-//!
+//! popup form
 
-//! open image
+
+
+//!
 
 
 
@@ -135,24 +166,24 @@ validotionAddElementForm.enableValidation();
 
 //* Events:
 // EDIT PROFILE
-buttonEditProfile.addEventListener('click', handleButtonEditProfile);
-buttonCloseEditForm.addEventListener('click', () => closePopup(editForm));
-formProfile.addEventListener('submit', handleFormProfile);
-editForm.addEventListener('click', (event) => { // overlay click => close popup
-  if (event.target === event.currentTarget) {
-    closePopup(editForm);
-  }
-})
+// buttonEditProfile.addEventListener('click', handleButtonEditProfile);
+// buttonCloseEditForm.addEventListener('click', () => closePopup(editForm));
+// formProfile.addEventListener('submit', handleFormProfile);
+// editForm.addEventListener('click', (event) => { // overlay click => close popup
+//   if (event.target === event.currentTarget) {
+//     closePopup(editForm);
+//   }
+// })
 
 // ADD PLACE
-buttonAddPlace.addEventListener('click', handleButtonAddElement);
-buttonCloseAddForm.addEventListener('click', () => closePopup(addForm));
-formAddElement.addEventListener('submit', handleFormAddElement);
-addForm.addEventListener('click', (event) => { // overlay click => close popup
-  if (event.target === event.currentTarget) {
-    closePopup(addForm);
-  }
-})
+// buttonAddPlace.addEventListener('click', handleButtonAddElement);
+// buttonCloseAddForm.addEventListener('click', () => closePopup(addForm));
+// formAddElement.addEventListener('submit', handleFormAddElement);
+// addForm.addEventListener('click', (event) => { // overlay click => close popup
+//   if (event.target === event.currentTarget) {
+//     closePopup(addForm);
+//   }
+// })
 
 // POPUP-IMAGE
 // buttonClosePopupImage.addEventListener('click', () => closePopup(popupImage));
