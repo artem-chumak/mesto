@@ -5,6 +5,7 @@ import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js'
 import FormValidator from './FormValidator.js';
+import UserInfo from './UserInfo.js';
 
 //* Variables and constants:
 // PROFILE
@@ -16,29 +17,29 @@ const occupationProfile = document.querySelector('.profile__occupation'); // FIE
 const listElements = document.querySelector('.elements__list'); // UL
 const cardListSection = '.elements__list';
 // TEMPLATE
-const templateElement = document.querySelector('.element-template').content; // TEMPLATE CONTENT
+// const templateElement = document.querySelector('.element-template').content; // TEMPLATE CONTENT
 // ELEMENT
-const titleElement = document.querySelector('.element__title'); // TITLE element
-const imageElement = document.querySelector('.element__image'); // IMAGE element
+// const titleElement = document.querySelector('.element__title'); // TITLE element
+// const imageElement = document.querySelector('.element__image'); // IMAGE element
 // POPUP EDIT PROFILE
 const editForm = document.querySelector('#edit-profile'); // POPUP
-const buttonCloseEditForm = editForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
-const formProfile = editForm.querySelector('.popup__container'); // POPUP FORM
+// const buttonCloseEditForm = editForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
+// const formProfile = editForm.querySelector('.popup__container'); // POPUP FORM
 const formEdit = editForm.querySelector('form'); // FORM edit profile
 const inputName = editForm.querySelector('input[name="name"]'); // INPUT name
 const inputOccupation = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
 //POPUP ADD ELEMENT
 const addForm = document.querySelector('#add-place'); // POPUP
 const formElement = addForm.querySelector('form'); // FORM
-const buttonCloseAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
-const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
+// const buttonCloseAddForm = addForm.querySelector('.popup__exit-button'); // BUTTON close pop-up
+// const formAddElement = addForm.querySelector('.popup__container'); // POPUP FORM
 const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
 const inputLink = addForm.querySelector('input[name="link"]'); // INPUT link
 //POPUP IMAGE
-const popupImage = document.querySelector('.popup_type_image'); // POPUP
-const buttonClosePopupImage = popupImage.querySelector('.popup__exit-button'); // BUTTON close pop-up
-const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
-const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
+// const popupImage = document.querySelector('.popup_type_image'); // POPUP
+// const buttonClosePopupImage = popupImage.querySelector('.popup__exit-button'); // BUTTON close pop-up
+// const imagePopupImage = popupImage.querySelector('.popup__image'); // IMAGE
+// const captionPopupImage = popupImage.querySelector('.popup__caption'); //CAPTION
 
 //* Functions:
 //! click on image
@@ -147,14 +148,6 @@ const popupTypeImage = new PopupWithImage('.popup_type_image');
 popupTypeImage.setEventListeners();
 
 //! popup form
-
-
-
-//!
-
-
-
-//!
 
 
 //VALIDATIONS
