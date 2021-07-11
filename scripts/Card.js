@@ -3,10 +3,6 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    // this._imagePopupImage = imagePopupImage;
-    // this._captionPopupImage = captionPopupImage;
-    // this._openPopup = openPopup;
-    // this._popupImage = popupImage;
     this._handleCardClick = handleCardClick;
   }
 
@@ -20,21 +16,25 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._titleElement = this._element.querySelector('.element__title');
+    this._imegeElement = this._element.querySelector('.element__image');
+    this._likeButton = this._element.querySelector('.element__like-button');
+    this._deleteButton = this._element.querySelector('.element__delete-button');
     this._setEventListeners();
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
-    this._element.querySelector('.element__title').textContent = this._name;
+    this._imegeElement.src = this._link;
+    this._imegeElement.alt = this._name;
+    this._titleElement.textContent = this._name;
     return this._element;
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element__delete-button').addEventListener('click', () => {
+    this._deleteButton.addEventListener('click', () => {
       this._handleDelete();
     });
-    this._element.querySelector('.element__like-button').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._handleLike();
     });
-    this._element.querySelector('.element__image').addEventListener('click', () => {
+    this._imegeElement.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
   }
@@ -48,10 +48,4 @@ export default class Card {
     this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
   }
 
-  // _handleImage() {
-  //   this._imagePopupImage.src = this._element.querySelector('.element__image').src;
-  //   this._imagePopupImage.alt = this._element.querySelector('.element__image').alt;
-  //   this._captionPopupImage.textContent = this._element.querySelector('.element__title').textContent;
-  //   this._openPopup(this._popupImage);
-  // }
 }
