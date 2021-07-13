@@ -15,6 +15,9 @@ const nameProfile = document.querySelector('.profile__name'); // FIELD name
 const occupationProfile = document.querySelector('.profile__occupation'); // FIELD occupation
 // ELEMENTS
 const listElements = document.querySelector('.elements__list'); // UL
+// TEMPLATE
+const templateElement = '.element-template';
+
 // POPUP EDIT PROFILE
 const editForm = document.querySelector('#edit-profile'); // POPUP
 const formEdit = editForm.querySelector('form'); // FORM edit profile
@@ -23,11 +26,9 @@ const inputOccupation = editForm.querySelector('input[name="occupation"]'); // I
 //POPUP ADD ELEMENT
 const addForm = document.querySelector('#add-place'); // POPUP
 const formElement = addForm.querySelector('form'); // FORM
-const inputTitle = addForm.querySelector('input[name="place"]'); // INPUT title
-const inputLink = addForm.querySelector('input[name="link"]'); // INPUT link
 
 //* Functions and Classes:
-
+// ADD ELEMENT
 function handleCardClick(name, link) {
   popupTypeImage.open(name, link);
 }
@@ -37,21 +38,23 @@ const popupAddElement = new PopupWithForm('#add-place', handleFormAddElement);
 popupAddElement.setEventListeners();
 
 function handleButtonAddElement() {
+  validotionAddElementForm.toggleButtonState();
+  validotionAddElementForm.hideError();
   popupAddElement.open();
 }
 
-function handleFormAddElement() {
-  listElements.prepend(creatNewElement());
+function handleFormAddElement(date) {
+  listElements.prepend(creatNewElement(date));
   popupAddElement.close();
 }
 
-function creatNewElement() {
-  const card = new Card({ name: inputTitle.value, link: inputLink.value }, '.element-template', handleCardClick);
+function creatNewElement(date) {
+  const card = new Card(date, '.element-template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
 
-//EDIT PROFILE
+//POPUP EDIT PROFILE
 const popupEditProfile = new PopupWithForm('#edit-profile', handleFormProfile)
 popupEditProfile.setEventListeners();
 
@@ -59,6 +62,8 @@ function handleButtonEdit() {
   popupEditProfile.open();
   inputName.value = userProfile.getUserInfo().name;
   inputOccupation.value = userProfile.getUserInfo().occupotion;
+  validationEditForm.toggleButtonState();
+  validationEditForm.hideError();
 }
 
 function handleFormProfile(userData) {
@@ -80,7 +85,7 @@ validationEditForm.enableValidation();
 const validotionAddElementForm = new FormValidator(arrayValidation, formElement);
 validotionAddElementForm.enableValidation();
 
-//CARDS-ELEMENTS
+//RENDER CARDS
 const cardList = new Section({
   data: initialElements,
   renderer: (item) => {

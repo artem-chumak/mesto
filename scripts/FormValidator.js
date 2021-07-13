@@ -44,7 +44,7 @@ export default class FormValidator {
     if (!inputElement.validity.valid || inputElement.validity.typeMismatch) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-    this._hideInputError(inputElement);
+      this._hideInputError(inputElement);
     }
   }
 
@@ -54,6 +54,12 @@ export default class FormValidator {
         this._isValid(inputElement);
         this.toggleButtonState();
       })
+    })
+  }
+
+  hideError = () => {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
     })
   }
 
