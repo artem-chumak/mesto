@@ -61,11 +61,7 @@ function handleButtonEdit() {
   inputOccupation.value = userProfile.getUserInfo().occupotion;
 }
 
-function handleFormProfile() {
-  const userData = {
-    name: inputName.value,
-    occupotion: inputOccupation.value,
-  }
+function handleFormProfile(userData) {
   userProfile.setUserInfo(userData);
   popupEditProfile.close();
 }
