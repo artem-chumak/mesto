@@ -16,8 +16,7 @@ const occupationProfile = document.querySelector('.profile__occupation'); // FIE
 // ELEMENTS
 const listElements = document.querySelector('.elements__list'); // UL
 // TEMPLATE
-const templateElement = '.element-template';
-
+const templateElement = document.querySelector('.element-template').content; // TEMPLATE CONTENT
 // POPUP EDIT PROFILE
 const editForm = document.querySelector('#edit-profile'); // POPUP
 const formEdit = editForm.querySelector('form'); // FORM edit profile
@@ -26,15 +25,17 @@ const inputOccupation = editForm.querySelector('input[name="occupation"]'); // I
 //POPUP ADD ELEMENT
 const addForm = document.querySelector('#add-place'); // POPUP
 const formElement = addForm.querySelector('form'); // FORM
+//POPUP IMAGE
+const popupImage = document.querySelector('.popup_type_image'); // POPUP
 
 //* Functions and Classes:
 // ADD ELEMENT
-function handleCardClick(name, link) {
-  popupTypeImage.open(name, link);
+function handleCardClick(place, link) {
+  popupTypeImage.open(place, link);
 }
 
 //NEW ELEMENT
-const popupAddElement = new PopupWithForm('#add-place', handleFormAddElement);
+const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
 popupAddElement.setEventListeners();
 
 function handleButtonAddElement() {
@@ -49,13 +50,13 @@ function handleFormAddElement(date) {
 }
 
 function creatNewElement(date) {
-  const card = new Card(date, '.element-template', handleCardClick);
+  const card = new Card(date, templateElement, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 //POPUP EDIT PROFILE
-const popupEditProfile = new PopupWithForm('#edit-profile', handleFormProfile)
+const popupEditProfile = new PopupWithForm(editForm, handleFormProfile)
 popupEditProfile.setEventListeners();
 
 function handleButtonEdit() {
@@ -75,7 +76,7 @@ function handleFormProfile(userData) {
 const userProfile = new UserInfo(nameProfile, occupationProfile);
 
 //POPUP IMAGE
-const popupTypeImage = new PopupWithImage('.popup_type_image');
+const popupTypeImage = new PopupWithImage(popupImage);
 popupTypeImage.setEventListeners();
 
 //VALIDATIONS
@@ -89,11 +90,11 @@ validotionAddElementForm.enableValidation();
 const cardList = new Section({
   data: initialElements,
   renderer: (item) => {
-    const card = new Card(item, '.element-template', handleCardClick);
+    const card = new Card(item, templateElement, handleCardClick);
     const cardElement = card.generateCard();
     cardList.setItem(cardElement);
   },
-}, '.elements__list');
+}, listElements);
 
 cardList.renderItems();
 
