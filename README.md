@@ -8,6 +8,9 @@
 * CSS (flex, grid, @media)
 * Vanilla JavaScript (popups, form validation, creating elements from array, classes)
 * BEM nested
+* ES6 classes
+* OOP
+* Webpack building
 
 ## Development plan
 
