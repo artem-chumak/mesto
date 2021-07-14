@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import { buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage } from '../utils/variables.js'
 import { initialElements } from '../utils/initial-сards.js';
 import { arrayValidation } from '../utils/validation-list.js';

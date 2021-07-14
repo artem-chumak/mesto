@@ -7,7 +7,6 @@
   <meta name="description" content="Место">
   <meta name="keywords" content="Россия, Карачаевск, Эльбрус, Домбай">
   <meta name="autor" content="Артём Чумак">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
 
@@ -15,12 +14,12 @@
   <div class="page">
     <!--* header -->
     <header class="header section">
-      <img class="logo header__logo" src="./images/logo-header.svg" alt="Логотип">
+      <img class="logo header__logo" src="<%=require('./images/logo-header.svg')%>" alt="Логотип">
     </header>
     <main class="main">
       <!--* profile -->
       <section class="profile section">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Фото профиля">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля">
         <div class="profile__info">
           <h1 class="profile__name">Билл Мюррей</h1>
           <button class="button profile__edit-button" aria-label="Изменить профиль" type="button"></button>
@@ -91,7 +90,6 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>

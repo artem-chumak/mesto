@@ -29,5 +29,5 @@
   src: url('../vendor/fonts/Inter-Black.woff2') format('woff2'),
        url('../vendor/fonts/Inter-Black.woff') format('woff'),
        url('../vendor/fonts/Inter-Black.ttf') format('truetype'),
-       url('../vendor/Ifonts/nter-Black.eot') format('oet');
+       url('../vendor/fonts/Inter-Black.eot') format('oet');
 }
