@@ -1,0 +1,24 @@
+{
+  "name": "yandex.praktikum",
+  "version": "0.0.1",
+  "description": "Learning platform",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artem-chumak/mesto.git"
+  },
+  "author": "Artem Chumak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artem-chumak/mesto/issues"
+  },
+  "homepage": "https://github.com/artem-chumak/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

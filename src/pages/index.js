@@ -1,32 +1,12 @@
-import { initialElements } from './initial-сards.js';
-import { arrayValidation } from './validation-list.js';
-import Card from './Card.js';
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js'
-import FormValidator from './FormValidator.js';
-import UserInfo from './UserInfo.js';
-
-//* Variables and constants:
-// PROFILE
-const buttonEditProfile = document.querySelector('.profile__edit-button'); // BUTTON EDIT PROFILE
-const buttonAddPlace = document.querySelector('.profile__add-button'); // BUTTON ADD PLACE
-const nameProfile = document.querySelector('.profile__name'); // FIELD name
-const occupationProfile = document.querySelector('.profile__occupation'); // FIELD occupation
-// ELEMENTS
-const listElements = document.querySelector('.elements__list'); // UL
-// TEMPLATE
-const templateElement = document.querySelector('.element-template').content; // TEMPLATE CONTENT
-// POPUP EDIT PROFILE
-const editForm = document.querySelector('#edit-profile'); // POPUP
-const formEdit = editForm.querySelector('form'); // FORM edit profile
-const inputName = editForm.querySelector('input[name="name"]'); // INPUT name
-const inputOccupation = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
-//POPUP ADD ELEMENT
-const addForm = document.querySelector('#add-place'); // POPUP
-const formElement = addForm.querySelector('form'); // FORM
-//POPUP IMAGE
-const popupImage = document.querySelector('.popup_type_image'); // POPUP
+import { buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage } from '../utils/variables.js'
+import { initialElements } from '../utils/initial-сards.js';
+import { arrayValidation } from '../utils/validation-list.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js'
+import FormValidator from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo.js';
 
 //* Functions and Classes:
 // ADD ELEMENT
