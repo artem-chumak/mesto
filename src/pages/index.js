@@ -20,20 +20,20 @@ const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
 popupAddElement.setEventListeners();
 
 function handleButtonAddElement() {
-  validotionAddElementForm.toggleButtonState();
-  validotionAddElementForm.hideError();
+  validationAddElementForm.toggleButtonState();
+  validationAddElementForm.hideError();
   popupAddElement.open();
 }
 
-function handleFormAddElement(date) {
-  listElements.prepend(creatNewElement(date));
-  popupAddElement.close();
-}
-
-function creatNewElement(date) {
+function createNewElement(date) {
   const card = new Card(date, templateElement, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
+}
+
+function handleFormAddElement(date) {
+  listElements.prepend(createNewElement(date));
+  popupAddElement.close();
 }
 
 //POPUP EDIT PROFILE
@@ -64,8 +64,8 @@ popupTypeImage.setEventListeners();
 const validationEditForm = new FormValidator(arrayValidation, formEdit);
 validationEditForm.enableValidation();
 
-const validotionAddElementForm = new FormValidator(arrayValidation, formElement);
-validotionAddElementForm.enableValidation();
+const validationAddElementForm = new FormValidator(arrayValidation, formElement);
+validationAddElementForm.enableValidation();
 
 //RENDER CARDS
 const cardList = new Section({
