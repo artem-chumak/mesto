@@ -42,8 +42,9 @@ popupEditProfile.setEventListeners();
 
 function handleButtonEdit() {
   popupEditProfile.open();
-  inputName.value = userProfile.getUserInfo().name;
-  inputOccupation.value = userProfile.getUserInfo().occupotion;
+  const profile = userProfile.getUserInfo() // надеюсь я правильно понял
+  inputName.value = profile.name;
+  inputOccupation.value = profile.occupotion;
   validationEditForm.toggleButtonState();
   validationEditForm.hideError();
 }
@@ -69,11 +70,11 @@ validationAddElementForm.enableValidation();
 
 //RENDER CARDS
 const cardList = new Section({
-  data: initialElements,
+  items: initialElements,
   renderer: (item) => {
     const card = new Card(item, templateElement, handleCardClick);
     const cardElement = card.generateCard();
-    cardList.setItem(cardElement);
+    cardList.addItem(cardElement);
   },
 }, listElements);
 
