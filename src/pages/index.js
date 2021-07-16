@@ -1,3 +1,4 @@
+// Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
 import { buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage } from '../utils/variables.js'
 import { initialElements } from '../utils/initial-сards.js';
