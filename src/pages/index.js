@@ -1,6 +1,6 @@
 // Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage } from '../utils/variables.js'
+import { buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, url, token } from '../utils/variables.js'
 import { initialElements } from '../utils/initial-сards.js';
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
@@ -9,6 +9,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js'
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js'
 
 //* Functions and Classes:
 // ADD ELEMENT
@@ -84,3 +85,15 @@ cardList.renderItems();
 //* Events:
 buttonAddPlace.addEventListener('click', handleButtonAddElement);
 buttonEditProfile.addEventListener('click', handleButtonEdit);
+
+//! API
+//* API
+const api = new Api ({
+  baseUrl: url,
+  headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  console.log(api.handleCards());

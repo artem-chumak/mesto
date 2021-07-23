@@ -17,3 +17,6 @@ export const addForm = document.querySelector('#add-place'); // POPUP
 export const formElement = addForm.querySelector('form'); // FORM
 //POPUP IMAGE
 export const popupImage = document.querySelector('.popup_type_image'); // POPUP
+//API
+export const url = 'https://mesto.nomoreparties.co/v1/cohort-26/'; // URL
+export const token = 'b0e0b94f-d543-4f9f-b125-9b741686cafd'; // TOKEN
