@@ -1,6 +1,6 @@
 // Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, url, token } from '../utils/variables.js'
+import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, url, token } from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -57,29 +57,23 @@ function handleFormProfile(userData) {
   popupEditProfile.close();
 }
 
-//USER INFO
-const userProfile = new UserInfo(nameProfile, occupationProfile);
+//POPUP EDIT AVATAR
+const popupEditAvatar = new PopupWithForm(avatarForm, handleFormAvatar)
+popupEditAvatar.setEventListeners();
 
-//POPUP IMAGE
-const popupTypeImage = new PopupWithImage(popupImage);
-popupTypeImage.setEventListeners();
+function handleAvatar() {
+  validationEditAvatarForm.toggleButtonState();
+  validationEditAvatarForm.hideError();
+  popupEditAvatar.open();
+}
 
-//VALIDATIONS
-const validationEditForm = new FormValidator(arrayValidation, formEdit);
-validationEditForm.enableValidation();
+function handleFormAvatar(Data) {
+  avatar.style.backgroundImage = `url(${Data.avatar})`;
+  api.handleAvatar(Data);
+  popupEditAvatar.close();
+}
 
-const validationAddElementForm = new FormValidator(arrayValidation, formElement);
-validationAddElementForm.enableValidation();
-
-//RENDER CARDS
-
-
-//* Events:
-buttonAddPlace.addEventListener('click', handleButtonAddElement);
-buttonEditProfile.addEventListener('click', handleButtonEdit);
-
-//! API
-//* API
+//API
 const api = new Api({
   baseUrl: url,
   headers: {
@@ -88,6 +82,24 @@ const api = new Api({
   }
 });
 
+//USER INFO
+const userProfile = new UserInfo(nameProfile, occupationProfile);
+
+//POPUP IMAGE
+const popupTypeImage = new PopupWithImage(popupImage);
+popupTypeImage.setEventListeners();
+
+//VALIDATIONS
+const validationEditAvatarForm = new FormValidator(arrayValidation, formAvatar);
+validationEditAvatarForm.enableValidation();
+
+const validationEditForm = new FormValidator(arrayValidation, formEdit);
+validationEditForm.enableValidation();
+
+const validationAddElementForm = new FormValidator(arrayValidation, formElement);
+validationAddElementForm.enableValidation();
+
+//* Render page:
 Promise.all([api.getCards(), api.getUserInfo()])
   .then(([initialElements, userData]) => {
     const cardList = new Section({
@@ -102,13 +114,14 @@ Promise.all([api.getCards(), api.getUserInfo()])
 
     userProfile.setUserInfo(userData);
 
-    avatar.src = userData.avatar;
+    avatar.style.backgroundImage = `url(${userData.avatar})`;
 
   })
   .catch((err) => {
     console.log(err)
   })
 
-console.log(api.getCards());
-console.log(api.getUserInfo());
-console.log(avatar.src);
+//* Events:
+avatar.addEventListener('click', handleAvatar);
+buttonAddPlace.addEventListener('click', handleButtonAddElement);
+buttonEditProfile.addEventListener('click', handleButtonEdit);

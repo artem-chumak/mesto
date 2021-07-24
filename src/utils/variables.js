@@ -8,6 +8,9 @@ export const occupationProfile = document.querySelector('.profile__occupation');
 export const listElements = document.querySelector('.elements__list'); // UL
 // TEMPLATE
 export const templateElement = document.querySelector('.element-template').content; // TEMPLATE CONTENT
+// POPUP EDIT AVATAR
+export const avatarForm = document.querySelector('#edit-avatar'); // POPUP
+export const formAvatar = avatarForm.querySelector('form'); // FORM edit avatar
 // POPUP EDIT PROFILE
 export const editForm = document.querySelector('#edit-profile'); // POPUP
 export const formEdit = editForm.querySelector('form'); // FORM edit profile

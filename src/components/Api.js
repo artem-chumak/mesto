@@ -46,7 +46,16 @@ export default class Api {
         about: data.about,
       })
     })
-      .then(this._handleResponse)
+      .then(this._handleResponse);
+  }
+
+  handleAvatar(data) {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+      .then(this._handleResponse);
   }
 }
 
@@ -56,7 +65,8 @@ export default class Api {
   //// загрузи профиль с сервера
   //// загрузи профиль на сервер
   //// загрузи аватар с сервера
-  //* загрузи аватар на сервер
+  //// загрузи аватар на сервер
+  //* загрузка
   //* поставь лайк
   //* поставь убери лайк
   //* удали свою карточку
