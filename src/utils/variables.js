@@ -1,4 +1,5 @@
 // PROFILE
+export const avatar = document.querySelector('.profile__avatar');
 export const buttonEditProfile = document.querySelector('.profile__edit-button'); // BUTTON EDIT PROFILE
 export const buttonAddPlace = document.querySelector('.profile__add-button'); // BUTTON ADD PLACE
 export const nameProfile = document.querySelector('.profile__name'); // FIELD name
@@ -11,7 +12,7 @@ export const templateElement = document.querySelector('.element-template').conte
 export const editForm = document.querySelector('#edit-profile'); // POPUP
 export const formEdit = editForm.querySelector('form'); // FORM edit profile
 export const inputName = editForm.querySelector('input[name="name"]'); // INPUT name
-export const inputOccupation = editForm.querySelector('input[name="occupation"]'); // INPUT occupation
+export const inputOccupation = editForm.querySelector('input[name="about"]'); // INPUT occupation
 //POPUP ADD ELEMENT
 export const addForm = document.querySelector('#add-place'); // POPUP
 export const formElement = addForm.querySelector('form'); // FORM
