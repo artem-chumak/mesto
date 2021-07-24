@@ -1,6 +1,6 @@
 // Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, url, token } from '../utils/variables.js'
+import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, allSubmits, url, token } from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -11,12 +11,25 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
 
 //* Functions and Classes:
-// ADD ELEMENT
+//ELEMENT
 function handleCardClick(place, link) {
   popupTypeImage.open(place, link);
 }
 
-//NEW ELEMENT
+//LOADING
+function renderLoading(isLoading) {
+  if (isLoading) {
+    Array.from(allSubmits).forEach((submit) => {
+      submit.textContent = 'Сохранение...';
+    })
+  } else {
+    Array.from(allSubmits).forEach((submit) => {
+      submit.textContent = 'Сохранить';
+    })
+  }
+}
+
+//POPUP ADD ELEMENT
 const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
 popupAddElement.setEventListeners();
 
@@ -33,9 +46,18 @@ function createNewElement(data) {
 }
 
 function handleFormAddElement(data) {
-  listElements.prepend(createNewElement(data));
-  popupAddElement.close();
-  api.handleCard(data);
+  renderLoading(true);
+  api.handleCard(data)
+    .then((data) => {
+      listElements.prepend(createNewElement(data));
+      popupAddElement.close();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      renderLoading(false);
+    })
 }
 
 //POPUP EDIT PROFILE
@@ -52,9 +74,18 @@ function handleButtonEdit() {
 }
 
 function handleFormProfile(userData) {
-  userProfile.setUserInfo(userData);
-  api.handleUserInfo(userData);
-  popupEditProfile.close();
+  renderLoading(true);
+  api.handleUserInfo(userData)
+    .then((userData) => {
+      userProfile.setUserInfo(userData);
+      popupEditProfile.close();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      renderLoading(false);
+    })
 }
 
 //POPUP EDIT AVATAR
@@ -67,10 +98,19 @@ function handleAvatar() {
   popupEditAvatar.open();
 }
 
-function handleFormAvatar(Data) {
-  avatar.style.backgroundImage = `url(${Data.avatar})`;
-  api.handleAvatar(Data);
-  popupEditAvatar.close();
+function handleFormAvatar(data) {
+  renderLoading(true);
+  api.handleAvatar(data)
+    .then((data) => {
+      avatar.style.backgroundImage = `url(${data.avatar})`;
+      popupEditAvatar.close();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      renderLoading(false);
+    })
 }
 
 //API
