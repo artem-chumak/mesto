@@ -57,6 +57,23 @@ export default class Api {
     })
       .then(this._handleResponse);
   }
+
+  handleLike(data) {
+    return fetch(`${this._baseUrl}cards/likes/${data}`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+      .then(this._handleResponse);
+  }
+
+  handleDislike(data) {
+    return fetch(`${this._baseUrl}cards/likes/${data}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this._handleResponse);
+  }
+
 }
 
   // Что должно быть:
@@ -70,7 +87,3 @@ export default class Api {
   //* поставь лайк
   //* поставь убери лайк
   //* удали свою карточку
-
-
-//* b0e0b94f-d543-4f9f-b125-9b741686cafd
-//* cohort-26

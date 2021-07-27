@@ -1,14 +1,18 @@
 // Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, allSubmits, url, token } from '../utils/variables.js'
+import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, allSubmits, url, token } from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithSubmit from '../components/PopupWithSubmit';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
+
+//! перенести в переменные
+let userId = null;
 
 //* Functions and Classes:
 //ELEMENT
@@ -40,8 +44,11 @@ function handleButtonAddElement() {
 }
 
 function createNewElement(data) {
-  const card = new Card(data, templateElement, handleCardClick);
+  const card = new Card(data, templateElement, handleCardClick, userId, {
+    handleLikeClick: () => handleLikeClick(card, data)
+  });
   const cardElement = card.generateCard();
+  card.setLike(data);
   return cardElement;
 }
 
@@ -113,6 +120,26 @@ function handleFormAvatar(data) {
     })
 }
 
+//POPUP DELETE CONFIRMATION
+//!
+const popupDeleteConfirmation = new PopupWithSubmit(popupDelete);
+
+function handleDeleteButton() {
+  popupDeleteConfirmation.open();
+}
+
+function handleLikeClick(card, data) {
+  const firstAction = card.isLiked(data) ? api.handleDislike(data._id) : api.handleLike(data._id);
+  firstAction
+    .then((data) => {
+      card.setLike(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+//!
 //API
 const api = new Api({
   baseUrl: url,
@@ -122,6 +149,16 @@ const api = new Api({
   }
 });
 
+//! функции работают. Что дальше
+//todo Загрузка карточки и лайков.
+
+// api.handleLike("60ff8f38e12f5500f2659a6d");
+
+const Uuu = api.getCards()
+console.log(Uuu);
+console.log(api.getUserInfo());
+
+//!
 //USER INFO
 const userProfile = new UserInfo(nameProfile, occupationProfile);
 
@@ -142,11 +179,15 @@ validationAddElementForm.enableValidation();
 //* Render page:
 Promise.all([api.getCards(), api.getUserInfo()])
   .then(([initialElements, userData]) => {
+    userId = userData._id;
     const cardList = new Section({
       items: initialElements,
       renderer: (item) => {
-        const card = new Card(item, templateElement, handleCardClick);
+        const card = new Card(item, templateElement, handleCardClick, userId, {
+          handleLikeClick: () => handleLikeClick(card, item)
+        });
         const cardElement = card.generateCard();
+        card.setLike(item);
         cardList.addItem(cardElement);
       },
     }, listElements);
@@ -159,7 +200,7 @@ Promise.all([api.getCards(), api.getUserInfo()])
   })
   .catch((err) => {
     console.log(err)
-  })
+  });
 
 //* Events:
 avatar.addEventListener('click', handleAvatar);

@@ -39,6 +39,16 @@
     </footer>
   </div>
   <!--* pop-up's -->
+  <!--* delete-conformation -->
+  <section class="popup popup_type_input" id="delete-conformation">
+    <div class="popup__container popup__container_type_input">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
+      <form class="popup__form" action='#' name="delete-conformation-form" novalidate>
+        <button class="button popup__save-button" type="submit" aria-label="Сохранить">Да</button>
+      </form>
+    </div>
+  </section>
   <!--* edit-avatar -->
   <section class="popup popup_type_input" id="edit-avatar">
     <div class="popup__container popup__container_type_input">
@@ -98,7 +108,10 @@
       <img class="element__image" src="#" alt="Фото места">
       <div class="element__info">
         <h2 class="element__title"></h2>
-        <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
+        <div class="element__like">
+          <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
+          <span class="element__like-counter"></span>
+        </div>
       </div>
     </li>
   </template>

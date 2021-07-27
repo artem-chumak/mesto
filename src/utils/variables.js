@@ -21,6 +21,8 @@ export const addForm = document.querySelector('#add-place'); // POPUP
 export const formElement = addForm.querySelector('form'); // FORM
 //POPUP IMAGE
 export const popupImage = document.querySelector('.popup_type_image'); // POPUP
+//POPUP DELETE CONFIRMATION
+export const popupDelete = document.querySelector('#delete-conformation');
 //SUBMITS
 export const allSubmits = document.querySelectorAll('button[type="submit"]');
 //API
