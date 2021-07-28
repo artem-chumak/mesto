@@ -74,6 +74,14 @@ export default class Api {
       .then(this._handleResponse);
   }
 
+  handleDelete(data) {
+    return fetch(`${this._baseUrl}cards/${data}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this._handleResponse);
+
+  }
 }
 
   // Что должно быть:
@@ -84,6 +92,6 @@ export default class Api {
   //// загрузи аватар с сервера
   //// загрузи аватар на сервер
   //// загрузка
-  //* поставь лайк
-  //* поставь убери лайк
+  //// поставь лайк
+  //// поставь убери лайк
   //* удали свою карточку

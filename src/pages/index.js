@@ -45,7 +45,8 @@ function handleButtonAddElement() {
 
 function createNewElement(data) {
   const card = new Card(data, templateElement, handleCardClick, userId, {
-    handleLikeClick: () => handleLikeClick(card, data)
+    handleLikeClick: () => handleLikeClick(card, data),
+    handleDeleteButton: () => handleDeleteButton(card),
   });
   const cardElement = card.generateCard();
   card.setLike(data);
@@ -121,12 +122,59 @@ function handleFormAvatar(data) {
 }
 
 //POPUP DELETE CONFIRMATION
-//!
 const popupDeleteConfirmation = new PopupWithSubmit(popupDelete);
+popupDeleteConfirmation.setEventListeners();
 
-function handleDeleteButton() {
+//!
+
+// function handleDeleteButton(card) {
+//   popupDeleteConfirmation.open();
+//   popupDeleteConfirmation.handleFormSubmit(() => {
+//     api.handleDelete(card.getCardId())
+//       .then(() => {
+//         card.handleDeleteCard();
+//         popupDeleteConfirmation.close();
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       })
+//   })
+// }
+
+// function handleCardDelete(card) {
+//   popupTypeDelete.setFormSubmitHandler(() => {
+//     api.deleteCard(card._id)
+//       .then(() => {
+//         card.deleteCard();
+
+//         popupTypeDelete.close();
+//       })
+//       .catch((err) => {
+//         console.log(`${err}`);
+//       });
+//   });
+//   popupTypeDelete.open();
+// }
+
+function handleDeleteButton(card) {
+  popupDeleteConfirmation.setButtonText(false);
   popupDeleteConfirmation.open();
+  popupDeleteConfirmation.handleFormSubmit(() => {
+    popupDeleteConfirmation.setButtonText(true);
+    api.handleDelete(card.getCardId())
+      .then(() => {
+        card.handleDeleteCard();
+        popupDeleteConfirmation.close();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        popupDeleteConfirmation.setButtonText(false);
+      })
+  });
 }
+//!
 
 function handleLikeClick(card, data) {
   const firstAction = card.isLiked(data) ? api.handleDislike(data._id) : api.handleLike(data._id);
@@ -139,7 +187,6 @@ function handleLikeClick(card, data) {
     });
 }
 
-//!
 //API
 const api = new Api({
   baseUrl: url,
@@ -151,12 +198,6 @@ const api = new Api({
 
 //! функции работают. Что дальше
 //todo Загрузка карточки и лайков.
-
-// api.handleLike("60ff8f38e12f5500f2659a6d");
-
-const Uuu = api.getCards()
-console.log(Uuu);
-console.log(api.getUserInfo());
 
 //!
 //USER INFO
@@ -184,7 +225,8 @@ Promise.all([api.getCards(), api.getUserInfo()])
       items: initialElements,
       renderer: (item) => {
         const card = new Card(item, templateElement, handleCardClick, userId, {
-          handleLikeClick: () => handleLikeClick(card, item)
+          handleLikeClick: () => handleLikeClick(card, item),
+          handleDeleteButton: () => handleDeleteButton(card),
         });
         const cardElement = card.generateCard();
         card.setLike(item);
