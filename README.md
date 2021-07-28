@@ -16,4 +16,4 @@
 
 **Tech**
 
-* Made a refactoring.
+* Made a refactoring. And try not to be made.
