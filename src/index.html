@@ -19,11 +19,11 @@
     <main class="main">
       <!--* profile -->
       <section class="profile section">
-        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля">
+        <div class="profile__avatar"></div>
         <div class="profile__info">
-          <h1 class="profile__name">Билл Мюррей</h1>
+          <h1 class="profile__name"></h1>
           <button class="button profile__edit-button" aria-label="Изменить профиль" type="button"></button>
-          <p class="profile__occupation">Актёр</p>
+          <p class="profile__occupation"></p>
         </div>
         <button class="button profile__add-button" aria-label="Добавить" type="button"></button>
       </section>
@@ -39,6 +39,28 @@
     </footer>
   </div>
   <!--* pop-up's -->
+  <!--* delete-conformation -->
+  <section class="popup popup_type_input" id="delete-conformation">
+    <div class="popup__container popup__container_type_input">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
+      <form class="popup__form" action='#' name="delete-conformation-form" novalidate>
+        <button class="button popup__save-button" type="submit" aria-label="Да">Да</button>
+      </form>
+    </div>
+  </section>
+  <!--* edit-avatar -->
+  <section class="popup popup_type_input" id="edit-avatar">
+    <div class="popup__container popup__container_type_input">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
+      <form class="popup__form" action='#' name="profile-edit-form" novalidate>
+        <input class="popup__input" id="avatar" type="url" placeholder="Ссылка на картинку" name="avatar" required>
+        <span class="popup__input-error" id="avatar-error"></span>
+        <button class="button popup__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </section>
   <!--* edit-profile -->
   <section class="popup popup_type_input" id="edit-profile">
     <div class="popup__container popup__container_type_input">
@@ -48,7 +70,7 @@
         <input class="popup__input" id="name" type="text" placeholder="Имя" name="name" required minlength="2"
           maxlength="40">
         <span class="popup__input-error" id="name-error">Mistake</span>
-        <input class="popup__input" id="occupation" type="text" placeholder="Род занятий" name="occupation" required
+        <input class="popup__input" id="occupation" type="text" placeholder="Род занятий" name="about" required
           minlength="2" maxlength="200">
         <span class="popup__input-error" id="occupation-error"></span>
         <button class="button popup__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
@@ -61,7 +83,7 @@
       <h2 class="popup__title">Новое место</h2>
       <button class="button popup__exit-button" type="button" aria-label="Закрыть"></button>
       <form class="popup__form" action='#' name="add-element-form" novalidate>
-        <input class="popup__input" id="title" type="text" placeholder="Название" name="place" required minlength="2"
+        <input class="popup__input" id="title" type="text" placeholder="Название" name="name" required minlength="2"
           maxlength="30">
         <span class="popup__input-error" id="title-error">Mistake</span>
         <input class="popup__input" id="link" type="url" placeholder="Ссылка на картинку" name="link" required>
@@ -86,7 +108,10 @@
       <img class="element__image" src="#" alt="Фото места">
       <div class="element__info">
         <h2 class="element__title"></h2>
-        <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
+        <div class="element__like">
+          <button class="button element__like-button" aria-label="Понравилось" type="button"></button>
+          <span class="element__like-counter"></span>
+        </div>
       </div>
     </li>
   </template>
