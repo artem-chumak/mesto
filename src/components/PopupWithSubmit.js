@@ -8,14 +8,14 @@ export default class PopupWithSubmit extends Popup {
   }
 
   handleFormSubmit(action) {
-    this.handleFormSubmit = action;
+    this._handleFormSubmitDelete = action;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
-      this.handleFormSubmit();
+      this._handleFormSubmitDelete();
     });
   }
 

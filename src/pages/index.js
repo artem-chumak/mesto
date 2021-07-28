@@ -11,7 +11,6 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
 
-//! перенести в переменные
 let userId = null;
 
 //* Functions and Classes:
@@ -125,37 +124,6 @@ function handleFormAvatar(data) {
 const popupDeleteConfirmation = new PopupWithSubmit(popupDelete);
 popupDeleteConfirmation.setEventListeners();
 
-//!
-
-// function handleDeleteButton(card) {
-//   popupDeleteConfirmation.open();
-//   popupDeleteConfirmation.handleFormSubmit(() => {
-//     api.handleDelete(card.getCardId())
-//       .then(() => {
-//         card.handleDeleteCard();
-//         popupDeleteConfirmation.close();
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       })
-//   })
-// }
-
-// function handleCardDelete(card) {
-//   popupTypeDelete.setFormSubmitHandler(() => {
-//     api.deleteCard(card._id)
-//       .then(() => {
-//         card.deleteCard();
-
-//         popupTypeDelete.close();
-//       })
-//       .catch((err) => {
-//         console.log(`${err}`);
-//       });
-//   });
-//   popupTypeDelete.open();
-// }
-
 function handleDeleteButton(card) {
   popupDeleteConfirmation.setButtonText(false);
   popupDeleteConfirmation.open();
@@ -174,7 +142,6 @@ function handleDeleteButton(card) {
       })
   });
 }
-//!
 
 function handleLikeClick(card, data) {
   const firstAction = card.isLiked(data) ? api.handleDislike(data._id) : api.handleLike(data._id);
@@ -196,10 +163,6 @@ const api = new Api({
   }
 });
 
-//! функции работают. Что дальше
-//todo Загрузка карточки и
-
-//!
 //USER INFO
 const userProfile = new UserInfo(nameProfile, occupationProfile);
 
@@ -233,7 +196,7 @@ Promise.all([api.getCards(), api.getUserInfo()])
         cardList.addItem(cardElement);
       },
     }, listElements);
-    cardList.renderItems(); //* Всю простыню, что выше скопировал ради ItitianalElements, наверное можно это сократить до renderItems и оставить это на прежнем месте.
+    cardList.renderItems();
 
     userProfile.setUserInfo(userData);
 

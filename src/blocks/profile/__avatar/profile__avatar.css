@@ -36,7 +36,6 @@
   right: 50%;
   background-size: cover;
   background-position: center;
-  transition: .2s ease-in;
 }
 
 .profile__avatar:hover::after,
