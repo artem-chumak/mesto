@@ -6,14 +6,12 @@ export default class UserInfo {
     this._userId = userId;
   }
 
-  getUserId () {
-    return this._userId;
-  }
-
   getUserInfo() {
     return {
       name: this._userName.textContent,
       about: this._userOccupation.textContent,
+      avatar: this._avatar,
+      userId: this._userId
     }
   }
 
@@ -23,5 +21,4 @@ export default class UserInfo {
     this._avatar.style.backgroundImage = `url(${data.avatar})`;
     this._userId = data._id;
   }
-
 }
