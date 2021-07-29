@@ -43,7 +43,7 @@ function handleButtonAddElement() {
 }
 
 function createNewElement(data) {
-  const card = new Card(data, templateElement, handleCardClick, userId, {
+  const card = new Card(data, templateElement, handleCardClick, {userId: userProfile.getUserId()}, {
     handleLikeClick: () => handleLikeClick(card, data),
     handleDeleteButton: () => handleDeleteButton(card),
   });
@@ -164,7 +164,7 @@ const api = new Api({
 });
 
 //USER INFO
-const userProfile = new UserInfo(nameProfile, occupationProfile);
+const userProfile = new UserInfo(nameProfile, occupationProfile, avatar, userId);
 
 //POPUP IMAGE
 const popupTypeImage = new PopupWithImage(popupImage);
@@ -183,11 +183,12 @@ validationAddElementForm.enableValidation();
 //* Render page:
 Promise.all([api.getCards(), api.getUserInfo()])
   .then(([initialElements, userData]) => {
-    userId = userData._id;
+    userProfile.setUserInfo(userData);
+    // userId = userData._id;
     const cardList = new Section({
       items: initialElements,
       renderer: (item) => {
-        const card = new Card(item, templateElement, handleCardClick, userId, {
+        const card = new Card(item, templateElement, handleCardClick, {userId: userProfile.getUserId()}, {
           handleLikeClick: () => handleLikeClick(card, item),
           handleDeleteButton: () => handleDeleteButton(card),
         });
@@ -197,10 +198,10 @@ Promise.all([api.getCards(), api.getUserInfo()])
       },
     }, listElements);
     cardList.renderItems();
+    console.log(userId);
+    console.log(userProfile.getUserId());
 
-    userProfile.setUserInfo(userData);
-
-    avatar.style.backgroundImage = `url(${userData.avatar})`;
+    // avatar.style.backgroundImage = `url(${userData.avatar})`;
 
   })
   .catch((err) => {
