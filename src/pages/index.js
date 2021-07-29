@@ -11,7 +11,14 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
 
-let userId = null;
+// let userId = null;
+
+const userIformation = {
+  userName: document.querySelector('.profile__name'),
+  userAbout: document.querySelector('.profile__occupation'),
+  userAvatar: document.querySelector('.profile__avatar'),
+  userId: null,
+}
 
 //* Functions and Classes:
 //ELEMENT
@@ -164,7 +171,7 @@ const api = new Api({
 });
 
 //USER INFO
-const userProfile = new UserInfo(nameProfile, occupationProfile, avatar, userId);
+const userProfile = new UserInfo(userIformation);
 
 //POPUP IMAGE
 const popupTypeImage = new PopupWithImage(popupImage);
@@ -198,7 +205,6 @@ Promise.all([api.getCards(), api.getUserInfo()])
       },
     }, listElements);
     cardList.renderItems();
-    console.log(userId);
     console.log(userProfile.getUserId());
 
     // avatar.style.backgroundImage = `url(${userData.avatar})`;
