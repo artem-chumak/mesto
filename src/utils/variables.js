@@ -1,9 +1,13 @@
 // PROFILE
+export const userIformation = {
+  userName: document.querySelector('.profile__name'),
+  userAbout: document.querySelector('.profile__occupation'),
+  userAvatar: document.querySelector('.profile__avatar'),
+  userId: null,
+};
 export const avatar = document.querySelector('.profile__avatar');
 export const buttonEditProfile = document.querySelector('.profile__edit-button'); // BUTTON EDIT PROFILE
 export const buttonAddPlace = document.querySelector('.profile__add-button'); // BUTTON ADD PLACE
-export const nameProfile = document.querySelector('.profile__name'); // FIELD name
-export const occupationProfile = document.querySelector('.profile__occupation'); // FIELD occupation
 // ELEMENTS
 export const listElements = document.querySelector('.elements__list'); // UL
 // TEMPLATE

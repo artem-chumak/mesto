@@ -1,6 +1,6 @@
 // Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, allSubmits, url, token } from '../utils/variables.js'
+import { userIformation, avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, allSubmits, url, token } from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -10,15 +10,6 @@ import PopupWithSubmit from '../components/PopupWithSubmit';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
-
-// let userId = null;
-
-const userIformation = {
-  userName: document.querySelector('.profile__name'),
-  userAbout: document.querySelector('.profile__occupation'),
-  userAvatar: document.querySelector('.profile__avatar'),
-  userId: null,
-}
 
 //* Functions and Classes:
 //ELEMENT
@@ -116,7 +107,7 @@ function handleFormAvatar(data) {
   renderLoading(true);
   api.handleAvatar(data)
     .then((data) => {
-      avatar.style.backgroundImage = `url(${data.avatar})`;
+      userProfile.setUserInfo(data);
       popupEditAvatar.close();
     })
     .catch((err) => {
@@ -205,10 +196,6 @@ Promise.all([api.getCards(), api.getUserInfo()])
       },
     }, listElements);
     cardList.renderItems();
-    console.log(userProfile.getUserId());
-
-    // avatar.style.backgroundImage = `url(${userData.avatar})`;
-
   })
   .catch((err) => {
     console.log(err)
