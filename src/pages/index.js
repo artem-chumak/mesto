@@ -31,6 +31,27 @@ function renderLoading(isLoading) {
 }
 
 //POPUP ADD ELEMENT
+
+function createNewElement (data) {
+  const card = new Card ({
+    data: data,
+    cardSelector: templateElement,
+    handleCardClick: handleCardClick,
+    userId: userProfile.getUserInfo().userId,
+    handleLikeClick: () => handleLikeClick(card, data),
+    handleDeleteButton: () => handleDeleteButton(card),
+  })
+  return card.generateCard();
+}
+
+const cardList = new Section ({
+  render: (item) => {
+    cardList.addItem(createNewElement(item))
+  },
+  containerSelector: listElements
+})
+
+
 const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
 popupAddElement.setEventListeners();
 
@@ -40,21 +61,11 @@ function handleButtonAddElement() {
   popupAddElement.open();
 }
 
-function createNewElement(data) {
-  const card = new Card(data, templateElement, handleCardClick, {userId: userProfile.getUserInfo().userId}, {
-    handleLikeClick: () => handleLikeClick(card, data),
-    handleDeleteButton: () => handleDeleteButton(card),
-  });
-  const cardElement = card.generateCard();
-  card.setLike(data);
-  return cardElement;
-}
-
 function handleFormAddElement(data) {
   renderLoading(true);
   api.handleCard(data)
     .then((data) => {
-      listElements.prepend(createNewElement(data));
+      cardList.addItem(createNewElement(data), false);;
       popupAddElement.close();
     })
     .catch((err) => {
@@ -71,7 +82,7 @@ popupEditProfile.setEventListeners();
 
 function handleButtonEdit() {
   popupEditProfile.open();
-  const profile = userProfile.getUserInfo() // надеюсь я правильно понял
+  const profile = userProfile.getUserInfo()
   inputName.value = profile.name;
   inputOccupation.value = profile.about;
   validationEditForm.toggleButtonState();
@@ -178,24 +189,11 @@ validationEditForm.enableValidation();
 const validationAddElementForm = new FormValidator(arrayValidation, formElement);
 validationAddElementForm.enableValidation();
 
-//* Render page:
+//*Page render
 Promise.all([api.getCards(), api.getUserInfo()])
   .then(([initialElements, userData]) => {
     userProfile.setUserInfo(userData);
-    // userId = userData._id;
-    const cardList = new Section({
-      items: initialElements,
-      renderer: (item) => {
-        const card = new Card(item, templateElement, handleCardClick, {userId: userProfile.getUserInfo().userId}, {
-          handleLikeClick: () => handleLikeClick(card, item),
-          handleDeleteButton: () => handleDeleteButton(card),
-        });
-        const cardElement = card.generateCard();
-        card.setLike(item);
-        cardList.addItem(cardElement);
-      },
-    }, listElements);
-    cardList.renderItems();
+    cardList.renderItems(initialElements);
   })
   .catch((err) => {
     console.log(err)
