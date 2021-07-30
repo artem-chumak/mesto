@@ -7,15 +7,15 @@ export default class PopupWithSubmit extends Popup {
     this._confirmButton = this._form.querySelector('.popup__save-button')
   }
 
-  handleFormSubmit(action) {
-    this._handleFormSubmitDelete = action;
+  setNewHandler(action) {
+    this._handleFormSubmit = action;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
-      this._handleFormSubmitDelete();
+      this._handleFormSubmit();
     });
   }
 

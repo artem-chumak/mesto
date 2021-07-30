@@ -19,7 +19,7 @@ function handleCardClick(place, link) {
 
 function handleDeleteButton(card) {
   popupDeleteConfirmation.open();
-  popupDeleteConfirmation.handleFormSubmit(() => {
+  popupDeleteConfirmation.setNewHandler(() => {
     popupDeleteConfirmation.setButtonText(true);
     api.handleDelete(card.getCardId())
       .then(() => {
@@ -46,8 +46,6 @@ function handleLikeClick(card, data) {
     });
 }
 
-//POPUP ADD ELEMENT
-
 function createNewElement (data) {
   const card = new Card ({
     data: data,
@@ -67,7 +65,7 @@ const cardList = new Section ({
   containerSelector: listElements
 })
 
-
+//POPUP ADD ELEMENT
 const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
 popupAddElement.setEventListeners();
 
