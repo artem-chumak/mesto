@@ -1,8 +1,8 @@
 // PROFILE
 export const userIformation = {
-  userName: document.querySelector('.profile__name'),
-  userAbout: document.querySelector('.profile__occupation'),
-  userAvatar: document.querySelector('.profile__avatar'),
+  userName: '.profile__name',
+  userAbout: '.profile__occupation',
+  userAvatar: '.profile__avatar',
   userId: null,
 };
 export const avatar = document.querySelector('.profile__avatar');
