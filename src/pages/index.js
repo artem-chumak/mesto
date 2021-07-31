@@ -1,6 +1,5 @@
-// Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { userIformation, avatar, buttonEditProfile, buttonAddPlace, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, url, token } from '../utils/variables.js'
+import { userIformation, popups, forms, buttons, template, apiInfo, url, token } from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -11,7 +10,6 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
 
-//* Functions and Classes:
 //ELEMENT
 function handleCardClick(place, link) {
   popupTypeImage.open(place, link);
@@ -49,7 +47,7 @@ function handleLikeClick(card, data) {
 function createNewElement(data) {
   const card = new Card({
     data: data,
-    cardSelector: templateElement,
+    cardSelector: template.element,
     handleCardClick: handleCardClick,
     userId: userProfile.getUserInfo().userId,
     handleLikeClick: () => handleLikeClick(card, data),
@@ -62,11 +60,11 @@ const cardList = new Section({
   render: (item) => {
     cardList.addItem(createNewElement(item))
   },
-  containerSelector: listElements
+  containerSelector: template.listElements
 })
 
 //POPUP ADD ELEMENT
-const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
+const popupAddElement = new PopupWithForm(popups.addPlace, handleFormAddElement);
 popupAddElement.setEventListeners();
 
 function handleButtonAddElement() {
@@ -91,14 +89,14 @@ function handleFormAddElement(data) {
 }
 
 //POPUP EDIT PROFILE
-const popupEditProfile = new PopupWithForm(editForm, handleFormProfile)
+const popupEditProfile = new PopupWithForm(popups.profile, handleFormProfile)
 popupEditProfile.setEventListeners();
 
 function handleButtonEdit() {
   popupEditProfile.open();
   const profile = userProfile.getUserInfo()
-  inputName.value = profile.name;
-  inputOccupation.value = profile.about;
+  popupEditProfile._inputs[0].value = profile.name;
+  popupEditProfile._inputs[1].value = profile.about;
   validationEditForm.toggleButtonState();
   validationEditForm.hideError();
 }
@@ -119,7 +117,7 @@ function handleFormProfile(userData) {
 }
 
 //POPUP EDIT AVATAR
-const popupEditAvatar = new PopupWithForm(avatarForm, handleFormAvatar)
+const popupEditAvatar = new PopupWithForm(popups.avatar, handleFormAvatar)
 popupEditAvatar.setEventListeners();
 
 function handleAvatar() {
@@ -144,14 +142,14 @@ function handleFormAvatar(data) {
 }
 
 //POPUP DELETE CONFIRMATION
-const popupDeleteConfirmation = new PopupWithSubmit(popupDelete);
+const popupDeleteConfirmation = new PopupWithSubmit(popups.delete);
 popupDeleteConfirmation.setEventListeners();
 
 //API
 const api = new Api({
-  baseUrl: url,
+  baseUrl: apiInfo.url,
   headers: {
-    authorization: token,
+    authorization: apiInfo.token,
     'Content-Type': 'application/json'
   }
 });
@@ -160,30 +158,29 @@ const api = new Api({
 const userProfile = new UserInfo(userIformation);
 
 //POPUP IMAGE
-const popupTypeImage = new PopupWithImage(popupImage);
+const popupTypeImage = new PopupWithImage(popups.image);
 popupTypeImage.setEventListeners();
 
 //VALIDATIONS
-const validationEditAvatarForm = new FormValidator(arrayValidation, formAvatar);
+const validationEditAvatarForm = new FormValidator(arrayValidation, forms.avatar);
+const validationEditForm = new FormValidator(arrayValidation, forms.plofile);
+const validationAddElementForm = new FormValidator(arrayValidation, forms.place);
+validationAddElementForm.enableValidation();
+validationEditForm.enableValidation();
 validationEditAvatarForm.enableValidation();
 
-const validationEditForm = new FormValidator(arrayValidation, formEdit);
-validationEditForm.enableValidation();
-
-const validationAddElementForm = new FormValidator(arrayValidation, formElement);
-validationAddElementForm.enableValidation();
-
 //*Page render
-Promise.all([api.getCards(), api.getUserInfo()])
-  .then(([initialElements, userData]) => {
-    userProfile.setUserInfo(userData);
-    cardList.renderItems(initialElements);
-  })
+api.getAllneededData().then(data => {
+  const [ cards, userData ] = data;
+  userProfile.setUserInfo(userData);
+  cardList.renderItems(cards);
+})
   .catch((err) => {
     console.log(err)
-  });
+  }
+);
 
 //* Events:
-avatar.addEventListener('click', handleAvatar);
-buttonAddPlace.addEventListener('click', handleButtonAddElement);
-buttonEditProfile.addEventListener('click', handleButtonEdit);
+buttons.avatar.addEventListener('click', handleAvatar);
+buttons.addPlace.addEventListener('click', handleButtonAddElement);
+buttons.editProfile.addEventListener('click', handleButtonEdit);

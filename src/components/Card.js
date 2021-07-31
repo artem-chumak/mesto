@@ -6,7 +6,7 @@ export default class Card {
     this._ownerId = data.owner._id;
     this._cardId = data._id;
     this._likes = data.likes;
-    this._cardSelector = cardSelector;
+    this._cardSelector = document.querySelector(cardSelector).content;
     this._handleCardClick = handleCardClick;
     this._userId = userId;
     this._handleLikeClick = handleLikeClick;

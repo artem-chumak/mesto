@@ -18,6 +18,17 @@ export default class Api {
       .then(this._handleResponse);
   }
 
+  getUserInfo() {
+    return fetch(`${this._baseUrl}users/me`, {
+      headers: this._headers
+    })
+      .then(this._handleResponse);
+  }
+
+  getAllneededData() {
+    return Promise.all([this.getCards(), this.getUserInfo()])
+  }
+
   setCard(data) {
     return fetch(`${this._baseUrl}cards`, {
       method: 'POST',
@@ -26,13 +37,6 @@ export default class Api {
         name: data.name,
         link: data.link,
       })
-    })
-      .then(this._handleResponse);
-  }
-
-  getUserInfo() {
-    return fetch(`${this._baseUrl}users/me`, {
-      headers: this._headers
     })
       .then(this._handleResponse);
   }
