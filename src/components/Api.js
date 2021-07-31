@@ -18,7 +18,7 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  handleCard(data) {
+  setCard(data) {
     return fetch(`${this._baseUrl}cards`, {
       method: 'POST',
       headers: this._headers,
@@ -37,7 +37,7 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  handleUserInfo(data) {
+  setUserInfo(data) {
     return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -49,7 +49,7 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  handleAvatar(data) {
+  setAvatar(data) {
     return fetch(`${this._baseUrl}users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -58,7 +58,7 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  handleLike(data) {
+  setLike(data) {
     return fetch(`${this._baseUrl}cards/likes/${data}`, {
       method: 'PUT',
       headers: this._headers,
@@ -66,7 +66,7 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  handleDislike(data) {
+  setDislike(data) {
     return fetch(`${this._baseUrl}cards/likes/${data}`, {
       method: 'DELETE',
       headers: this._headers,
@@ -74,7 +74,7 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  handleDelete(data) {
+  setDelete(data) {
     return fetch(`${this._baseUrl}cards/${data}`, {
       method: 'DELETE',
       headers: this._headers,
@@ -83,15 +83,3 @@ export default class Api {
 
   }
 }
-
-  // Что должно быть:
-  //// загрузи карточки с сервера
-  //// загрузи карточки на сервера
-  //// загрузи профиль с сервера
-  //// загрузи профиль на сервер
-  //// загрузи аватар с сервера
-  //// загрузи аватар на сервер
-  //// загрузка
-  //// поставь лайк
-  //// поставь убери лайк
-  //* удали свою карточку

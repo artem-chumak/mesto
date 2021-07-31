@@ -21,7 +21,7 @@ function handleDeleteButton(card) {
   popupDeleteConfirmation.open();
   popupDeleteConfirmation.setNewHandler(() => {
     popupDeleteConfirmation.setButtonText(true);
-    api.handleDelete(card.getCardId())
+    api.setDelete(card.getCardId())
       .then(() => {
         card.handleDeleteCard();
         popupDeleteConfirmation.close();
@@ -36,7 +36,7 @@ function handleDeleteButton(card) {
 }
 
 function handleLikeClick(card, data) {
-  const firstAction = card.isLiked(data) ? api.handleDislike(data._id) : api.handleLike(data._id);
+  const firstAction = card.isLiked(data) ? api.setDislike(data._id) : api.setLike(data._id);
   firstAction
     .then((data) => {
       card.setLike(data);
@@ -77,7 +77,7 @@ function handleButtonAddElement() {
 
 function handleFormAddElement(data) {
   popupAddElement.setButtonText(true);
-  api.handleCard(data)
+  api.setCard(data)
     .then((data) => {
       cardList.addItem(createNewElement(data), false);;
       popupAddElement.close();
@@ -105,7 +105,7 @@ function handleButtonEdit() {
 
 function handleFormProfile(userData) {
   popupEditProfile.setButtonText(true);
-  api.handleUserInfo(userData)
+  api.setUserInfo(userData)
     .then((userData) => {
       userProfile.setUserInfo(userData);
       popupEditProfile.close();
@@ -130,7 +130,7 @@ function handleAvatar() {
 
 function handleFormAvatar(data) {
   popupEditAvatar.setButtonText(true);
-  api.handleAvatar(data)
+  api.setAvatar(data)
     .then((data) => {
       userProfile.setUserInfo(data);
       popupEditAvatar.close();
