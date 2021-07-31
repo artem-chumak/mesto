@@ -1,5 +1,6 @@
 export default class Card {
-  constructor(data, cardSelector, handleCardClick, userId, { handleLikeClick, handleDeleteButton }) {
+  constructor({ data, cardSelector, handleCardClick, userId, handleLikeClick, handleDeleteButton }) {
+    this._data = data;
     this._place = data.name;
     this._link = data.link;
     this._ownerId = data.owner._id;
@@ -53,6 +54,7 @@ export default class Card {
     this._imegeElement.alt = this._place;
     this._titleElement.textContent = this._place;
     this._hideDeleteButton();
+    this.setLike(this._data);
     return this._element;
   }
 

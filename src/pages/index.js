@@ -1,6 +1,6 @@
 // Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { avatar, buttonEditProfile, buttonAddPlace, nameProfile, occupationProfile, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, allSubmits, url, token } from '../utils/variables.js'
+import { userIformation, avatar, buttonEditProfile, buttonAddPlace, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, allSubmits, url, token } from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -11,123 +11,15 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
 
-let userId = null;
-
 //* Functions and Classes:
 //ELEMENT
 function handleCardClick(place, link) {
   popupTypeImage.open(place, link);
 }
 
-//LOADING
-function renderLoading(isLoading) {
-  if (isLoading) {
-    Array.from(allSubmits).forEach((submit) => {
-      submit.textContent = 'Сохранение...';
-    })
-  } else {
-    Array.from(allSubmits).forEach((submit) => {
-      submit.textContent = 'Сохранить';
-    })
-  }
-}
-
-//POPUP ADD ELEMENT
-const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
-popupAddElement.setEventListeners();
-
-function handleButtonAddElement() {
-  validationAddElementForm.toggleButtonState();
-  validationAddElementForm.hideError();
-  popupAddElement.open();
-}
-
-function createNewElement(data) {
-  const card = new Card(data, templateElement, handleCardClick, userId, {
-    handleLikeClick: () => handleLikeClick(card, data),
-    handleDeleteButton: () => handleDeleteButton(card),
-  });
-  const cardElement = card.generateCard();
-  card.setLike(data);
-  return cardElement;
-}
-
-function handleFormAddElement(data) {
-  renderLoading(true);
-  api.handleCard(data)
-    .then((data) => {
-      listElements.prepend(createNewElement(data));
-      popupAddElement.close();
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-    .finally(() => {
-      renderLoading(false);
-    })
-}
-
-//POPUP EDIT PROFILE
-const popupEditProfile = new PopupWithForm(editForm, handleFormProfile)
-popupEditProfile.setEventListeners();
-
-function handleButtonEdit() {
-  popupEditProfile.open();
-  const profile = userProfile.getUserInfo() // надеюсь я правильно понял
-  inputName.value = profile.name;
-  inputOccupation.value = profile.about;
-  validationEditForm.toggleButtonState();
-  validationEditForm.hideError();
-}
-
-function handleFormProfile(userData) {
-  renderLoading(true);
-  api.handleUserInfo(userData)
-    .then((userData) => {
-      userProfile.setUserInfo(userData);
-      popupEditProfile.close();
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-    .finally(() => {
-      renderLoading(false);
-    })
-}
-
-//POPUP EDIT AVATAR
-const popupEditAvatar = new PopupWithForm(avatarForm, handleFormAvatar)
-popupEditAvatar.setEventListeners();
-
-function handleAvatar() {
-  validationEditAvatarForm.toggleButtonState();
-  validationEditAvatarForm.hideError();
-  popupEditAvatar.open();
-}
-
-function handleFormAvatar(data) {
-  renderLoading(true);
-  api.handleAvatar(data)
-    .then((data) => {
-      avatar.style.backgroundImage = `url(${data.avatar})`;
-      popupEditAvatar.close();
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-    .finally(() => {
-      renderLoading(false);
-    })
-}
-
-//POPUP DELETE CONFIRMATION
-const popupDeleteConfirmation = new PopupWithSubmit(popupDelete);
-popupDeleteConfirmation.setEventListeners();
-
 function handleDeleteButton(card) {
-  popupDeleteConfirmation.setButtonText(false);
   popupDeleteConfirmation.open();
-  popupDeleteConfirmation.handleFormSubmit(() => {
+  popupDeleteConfirmation.setNewHandler(() => {
     popupDeleteConfirmation.setButtonText(true);
     api.handleDelete(card.getCardId())
       .then(() => {
@@ -154,6 +46,107 @@ function handleLikeClick(card, data) {
     });
 }
 
+function createNewElement (data) {
+  const card = new Card ({
+    data: data,
+    cardSelector: templateElement,
+    handleCardClick: handleCardClick,
+    userId: userProfile.getUserInfo().userId,
+    handleLikeClick: () => handleLikeClick(card, data),
+    handleDeleteButton: () => handleDeleteButton(card),
+  })
+  return card.generateCard();
+}
+
+const cardList = new Section ({
+  render: (item) => {
+    cardList.addItem(createNewElement(item))
+  },
+  containerSelector: listElements
+})
+
+//POPUP ADD ELEMENT
+const popupAddElement = new PopupWithForm(addForm, handleFormAddElement);
+popupAddElement.setEventListeners();
+
+function handleButtonAddElement() {
+  validationAddElementForm.toggleButtonState();
+  validationAddElementForm.hideError();
+  popupAddElement.open();
+}
+
+function handleFormAddElement(data) {
+  popupAddElement.setButtonText(true);
+  api.handleCard(data)
+    .then((data) => {
+      cardList.addItem(createNewElement(data), false);;
+      popupAddElement.close();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      popupAddElement.setButtonText(false);
+    })
+}
+
+//POPUP EDIT PROFILE
+const popupEditProfile = new PopupWithForm(editForm, handleFormProfile)
+popupEditProfile.setEventListeners();
+
+function handleButtonEdit() {
+  popupEditProfile.open();
+  const profile = userProfile.getUserInfo()
+  inputName.value = profile.name;
+  inputOccupation.value = profile.about;
+  validationEditForm.toggleButtonState();
+  validationEditForm.hideError();
+}
+
+function handleFormProfile(userData) {
+  popupEditProfile.setButtonText(true);
+  api.handleUserInfo(userData)
+    .then((userData) => {
+      userProfile.setUserInfo(userData);
+      popupEditProfile.close();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      popupEditProfile.setButtonText(false);
+    })
+}
+
+//POPUP EDIT AVATAR
+const popupEditAvatar = new PopupWithForm(avatarForm, handleFormAvatar)
+popupEditAvatar.setEventListeners();
+
+function handleAvatar() {
+  validationEditAvatarForm.toggleButtonState();
+  validationEditAvatarForm.hideError();
+  popupEditAvatar.open();
+}
+
+function handleFormAvatar(data) {
+  popupEditAvatar.setButtonText(true);
+  api.handleAvatar(data)
+    .then((data) => {
+      userProfile.setUserInfo(data);
+      popupEditAvatar.close();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      popupEditAvatar.setButtonText(false);
+    })
+}
+
+//POPUP DELETE CONFIRMATION
+const popupDeleteConfirmation = new PopupWithSubmit(popupDelete);
+popupDeleteConfirmation.setEventListeners();
+
 //API
 const api = new Api({
   baseUrl: url,
@@ -164,7 +157,7 @@ const api = new Api({
 });
 
 //USER INFO
-const userProfile = new UserInfo(nameProfile, occupationProfile);
+const userProfile = new UserInfo(userIformation);
 
 //POPUP IMAGE
 const popupTypeImage = new PopupWithImage(popupImage);
@@ -180,28 +173,11 @@ validationEditForm.enableValidation();
 const validationAddElementForm = new FormValidator(arrayValidation, formElement);
 validationAddElementForm.enableValidation();
 
-//* Render page:
+//*Page render
 Promise.all([api.getCards(), api.getUserInfo()])
   .then(([initialElements, userData]) => {
-    userId = userData._id;
-    const cardList = new Section({
-      items: initialElements,
-      renderer: (item) => {
-        const card = new Card(item, templateElement, handleCardClick, userId, {
-          handleLikeClick: () => handleLikeClick(card, item),
-          handleDeleteButton: () => handleDeleteButton(card),
-        });
-        const cardElement = card.generateCard();
-        card.setLike(item);
-        cardList.addItem(cardElement);
-      },
-    }, listElements);
-    cardList.renderItems();
-
     userProfile.setUserInfo(userData);
-
-    avatar.style.backgroundImage = `url(${userData.avatar})`;
-
+    cardList.renderItems(initialElements);
   })
   .catch((err) => {
     console.log(err)
