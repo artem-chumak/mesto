@@ -1,6 +1,6 @@
 // Like и Plus не фиксил, т.к. сказали, что не надо.
 import '../pages/index.css';
-import { userIformation, avatar, buttonEditProfile, buttonAddPlace, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, allSubmits, url, token } from '../utils/variables.js'
+import { userIformation, avatar, buttonEditProfile, buttonAddPlace, listElements, templateElement, avatarForm, formAvatar, editForm, formEdit, inputName, inputOccupation, addForm, formElement, popupImage, popupDelete, url, token } from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -46,8 +46,8 @@ function handleLikeClick(card, data) {
     });
 }
 
-function createNewElement (data) {
-  const card = new Card ({
+function createNewElement(data) {
+  const card = new Card({
     data: data,
     cardSelector: templateElement,
     handleCardClick: handleCardClick,
@@ -58,7 +58,7 @@ function createNewElement (data) {
   return card.generateCard();
 }
 
-const cardList = new Section ({
+const cardList = new Section({
   render: (item) => {
     cardList.addItem(createNewElement(item))
   },

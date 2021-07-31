@@ -27,8 +27,6 @@ export const formElement = addForm.querySelector('form'); // FORM
 export const popupImage = document.querySelector('.popup_type_image'); // POPUP
 //POPUP DELETE CONFIRMATION
 export const popupDelete = document.querySelector('#delete-conformation');
-//SUBMITS
-export const allSubmits = document.querySelectorAll('button[type="submit"]');
 //API
 export const url = 'https://mesto.nomoreparties.co/v1/cohort-26/'; // URL
 export const token = 'b0e0b94f-d543-4f9f-b125-9b741686cafd'; // TOKEN
