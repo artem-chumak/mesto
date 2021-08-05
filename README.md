@@ -1,19 +1,12 @@
-# Mesto
+   # Mesto
 
-[The site](https://artem-chumak.github.io/mesto/) created as practice work during my studies in Yandex.Practicum.
+[Сайт](https://artem-chumak.github.io/mesto/), созданный в рамках моего обучения в Яндекс.Практикум. Код написан на HTML, CSS и JavaScript с использованием объектно ориентированного подхода. Для сборки использовался Вебпак. Сервер предоставил Яндекс.
 
-## Tech
-
-* HTML
-* CSS (flex, grid, @media)
-* Vanilla JavaScript (popups, form validation, creating elements from array, classes)
-* BEM nested
-* ES6 classes
-* OOP
-* Webpack building
-
-## Development plan
-
-**Tech**
-
-* Made a refactoring. And try not to be made. u
+##### Что можно делать:
+- Добавлять карточки.
+- Просматривать карточки.
+- Удалять собственный карточки.
+- Ставить и отменять лайки.
+- Редактировать профиль.
+- Менять аватар.
+gi
