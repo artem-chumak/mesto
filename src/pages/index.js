@@ -1,5 +1,5 @@
 import '../pages/index.css';
-import { userIformation, popups, forms, buttons, template, apiInfo, url, token } from '../utils/variables.js'
+import { userIformation, popups, forms, buttons, template, apiInfo} from '../utils/variables.js'
 import { arrayValidation } from '../utils/validation-list.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -95,8 +95,7 @@ popupEditProfile.setEventListeners();
 function handleButtonEdit() {
   popupEditProfile.open();
   const profile = userProfile.getUserInfo()
-  popupEditProfile._inputs[0].value = profile.name;
-  popupEditProfile._inputs[1].value = profile.about;
+  popupEditProfile.setAutoFill(profile);
   validationEditForm.toggleButtonState();
   validationEditForm.hideError();
 }

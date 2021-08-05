@@ -12,8 +12,18 @@ export default class PopupWithForm extends Popup {
   _getInputValues() {
     this._inputList = Array.from(this._inputs);
     this._formValues = {};
-    this._inputList.forEach(input => this._formValues[input.name] = input.value);
+    this._inputList.forEach((input) => {
+      this._formValues[input.name] = input.value
+    });
     return this._formValues;
+  }
+
+  setAutoFill(data) {
+    this._inputs.forEach((item) => {
+      if (data[item.name]) {
+        item.value = data[item.name]
+      }
+    });
   }
 
   setEventListeners() {
@@ -36,5 +46,4 @@ export default class PopupWithForm extends Popup {
       this._confirmButton.textContent = 'Сохранить'
     }
   }
-
 }

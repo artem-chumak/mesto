@@ -33,7 +33,7 @@ export default class Card {
   }
 
   setLike(data) {
-    this._isLiked = data.likes.filter((item) => { return item._id == this._userId; }).length > 0;
+    this._isLiked = Boolean (data.likes.find((item) => {return item._id === this._userId}));
     this._likeCounter.textContent = data.likes.length;
     if (this._isLiked) {
       this._likeButton.classList.add('element__like-button_active');

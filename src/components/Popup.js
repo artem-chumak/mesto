@@ -20,12 +20,14 @@ export default class Popup {
     }
   }
 
+  _clickOutForm(event) {
+    if (event.target === event.currentTarget) {
+      this.close();
+    }
+  }
+
   setEventListeners() {
-    this._popup.querySelector('.popup__exit-button').addEventListener('click', (event) => this.close()); //close(event) ???
-    this._popup.addEventListener('click', (event) => { // можно перенести в отдельную функцию
-      if (event.target === event.currentTarget) {
-        this.close();
-      }
-    })
+    this._popup.querySelector('.popup__exit-button').addEventListener('click', (event) => this.close());
+    this._popup.addEventListener('click', (event) => this._clickOutForm(event))
   }
 }
