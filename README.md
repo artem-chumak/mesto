@@ -5,7 +5,7 @@
 <p align="center"> Проект <a href='https://artem-chumak.github.io/mesto/'>сайта</a>, на котором можно поделиться фото любимого места.</p>  
 
 ---
-### <img hight="20" src="https://img.icons8.com/plasticine/50/000000/refer-to-manual.png"/>  
+### <img width="20" src="https://img.icons8.com/plasticine/50/000000/refer-to-manual.png"/>  
 Инструкция по развёртыванию проекта после скачивания.
 
 ##### Что можно делать:
