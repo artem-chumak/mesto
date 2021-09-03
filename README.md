@@ -13,7 +13,7 @@
 
 ### ⚙️   Стек технологий:
 
-1. <img src="https://img.icons8.com/color/26/000000/html-5--v1.png"/>  HTML. Семантическая вёрстка. 
+1. <img height='25' src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1280px-HTML5_logo_and_wordmark.svg.png"/>  HTML. Семантическая вёрстка. 
 2. CSS. flex, grid, @media
 3. Vanilla JavaScript. OOP, classes, fetch, promises
 4. BEM nested
