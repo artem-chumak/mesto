@@ -1,6 +1,6 @@
 # Mesto  
 
-<p align="center"># Mesto </p>  
+# <p align="center">Mesto</p>  
 
 Проект [сайта](https://artem-chumak.github.io/mesto/), на котором можно поделиться фото любимого места.  
 
