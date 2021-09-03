@@ -13,14 +13,14 @@
 
 ### ⚙️   Стек технологий:
 
-  HTML. Семантическая вёрстка.  
-  <img src="https://img.icons8.com/color/36/000000/html-5--v1.png"/>  
-CSS. flex, grid, @media.  
-<img src="https://img.icons8.com/color/36/000000/css3.png"/>  
-JavaScript. ООП, classes, fetch, promises.  
-<img src="https://img.icons8.com/color/36/000000/javascript--v2.png"/>  
-BEM nested.  
-<img src="https://img.icons8.com/fluency/36/000000/plugin.png"/>
+   HTML. Семантическая вёрстка.  
+   <img src="https://img.icons8.com/color/36/000000/html-5--v1.png"/>  
+   CSS. flex, grid, @media.  
+   <img src="https://img.icons8.com/color/36/000000/css3.png"/>  
+   JavaScript. ООП, classes, fetch, promises.  
+   <img src="https://img.icons8.com/color/36/000000/javascript--v2.png"/>  
+   BEM nested.  
+   <img src="https://img.icons8.com/fluency/36/000000/plugin.png"/>
 
 ### 🛸   Функциональные возможности проекта:
 
