@@ -2,7 +2,7 @@
 
 # <p align="center">Mesto</p>  
 
-<p align="center"> Проект [сайта](https://artem-chumak.github.io/mesto/), на котором можно поделиться фото любимого места.</p>  
+<p align="center"> Проект <a href='https://artem-chumak.github.io/mesto/'>site</a> сайта(https://artem-chumak.github.io/mesto/), на котором можно поделиться фото любимого места.</p>  
 
 ---
 ### Инструкция по развёртыванию проекта после скачивания.
