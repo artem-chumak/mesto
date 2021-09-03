@@ -1,5 +1,5 @@
 # Mesto  
-<center>Centered text</center>  
+
 Проект [сайта](https://artem-chumak.github.io/mesto/), на котором можно поделиться фото любимого места.  
 
 ---
