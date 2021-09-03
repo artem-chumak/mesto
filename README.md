@@ -11,4 +11,9 @@
 2. Зайти через терминал в папку проекта и ввести: *npm install*. Произойдёт автоматическая установка зависимостей из файла *package.json*.
 3. После этого будут доступны следующие команды из терминала: *npm run dev* (запустить проект локально в браузере по умолчанию), *npm run build* (соберёт проект в папке dist)
 
-<img src="https://img.icons8.com/officel/36/000000/do-not-drop.png"/>
+### ⚙️   Стек технологий:
+
+1. HTML. Семантическая вёрстка.  <img src="https://img.icons8.com/color/36/000000/html-5--v1.png"/>
+3. CSS. flex, grid, @media
+4. Vanilla JavaScript. OOP, classes, fetch, promises
+5. BEM nested
