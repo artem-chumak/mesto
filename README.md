@@ -1,6 +1,6 @@
 # <p align="center">Mesto</p>  
 
-<a align="center"><img align="center" src="https://img.icons8.com/cute-clipart/64/000000/national-park.png"/></a>
+<a align="center"><img src="https://img.icons8.com/cute-clipart/64/000000/national-park.png"/></a>
 
 <p align="center"> Проект <a href='https://artem-chumak.github.io/mesto/'>сайта</a>, на котором можно поделиться фото любимого места 🏞</p>  
 
