@@ -24,7 +24,7 @@
    BEM nested.  
    <img src="https://img.icons8.com/fluency/36/000000/plugin.png"/>  
    Figma.  
-   <img src="https://img.icons8.com/color/36/000000/figma--v2.png"/>  
+   <img src="https://img.icons8.com/fluency/36/000000/figma.png"/>  
 
 ### 🛸   Функциональные возможности проекта:
 
