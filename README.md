@@ -19,6 +19,8 @@
    <img src="https://img.icons8.com/color/36/000000/css3.png"/>  
    JavaScript. ООП, classes, fetch, promises.  
    <img src="https://img.icons8.com/color/36/000000/javascript--v2.png"/>  
+   Webpack.  
+   <img src="https://img.icons8.com/color/36/000000/webpack.png"/>
    BEM nested.  
    <img src="https://img.icons8.com/fluency/36/000000/plugin.png"/>
 
