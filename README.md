@@ -1,5 +1,5 @@
 # <p align="center">Mesto</p>  
-<img src="https://img.icons8.com/emoji/96/000000/mountain-cableway.png"/>
+<img src="https://img.icons8.com/officel/80/000000/national-park.png"/>
 <img src="https://img.icons8.com/cute-clipart/64/000000/national-park.png"/>
 <img src="https://img.icons8.com/plasticine/100/000000/national-park.png"/>
 
