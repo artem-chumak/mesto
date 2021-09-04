@@ -1,4 +1,4 @@
-<p align="center"><img src="https://img.icons8.com/cute-clipart/64/000000/national-park.png"/></p>  
+<p align="center"><img src="https://img.icons8.com/officel/100/000000/new-york.png"/></p>  
 
 # <p align="center">Mesto</p>
 
